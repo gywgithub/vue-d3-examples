@@ -135,12 +135,15 @@ li {
 }
 li:hover {
   color: #0080ff;
+  background-color: #f4f9ff;
 }
 li:active {
   background-color: #eee;
 }
 .selected {
   color: #0080ff;
-  background-color: #f4f9ff;
+  /* background-color: #f4f9ff; */
+  /* font-size: 1.1em; */
+  font-weight: 700;
 }
 </style>
