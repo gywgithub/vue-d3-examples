@@ -21,6 +21,7 @@
 import HelloWorld from '../components/HelloWorld'
 import ModifyingAForceLayout from '../components/ModifyingAForceLayout'
 import ModifyingAForceLayoutII from '../components/ModifyingAForceLayoutII'
+import ModifyingAForceLayoutIII from '../components/ModifyingAForceLayoutIII'
 import GeneralUpdatePatternI from '../components/GeneralUpdatePatternI'
 import SelectElementAndBindData from '../components/SelectElementAndBindData'
 import UpdateEnterExit from '../components/UpdateEnterExit'
@@ -45,6 +46,7 @@ export default {
         { 'label': 'HelloWorld', 'value': 'HelloWorld' },
         { 'label': 'Modifying a Force Layout', 'value': 'ModifyingAForceLayout' },
         { 'label': 'Modifying a Force Layout II', 'value': 'ModifyingAForceLayoutII' },
+        { 'label': 'Modifying a Force Layout III', 'value': 'ModifyingAForceLayoutIII' },
         { 'label': 'General Update Pattern I', 'value': 'GeneralUpdatePatternI' },
         { 'label': 'SelectElementAndBindData', 'value': 'SelectElementAndBindData' },
         { 'label': 'UpdateEnterExit', 'value': 'UpdateEnterExit' },
@@ -84,6 +86,7 @@ export default {
     HelloWorld,
     ModifyingAForceLayout,
     ModifyingAForceLayoutII,
+    ModifyingAForceLayoutIII,
     GeneralUpdatePatternI,
     SelectElementAndBindData,
     UpdateEnterExit,

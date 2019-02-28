@@ -1,6 +1,12 @@
 # github-pages-template
 
-`D3`  `V5`  `Vue`  `Examples`
+`D3`   `V5`   `Vue`   `Examples`
+
+npm: `v6.7.0`
+
+node: `v11.10.0`
+
+d3: `v5.9.1`
 
 ## Project setup
 ```

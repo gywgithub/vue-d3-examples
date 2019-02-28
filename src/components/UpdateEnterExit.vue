@@ -42,20 +42,18 @@ export default {
     update2.text(function (d, i) {
       return 'update: ' + d + ' ,index: ' + i
     })
-    exit.text(function (d, i) {
+    exit.text(function () {
       return 'exit'
     })
 
     // add data
     let addDataset = [...dataset, 18, 21]
     setTimeout(() => {
-      console.log('2s')
       enterDataset(addDataset)
     }, 2000)
 
     setTimeout(() => {
       let dataset = [...addDataset, 24, 27]
-      console.log('3.5s')
       enterDataset(dataset)
     }, 3500)
 
