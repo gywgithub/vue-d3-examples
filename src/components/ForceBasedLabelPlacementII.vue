@@ -1,13 +1,14 @@
 <template>
   <div>
-    <h2>Force-based label placement (d3.v5.js)</h2>
+    <h2>Force-based label placement II</h2>
     <svg id="viz"></svg>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
-import jsonData from '../assets/json/miserables.json'
+// import jsonData from '../assets/json/miserables.json'
+import jsonData from '../assets/json/simple_force_layout.json'
 export default {
   name: 'ForceBasedLabelPlacement',
   components: {
@@ -16,6 +17,7 @@ export default {
     let width = 1850
     let height = 800
     let color = d3.scaleOrdinal(d3.schemeCategory10)
+    console.log('links: ', jsonData.links)
     let graph = jsonData
     let label = {
       'nodes': [],
@@ -29,7 +31,10 @@ export default {
         target: i * 2 + 1
       })
     })
-
+    console.log('graph.nodes: ', graph.nodes)
+    console.log('label.nodes: ', label.nodes)
+    
+    console.log('label.links: ', label.links)
     let labelLayout = d3.forceSimulation(label.nodes)
       .force('charge', d3.forceManyBody().strength(-50))
       .force('link', d3.forceLink(label.links).distance(0).strength(2))
@@ -191,7 +196,7 @@ export default {
 </script>
 <style scoped>
 svg {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   width: 100%;
 }
 </style>

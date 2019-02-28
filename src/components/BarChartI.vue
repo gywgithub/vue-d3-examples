@@ -1,7 +1,9 @@
 <template>
   <div>
     <h2>Bar Chart I</h2>
-    <div class="chart"></div>
+    <div class="container">
+      <div class="chart"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -33,5 +35,9 @@ export default {
   padding: 3px;
   margin: 1px;
   color: white;
+}
+.container {
+  width: 50%;
+  margin: auto;
 }
 </style>

@@ -1,26 +1,18 @@
 <template>
   <div>
-    <h2>Force-based label placement (d3.v5.js)</h2>
+    <h2>Force-based label placement</h2>
     <svg id="viz"></svg>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
-import jsonData from '../assets/json/miserables.json'
-// import json2 from 'miserables.json'
-// console.log('json2: ', json2)
-// console.log('json2 path: ', 'http://localhost:8080/json/miserables.json')
 export default {
   name: 'ForceBasedLabelPlacement',
-  components: {
-  },
   mounted () {
     let width = 1000
     let height = 700
     let color = d3.scaleOrdinal(d3.schemeCategory10)
-    // d3.json('../assets/json/miserables.json').then(function (graph) {
-    // d3.json('../assets/json/miserables.json').then(function (graph) {
     d3.json('http://localhost:8080/json/miserables.json').then(function (graph) {
       let label = {
         'nodes': [],
@@ -190,7 +182,8 @@ export default {
 </script>
 <style scoped>
 svg {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  width: 100%;
 }
 </style>
 <style>

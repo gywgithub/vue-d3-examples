@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <router-view/>
   </div>
 </template>
@@ -19,5 +17,6 @@ body,
 #app {
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 </style>

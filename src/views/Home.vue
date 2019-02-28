@@ -20,6 +20,7 @@
 <script>
 import HelloWorld from '../components/HelloWorld'
 import ModifyingAForceLayout from '../components/ModifyingAForceLayout'
+import ModifyingAForceLayoutII from '../components/ModifyingAForceLayoutII'
 import GeneralUpdatePatternI from '../components/GeneralUpdatePatternI'
 import SelectElementAndBindData from '../components/SelectElementAndBindData'
 import UpdateEnterExit from '../components/UpdateEnterExit'
@@ -36,13 +37,14 @@ import BarChartII from '../components/BarChartII'
 import Zoomable from '../components/Zoomable'
 import ZoomableAddText from '../components/ZoomableAddText'
 import ForceBasedLabelPlacement from '../components/ForceBasedLabelPlacement'
-import ForceBasedLabelPlacement2 from '../components/ForceBasedLabelPlacement2'
+import ForceBasedLabelPlacementII from '../components/ForceBasedLabelPlacementII'
 export default {
   data () {
     return {
       examples: [
         { 'label': 'HelloWorld', 'value': 'HelloWorld' },
         { 'label': 'Modifying a Force Layout', 'value': 'ModifyingAForceLayout' },
+        { 'label': 'Modifying a Force Layout II', 'value': 'ModifyingAForceLayoutII' },
         { 'label': 'General Update Pattern I', 'value': 'GeneralUpdatePatternI' },
         { 'label': 'SelectElementAndBindData', 'value': 'SelectElementAndBindData' },
         { 'label': 'UpdateEnterExit', 'value': 'UpdateEnterExit' },
@@ -59,7 +61,7 @@ export default {
         { 'label': 'Zoomable', 'value': 'Zoomable' },
         { 'label': 'Zoomable Add Text', 'value': 'ZoomableAddText' },
         { 'label': 'Force-based label placement', 'value': 'ForceBasedLabelPlacement' },
-        { 'label': 'Force-based label placement 2', 'value': 'ForceBasedLabelPlacement2' }
+        { 'label': 'Force-based label placement II', 'value': 'ForceBasedLabelPlacementII' }
       ],
       componentName: 'HelloWorld'
     }
@@ -81,6 +83,7 @@ export default {
   components: {
     HelloWorld,
     ModifyingAForceLayout,
+    ModifyingAForceLayoutII,
     GeneralUpdatePatternI,
     SelectElementAndBindData,
     UpdateEnterExit,
@@ -97,7 +100,7 @@ export default {
     Zoomable,
     ZoomableAddText,
     ForceBasedLabelPlacement,
-    ForceBasedLabelPlacement2
+    ForceBasedLabelPlacementII
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Zoomable Force Directed Graph d3v4</h2>
+    <h2>Zoomable Force Directed Graph</h2>
     <svg id="svg" width="1000" height="700"></svg>
   </div>
 </template>
@@ -234,11 +234,6 @@ export default {
   }
 }
 </script>
-<style scoped>
-svg {
-  border: 1px solid #ccc;
-}
-</style>
 <style>
 .links line {
   stroke: #999;

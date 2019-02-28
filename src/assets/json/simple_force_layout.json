@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    {
+      "id": "Myriel",
+      "group": 1
+    },
+    {
+      "id": "Napoleon",
+      "group": 2
+    },
+    {
+      "id": "Feuilly",
+      "group": 3
+    }
+  ],
+  "links": [
+    {
+      "source": "Myriel",
+      "target": "Napoleon",
+      "value": 1
+    },
+    {
+      "source": "Napoleon",
+      "target": "Feuilly",
+      "value": 2
+    },
+    {
+      "source": "Feuilly",
+      "target": "Myriel",
+      "value": 3
+    }
+  ]
+}
