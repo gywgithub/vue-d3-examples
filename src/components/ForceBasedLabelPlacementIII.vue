@@ -7,7 +7,6 @@
 
 <script>
 import * as d3 from 'd3'
-// import jsonData from '../assets/json/miserables.json'
 import jsonData from '../assets/json/simple_force_layout.json'
 export default {
   name: 'ForceBasedLabelPlacement',
@@ -44,16 +43,12 @@ export default {
         target: i * 2 + 1
       })
     })
-    // this.labelLayout = d3.forceSimulation(this.label.nodes)
-      // .force('charge', d3.forceManyBody().strength(-150))
-      // .force('link', d3.forceLink(this.label.links).distance(0).strength(0.2))
 
     this.graphLayout = d3.forceSimulation(this.graph.nodes)
-      .force('charge', d3.forceManyBody().strength(-2000))
-      .force('center', d3.forceCenter(this.width / 2, this.height / 2))
-      .force('x', d3.forceX(this.width / 2).strength(1))
-      .force('y', d3.forceY(this.height / 2).strength(1))
-      .force('link', d3.forceLink(this.graph.links).id(function (d) { return d.id }).distance(100).strength(1))
+      .force('charge', d3.forceManyBody().strength(-500))
+      .force('x', d3.forceX(this.width / 2))
+      .force('y', d3.forceY(this.height / 2))
+      .force('link', d3.forceLink(this.graph.links).id(function (d) { return d.id }).distance(100))
       .on('tick', self.ticked)
 
     this.graph.links.forEach(function (d) {
@@ -73,30 +68,12 @@ export default {
 
     this.link = this.container.append('g').attr('class', 'links')
       .selectAll('line')
-      // .data(this.graph.links)
-      // .enter()
-      // .append('line')
-      // .attr('stroke', '#aaa')
-      // .attr('stroke-width', '1px')
 
     self.node = this.container.append('g').attr('class', 'nodes')
       .selectAll('g')
-      // .data(this.graph.nodes)
-      // .enter()
-      // .append('circle')
-      // .attr('r', 5)
-      // .attr('fill', function (d) { return self.color(d.group) })
 
     this.labelNode = this.container.append('g').attr('class', 'labelNodes')
       .selectAll('text')
-      // .data(this.label.nodes)
-      // .enter()
-      // .append('text')
-      // .text(function (d, i) { return i % 2 === 0 ? '' : d.node.id })
-      // .style('fill', '#555')
-      // .style('font-family', 'Arial')
-      // .style('font-size', 12)
-      // .style('pointer-events', 'none')
 
     this.restart()
 
@@ -105,10 +82,6 @@ export default {
       let addLinks = [{'source': 'Four','target': 'Five','value': 3},{'source': 'Five','target': 'Feuilly','value': 4}]
       this.graph.nodes = [...this.graph.nodes, ...addData]
       this.graph.links = [...this.graph.links, ...addLinks]
-      addData.forEach(function (d, i) {
-        self.label.nodes.push({ node: d })
-        self.label.nodes.push({ node: d })
-      })
       this.restart()
     }, 1000)
   },
@@ -126,50 +99,42 @@ export default {
       })
       this.link.exit().remove()
       this.link = this.link.enter().append('line').merge(this.link)
-
-      this.labelNode = this.labelNode.data(this.label.nodes, function (d) { 
-        console.log('d: ', d)
+      this.labelNode = this.labelNode.data(this.graph.nodes, function (d) {
         return d.id })
       this.labelNode.exit().remove()
       this.labelNode = this.labelNode.enter().append('text').merge(this.labelNode)
         .text(function (d) {
-          return d.node.id })
+          return d.id })
         .style('fill', '#555')
         .style('font-size', 12)
         .style('pointer-events', 'none')
 
       this.graphLayout.nodes(this.graph.nodes)
       this.graphLayout.force('link').links(this.graph.links)
-      this.graphLayout.alpha(1).restart()
     },
     ticked () {
       let self = this
       self.node.call(self.updateNode)
       self.link.call(self.updateLink)
 
-      // self.labelLayout.alphaTarget(0.3).restart()
       self.labelNode.each(function (d, i) {
         if (i % 2 === 0) {
-          d.x = d.node.x
-          d.y = d.node.y
+          d.x = d.x
+          d.y = d.y
         } else {
           let b = this.getBBox()
-          let diffX = d.x - d.node.x
-          let diffY = d.y - d.node.y
+          let diffX = d.x - d.x
+          let diffY = d.y - d.y
 
           let dist = Math.sqrt(diffX * diffX + diffY * diffY)
 
           let shiftX = b.width * (diffX - dist) / (dist * 2)
           shiftX = Math.max(-b.width, Math.min(0, shiftX))
           let shiftY = 16
-          this.setAttribute('transform', 'translate(' + shiftX + ',' + shiftY + ')')
+          this.setAttribute('transform', 'translate(' + self.fixna(shiftX) + ',' + shiftY + ')')
         }
       })
       self.labelNode.call(self.updateNode)
-
-      // this.labelNode.each(function (d) {
-      //   this.setAttribute('transform', 'translate(' + d.x + ',' + d.y + ')')
-      // })
     },
     updateLink () {
       let self = this
