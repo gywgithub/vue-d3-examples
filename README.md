@@ -1,6 +1,6 @@
-# github-pages-template
+# Vue D3 V5 Examples
 
-`D3`   `V5`   `Vue`   `Examples`
+`Vue`   `D3`   `V5`   `Examples`
 
 npm: `v6.7.0`
 
@@ -21,16 +21,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration

@@ -17,7 +17,7 @@ export default {
     let width = 1850
     let height = 800
     let color = d3.scaleOrdinal(d3.schemeCategory10)
-    console.log('links: ', jsonData.links)
+    // console.log('links: ', jsonData.links)
     let graph = jsonData
     let label = {
       'nodes': [],
@@ -31,10 +31,9 @@ export default {
         target: i * 2 + 1
       })
     })
-    console.log('graph.nodes: ', graph.nodes)
-    console.log('label.nodes: ', label.nodes)
-    
-    console.log('label.links: ', label.links)
+    // console.log('graph.nodes: ', graph.nodes)
+    // console.log('label.nodes: ', label.nodes)
+    // console.log('label.links: ', label.links)
     let labelLayout = d3.forceSimulation(label.nodes)
       .force('charge', d3.forceManyBody().strength(-50))
       .force('link', d3.forceLink(label.links).distance(0).strength(2))
@@ -63,7 +62,14 @@ export default {
     svg.call(
       d3.zoom()
         .scaleExtent([.1, 4]) // eslint-disable-line
-        .on('zoom', function () { container.attr('transform', d3.event.transform) })
+        .on('zoom', function () { 
+          // console.log(d3.event.transform)
+      //     var t = d3.zoomIdentity
+      // .translate(width / 2, height / 2)
+      // .scale(d3.event.transform.k)
+      // .translate(-fx, -fy)
+      // console.log('t: ', t)
+          container.attr('transform', d3.event.transform) })
     )
 
     let link = container.append('g').attr('class', 'links')
@@ -82,14 +88,14 @@ export default {
       .attr('r', 5)
       .attr('fill', function (d) { return color(d.group) })
 
-    node.on('mouseover', focus).on('mouseout', unfocus)
+    // node.on('mouseover', focus).on('mouseout', unfocus)
 
-    node.call(
-      d3.drag()
-        .on('start', dragstarted)
-        .on('drag', dragged)
-        .on('end', dragended)
-    )
+    // node.call(
+    //   d3.drag()
+    //     .on('start', dragstarted)
+    //     .on('drag', dragged)
+    //     .on('end', dragended)
+    // )
 
     let labelNode = container.append('g').attr('class', 'labelNodes')
       .selectAll('text')
@@ -102,7 +108,7 @@ export default {
       .style('font-size', 12)
       .style('pointer-events', 'none') // to prevent mouseover/drag capture
 
-    node.on('mouseover', focus).on('mouseout', unfocus)
+    // node.on('mouseover', focus).on('mouseout', unfocus)
 
     function ticked () {
       node.call(updateNode)
@@ -123,12 +129,6 @@ export default {
           let shiftX = b.width * (diffX - dist) / (dist * 2)
           shiftX = Math.max(-b.width, Math.min(0, shiftX))
           let shiftY = 16
-          // if (i < 5) {
-          //   console.log('d: ', d)
-          //   console.log('i: ', i)
-          //   console.log(b)
-          //   console.log(shiftX + ' , ' + shiftY)
-          // }
           this.setAttribute('transform', 'translate(' + shiftX + ',' + shiftY + ')')
         }
       })
@@ -140,24 +140,24 @@ export default {
       return 0
     }
 
-    function focus () {
-      let index = d3.select(d3.event.target).datum().index
-      node.style('opacity', function (o) {
-        return neigh(index, o.index) ? 1 : 0.1
-      })
-      labelNode.attr('display', function (o) {
-        return neigh(index, o.node.index) ? 'block' : 'none'
-      })
-      link.style('opacity', function (o) {
-        return o.source.index === index || o.target.index === index ? 1 : 0.1
-      })
-    }
+    // function focus () {
+    //   let index = d3.select(d3.event.target).datum().index
+    //   node.style('opacity', function (o) {
+    //     return neigh(index, o.index) ? 1 : 0.1
+    //   })
+    //   labelNode.attr('display', function (o) {
+    //     return neigh(index, o.node.index) ? 'block' : 'none'
+    //   })
+    //   link.style('opacity', function (o) {
+    //     return o.source.index === index || o.target.index === index ? 1 : 0.1
+    //   })
+    // }
 
-    function unfocus () {
-      labelNode.attr('display', 'block')
-      node.style('opacity', 1)
-      link.style('opacity', 1)
-    }
+    // function unfocus () {
+    //   labelNode.attr('display', 'block')
+    //   node.style('opacity', 1)
+    //   link.style('opacity', 1)
+    // }
 
     function updateLink (link) {
       link.attr('x1', function (d) { return fixna(d.source.x) })
@@ -173,24 +173,23 @@ export default {
       })
     }
 
-    function dragstarted (d) {
-      d3.event.sourceEvent.stopPropagation()
-      if (!d3.event.active) graphLayout.alphaTarget(0.3).restart()
-      d.fx = d.x
-      d.fy = d.y
-    }
+    // function dragstarted (d) {
+    //   d3.event.sourceEvent.stopPropagation()
+    //   if (!d3.event.active) graphLayout.alphaTarget(0.3).restart()
+    //   d.fx = d.x
+    //   d.fy = d.y
+    // }
 
-    function dragged (d) {
-      d.fx = d3.event.x
-      d.fy = d3.event.y
-    }
+    // function dragged (d) {
+    //   d.fx = d3.event.x
+    //   d.fy = d3.event.y
+    // }
 
-    function dragended (d) {
-      if (!d3.event.active) graphLayout.alphaTarget(0)
-      d.fx = null
-      d.fy = null
-    }
-    // })
+    // function dragended (d) {
+    //   if (!d3.event.active) graphLayout.alphaTarget(0)
+    //   d.fx = null
+    //   d.fy = null
+    // }
   }
 }
 </script>

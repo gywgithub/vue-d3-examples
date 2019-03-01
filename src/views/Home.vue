@@ -5,7 +5,7 @@
         <img src="../assets/img/logo.png" class="logo-img">
         <img src="../assets/img/d3.svg" class="logo-img">
       </div>
-      <h2>Vue D3 Example</h2>
+      <h2>Vue D3 V5 Example</h2>
       <ul>
         <li v-for="(item, key) in examples" :key="key" @click="change(item.value, $event)">{{item.label}}</li>
       </ul>
@@ -39,6 +39,7 @@ import Zoomable from '../components/Zoomable'
 import ZoomableAddText from '../components/ZoomableAddText'
 import ForceBasedLabelPlacement from '../components/ForceBasedLabelPlacement'
 import ForceBasedLabelPlacementII from '../components/ForceBasedLabelPlacementII'
+import ForceBasedLabelPlacementIII from '../components/ForceBasedLabelPlacementIII'
 export default {
   data () {
     return {
@@ -63,9 +64,10 @@ export default {
         { 'label': 'Zoomable', 'value': 'Zoomable' },
         { 'label': 'Zoomable Add Text', 'value': 'ZoomableAddText' },
         { 'label': 'Force-based label placement', 'value': 'ForceBasedLabelPlacement' },
-        { 'label': 'Force-based label placement II', 'value': 'ForceBasedLabelPlacementII' }
+        { 'label': 'Force-based label placement II', 'value': 'ForceBasedLabelPlacementII' },
+        { 'label': 'Force-based label placement III', 'value': 'ForceBasedLabelPlacementIII' }
       ],
-      componentName: 'HelloWorld'
+      componentName: 'ForceBasedLabelPlacementIII'
     }
   },
   mounted () {
@@ -103,7 +105,8 @@ export default {
     Zoomable,
     ZoomableAddText,
     ForceBasedLabelPlacement,
-    ForceBasedLabelPlacementII
+    ForceBasedLabelPlacementII,
+    ForceBasedLabelPlacementIII
   }
 }
 </script>

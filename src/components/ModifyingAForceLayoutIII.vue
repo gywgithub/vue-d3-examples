@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Modifying a Force Layout III</h2>
-    <svg width="960" height="500"></svg>
+    <svg width="960" height="500" style="border:1px solid #eee;"></svg>
   </div>
 </template>
 <script>
@@ -16,12 +16,14 @@ export default {
       links: null,
       simulation: null,
       color: null,
-      labelNode: null
+      labelNode: null,
+      pt: null
     }
   },
   mounted () {
     let self = this
     let svg = d3.select('svg')
+
     let width = svg.attr('width')
     let height = svg.attr('height')
     this.color = d3.scaleOrdinal(d3.schemeCategory10)
@@ -71,6 +73,7 @@ export default {
       .on('tick', self.ticked)
 
     this.g = svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
+
     this.link = this.g.append('g').attr('stroke', '#666').attr('stroke-width', 1.5).selectAll('.link')
     this.node = this.g.append('g').attr('stroke', '#fff').attr('stroke-width', 1.5).selectAll('.node')
     this.labelNode = this.g.append('g').attr('class', 'labelNodes').selectAll('text')
@@ -144,11 +147,18 @@ export default {
 
       this.simulation.nodes(this.nodes)
       this.simulation.force('link').links(this.links)
-      this.simulation.alpha(1).restart()
+      // this.simulation.alpha(1).restart()
+
+
     },
     ticked () {
-      this.node.attr('cx', function (d) { return d.x })
+      this.node
+        .attr('cx', function (d) { return d.x })
         .attr('cy', function (d) { return d.y })
+        // .attr('transform', function (d) {
+        //   return 'translate(' + self.fixna(d.x) + ',' + self.fixna(d.y) + ')'
+        // })
+      // this.node.call(this.updateNode())
 
       this.link.attr('x1', function (d) { return d.source.x })
         .attr('y1', function (d) { return d.source.y })
@@ -158,6 +168,17 @@ export default {
       this.labelNode.each(function (d) {
         this.setAttribute('transform', 'translate(' + d.x + ',' + d.y + ')')
       })
+    },
+    updateNode () {
+      let self = this
+      this.node.attr('transform', function (d) {
+        // console.log(fixna(d.x) + ' , ' + fixna(d.y))
+        return 'translate(' + self.fixna(d.x) + ',' + self.fixna(d.y) + ')'
+      })
+    },
+    fixna (x) {
+      if (isFinite(x)) return x
+      return 0
     }
   }
 }
