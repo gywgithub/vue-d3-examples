@@ -17,7 +17,6 @@ export default {
     let width = 1850
     let height = 800
     let color = d3.scaleOrdinal(d3.schemeCategory10)
-    // console.log('links: ', jsonData.links)
     let graph = jsonData
     let label = {
       'nodes': [],
@@ -31,14 +30,11 @@ export default {
         target: i * 2 + 1
       })
     })
-    // console.log('graph.nodes: ', graph.nodes)
-    // console.log('label.nodes: ', label.nodes)
-    // console.log('label.links: ', label.links)
     let labelLayout = d3.forceSimulation(label.nodes)
       .force('charge', d3.forceManyBody().strength(-50))
       .force('link', d3.forceLink(label.links).distance(0).strength(2))
 
-    let graphLayout = d3.forceSimulation(graph.nodes)
+    d3.forceSimulation(graph.nodes)
       .force('charge', d3.forceManyBody().strength(-3000))
       .force('center', d3.forceCenter(width / 2, height / 2))
       .force('x', d3.forceX(width / 2).strength(1))
@@ -53,22 +49,16 @@ export default {
       adjlist[d.target.index + '-' + d.source.index] = true
     })
 
-    function neigh (a, b) {
-      return a === b || adjlist[a + '-' + b]
-    }
+    // function neigh (a, b) {
+    //   return a === b || adjlist[a + '-' + b]
+    // }
     let svg = d3.select('#viz').attr('width', width).attr('height', height)
     let container = svg.append('g')
 
     svg.call(
       d3.zoom()
         .scaleExtent([.1, 4]) // eslint-disable-line
-        .on('zoom', function () { 
-          // console.log(d3.event.transform)
-      //     var t = d3.zoomIdentity
-      // .translate(width / 2, height / 2)
-      // .scale(d3.event.transform.k)
-      // .translate(-fx, -fy)
-      // console.log('t: ', t)
+        .on('zoom', function () {
           container.attr('transform', d3.event.transform) })
     )
 

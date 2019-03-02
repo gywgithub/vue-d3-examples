@@ -33,15 +33,12 @@ export default {
     let g = svg.append('g').attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
     let link = g.append('g').attr('stroke', '#000').attr('stroke-width', 1.5).selectAll('.link')
     let node = g.append('g').attr('stroke', '#fff').attr('stroke-width', 1.5).selectAll('.node')
-    console.log('link: ', link)
     restart()
 
     d3.timeout(function () {
       links.push({ source: a, target: b })
       links.push({ source: b, target: c })
       links.push({ source: c, target: a })
-      console.log('timeout 1000')
-      console.log(links)
       restart()
     }, 1000)
 
@@ -88,5 +85,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-</style>

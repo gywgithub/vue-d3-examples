@@ -18,11 +18,11 @@ export default {
     let scaleLinear = d3.scaleLinear()
       .domain([min, max])
       .range([0, 300])
-    console.log(scaleLinear(1)) // 12.499999999999996
-    console.log(scaleLinear(2)) // 137.5
-    console.log(scaleLinear(3.3)) // 300
-    console.log(scaleLinear(6.3)) // 675
-    console.log(scaleLinear(-6.3)) // -900
+    // console.log(scaleLinear(1)) // 12.499999999999996
+    // console.log(scaleLinear(2)) // 137.5
+    // console.log(scaleLinear(3.3)) // 300
+    // console.log(scaleLinear(6.3)) // 675
+    // console.log(scaleLinear(-6.3)) // -900
 
     // 比例计算关系
     // x / (3.3 - 0.9)  = y / (300 - 0)
@@ -36,18 +36,18 @@ export default {
     // 序数比例尺
     let index = [0, 1, 2, 3, 4]
     let color = ['red', 'blue', 'yellow', 'black', 'green']
-    let scaleOrdinal = d3.scaleOrdinal()
+    d3.scaleOrdinal()
       .domain(index)
       .range(color)
-    console.log(scaleOrdinal(1)) // blue
-    console.log(scaleOrdinal(2)) // yellow
-    console.log(scaleOrdinal(4)) // green
-    console.log(scaleOrdinal(14)) // red
-    console.log(scaleOrdinal(-2)) // blue
+    // console.log(scaleOrdinal(1)) // blue
+    // console.log(scaleOrdinal(2)) // yellow
+    // console.log(scaleOrdinal(4)) // green
+    // console.log(scaleOrdinal(14)) // red
+    // console.log(scaleOrdinal(-2)) // blue
 
     // -----------------------------------------------------------
     let dataset2 = [2.5, 2.1, 1.7, 1.3, 0.9]
-    let scaleLinear2 = d3.scaleLinear()
+    d3.scaleLinear()
       .domain([0, d3.max(dataset2)])
       .range([0, 300])
     let svg = d3.select('svg')
@@ -62,12 +62,10 @@ export default {
         return i * rectHeight
       })
       .attr('width', function (d) {
-        console.log('d: ', d)
         return scaleLinear(d)
       })
       .attr('height', rectHeight - 5)
       .attr('fill', 'lightblue')
-    console.log(scaleLinear2)
   }
 }
 </script>

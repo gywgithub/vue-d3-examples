@@ -66,9 +66,9 @@ export default {
     forceSimulation.force('center')
       .x(width / 2)
       .y(height / 2)
-    // 顶点集，边集
-    console.log(nodes)
-    console.log(edges)
+    // // 顶点集，边集
+    // console.log(nodes)
+    // console.log(edges)
     // 绘制边
     let links = g.append('g')
       .selectAll('line')
@@ -93,7 +93,7 @@ export default {
       .data(nodes)
       .enter()
       .append('g')
-      .attr('transform', function (d, i) {
+      .attr('transform', function (d) {
         let cirX = d.x
         let cirY = d.y
         return 'translate(' + cirX + ',' + cirY + ')'

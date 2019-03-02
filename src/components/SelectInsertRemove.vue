@@ -50,10 +50,9 @@ export default {
     //   .text('insert an animal')
     //   .style('color', 'red')
 
-    let p = d3.select('.container')
+    d3.select('.container')
       .select('.pig')
       .remove()
-    console.log('p ', p)
   }
 }
 </script>

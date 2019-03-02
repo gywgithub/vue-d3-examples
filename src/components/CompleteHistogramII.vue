@@ -26,13 +26,11 @@ export default {
       .domain(d3.range(dataset.length))
       .rangeRound([0, width - marge.left - marge.right])
     let xAxis = d3.axisBottom(xScale)
-    console.log(xAxis)
 
     let yScale = d3.scaleLinear()
       .domain([0, d3.max(dataset)])
       .range([height - marge.top - marge.bottom, 0])
     let yAxis = d3.axisLeft(yScale)
-    console.log(yAxis)
 
     g.append('g')
       .attr('transform', 'translate(' + 0 + ',' + (height - marge.top - marge.bottom) + ')')
@@ -54,7 +52,7 @@ export default {
       .attr('x', function (d, i) {
         return xScale(i) + rectPadding / 2
       })
-      .attr('y', function (d) {
+      .attr('y', function () {
         // 初始状态
         let min = yScale.domain()[0]
         return yScale(min)
@@ -62,7 +60,7 @@ export default {
       .attr('width', function () {
         return xScale.step() - rectPadding
       })
-      .attr('height', function (d) {
+      .attr('height', function () {
         // 初始状态
         return 0
       })
@@ -86,7 +84,7 @@ export default {
       .attr('x', function (d, i) {
         return xScale(i) + rectPadding / 2
       })
-      .attr('y', function (d) {
+      .attr('y', function () {
         // return yScale(d)
         let min = yScale.domain()[0]
         return yScale(min)

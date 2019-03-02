@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Modifying a Force Layout III</h2>
-    <svg width="960" height="500" style="border:1px solid #eee;"></svg>
+    <svg width="960" height="500"></svg>
   </div>
 </template>
 <script>
