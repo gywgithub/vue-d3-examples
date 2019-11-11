@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>TreeII</h2>
-    <svg id="vizTreeII" width="1250" height="800" />
+    <svg id="vizTreeII"/>
   </div>
 </template>
 <script>
@@ -199,6 +199,7 @@ export default {
 
       // Toggle children on click.
       function click (d) {
+        // console.log('click: ', d)
         if (d.children) {
           d._children = d.children;
           d.children = null;
