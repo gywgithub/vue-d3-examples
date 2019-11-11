@@ -11,7 +11,6 @@ export default {
     return {}
   },
   mounted () {
-    let self = this
     let svg = d3.select('svg')
     let width = svg.attr('width')
     let height = svg.attr('height')
@@ -52,8 +51,6 @@ export default {
     }
     let nodes = jsonData.nodes
     let links = jsonData.links
-
-    
 
     let simulation = d3.forceSimulation(nodes)
       .force('charge', d3.forceManyBody().strength(-1000))

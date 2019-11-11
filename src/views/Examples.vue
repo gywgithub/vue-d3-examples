@@ -22,6 +22,8 @@ import HelloWorld from '../components/HelloWorld'
 import ModifyingAForceLayout from '../components/ModifyingAForceLayout'
 import ModifyingAForceLayoutII from '../components/ModifyingAForceLayoutII'
 import ModifyingAForceLayoutIII from '../components/ModifyingAForceLayoutIII'
+import Tree from '../components/Tree'
+import TreeII from '../components/TreeII'
 import GeneralUpdatePatternI from '../components/GeneralUpdatePatternI'
 import SelectElementAndBindData from '../components/SelectElementAndBindData'
 import UpdateEnterExit from '../components/UpdateEnterExit'
@@ -40,6 +42,7 @@ import ZoomableAddText from '../components/ZoomableAddText'
 import ForceBasedLabelPlacement from '../components/ForceBasedLabelPlacement'
 import ForceBasedLabelPlacementII from '../components/ForceBasedLabelPlacementII'
 import ForceBasedLabelPlacementIII from '../components/ForceBasedLabelPlacementIII'
+import ExampleAddress from '../components/ExampleAddress'
 export default {
   data () {
     return {
@@ -48,6 +51,8 @@ export default {
         { 'label': 'Modifying a Force Layout', 'value': 'ModifyingAForceLayout' },
         { 'label': 'Modifying a Force Layout II', 'value': 'ModifyingAForceLayoutII' },
         { 'label': 'Modifying a Force Layout III', 'value': 'ModifyingAForceLayoutIII' },
+        { 'label': 'Tree', 'value': 'Tree' },
+        { 'label': 'TreeII', 'value': 'TreeII' },
         { 'label': 'General Update Pattern I', 'value': 'GeneralUpdatePatternI' },
         { 'label': 'SelectElementAndBindData', 'value': 'SelectElementAndBindData' },
         { 'label': 'UpdateEnterExit', 'value': 'UpdateEnterExit' },
@@ -65,7 +70,8 @@ export default {
         { 'label': 'Zoomable Add Text', 'value': 'ZoomableAddText' },
         { 'label': 'Force-based label placement', 'value': 'ForceBasedLabelPlacement' },
         { 'label': 'Force-based label placement II', 'value': 'ForceBasedLabelPlacementII' },
-        { 'label': 'Force-based label placement III', 'value': 'ForceBasedLabelPlacementIII' }
+        { 'label': 'Force-based label placement III', 'value': 'ForceBasedLabelPlacementIII' },
+        { 'label': 'ExampleAddress', 'value': 'ExampleAddress' }
       ],
       componentName: 'HelloWorld'
     }
@@ -92,6 +98,8 @@ export default {
     ModifyingAForceLayout,
     ModifyingAForceLayoutII,
     ModifyingAForceLayoutIII,
+    Tree,
+    TreeII,
     GeneralUpdatePatternI,
     SelectElementAndBindData,
     UpdateEnterExit,
@@ -109,7 +117,8 @@ export default {
     ZoomableAddText,
     ForceBasedLabelPlacement,
     ForceBasedLabelPlacementII,
-    ForceBasedLabelPlacementIII
+    ForceBasedLabelPlacementIII,
+    ExampleAddress
   }
 }
 </script>
@@ -128,7 +137,7 @@ export default {
 }
 .img-container {
   display: flex;
-  padding: 0 20px;
+  padding: 40px 20px;
 }
 .logo-img {
   width: 45%;
