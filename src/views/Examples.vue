@@ -25,6 +25,7 @@ import ModifyingAForceLayoutIII from '../components/ModifyingAForceLayoutIII'
 import Tree from '../components/Tree'
 import TreeII from '../components/TreeII'
 import TreeIII from '../components/TreeIII'
+import TreeIV from '../components/TreeIV'
 import GeneralUpdatePatternI from '../components/GeneralUpdatePatternI'
 import SelectElementAndBindData from '../components/SelectElementAndBindData'
 import UpdateEnterExit from '../components/UpdateEnterExit'
@@ -55,6 +56,7 @@ export default {
         { 'label': 'Tree', 'value': 'Tree' },
         { 'label': 'TreeII', 'value': 'TreeII' },
         { 'label': 'TreeIII', 'value': 'TreeIII' },
+        { 'label': 'TreeIV', 'value': 'TreeIV' },
         { 'label': 'General Update Pattern I', 'value': 'GeneralUpdatePatternI' },
         { 'label': 'SelectElementAndBindData', 'value': 'SelectElementAndBindData' },
         { 'label': 'UpdateEnterExit', 'value': 'UpdateEnterExit' },
@@ -103,6 +105,7 @@ export default {
     Tree,
     TreeII,
     TreeIII,
+    TreeIV,
     GeneralUpdatePatternI,
     SelectElementAndBindData,
     UpdateEnterExit,
