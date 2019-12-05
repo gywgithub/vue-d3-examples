@@ -102,6 +102,40 @@ export default {
         .attr('r', 1e-6)
         .style("fill", function (d) {
           return d._children ? "lightsteelblue" : "#fff";
+        }) 
+        // .on('mouseover', function () {
+        //   console.log('this: over ------')
+        //   console.log(this)
+        //   d3.select(this)
+        //     .transition()
+        //     .duration(1000)
+        //     .style('fill', function (d) {
+        //       return 'yellow'
+        //     })
+        // })
+        // .on('mouseout', function () {
+        //   d3.select(this)
+        //     .transition()
+        //     .delay(1000)
+        //     .duration(1000)
+        //     .style('fill', function (d) {
+        //       return '#fff'
+        //     })
+        //     // .attr('fill', 'lightblue')
+        // })
+        .on('click', function () {
+          d3.select(this)
+           .transition()
+            .delay(1)
+            .style('fill', function () {
+              return '#6cfa00'
+            })
+            // .style('stroke', function () {
+            //   return '#6cfa00'
+            // })
+            .style('stroke-width', function () {
+              return '3px'
+            })
         })
 
       // Add labels for the nodes
@@ -131,6 +165,9 @@ export default {
         .style("fill", function (d) {
           return d._children ? "lightsteelblue" : "#fff";
         })
+        .style('stroke-width', function () {
+          return '2px'
+        })
         .attr('cursor', 'pointer');
 
 
@@ -142,11 +179,11 @@ export default {
         })
         .remove();
 
-      // On exit reduce the node circles size to 0
+      // On exit #f7d708uce the node circles size to 0
       nodeExit.select('circle')
         .attr('r', 1e-6);
 
-      // On exit reduce the opacity of text labels
+      // On exit #f7d708uce the opacity of text labels
       nodeExit.select('text')
         .style('fill-opacity', 1e-6);
 
@@ -216,7 +253,7 @@ export default {
 <style>
 #vizTreeII circle {
   fill: #fff;
-  stroke: steelblue;
+  stroke: #99cc00;
   stroke-width: 3px;
 }
 #vizTreeII .node text {
