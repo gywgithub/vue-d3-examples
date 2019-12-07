@@ -27,6 +27,8 @@ import TreeII from '../components/TreeII'
 import TreeIII from '../components/TreeIII'
 import TreeIV from '../components/TreeIV'
 import TreeV from '../components/TreeV'
+import TreeVI from '../components/TreeVI'
+import TreeVII from '../components/TreeVII'
 import GeneralUpdatePatternI from '../components/GeneralUpdatePatternI'
 import SelectElementAndBindData from '../components/SelectElementAndBindData'
 import UpdateEnterExit from '../components/UpdateEnterExit'
@@ -59,6 +61,8 @@ export default {
         { 'label': 'TreeIII', 'value': 'TreeIII' },
         { 'label': 'TreeIV', 'value': 'TreeIV' },
         { 'label': 'TreeV', 'value': 'TreeV' },
+        { 'label': 'TreeVI', 'value': 'TreeVI' },
+        { 'label': 'TreeVII', 'value': 'TreeVII' },
         { 'label': 'General Update Pattern I', 'value': 'GeneralUpdatePatternI' },
         { 'label': 'SelectElementAndBindData', 'value': 'SelectElementAndBindData' },
         { 'label': 'UpdateEnterExit', 'value': 'UpdateEnterExit' },
@@ -79,7 +83,7 @@ export default {
         { 'label': 'Force-based label placement III', 'value': 'ForceBasedLabelPlacementIII' },
         { 'label': 'ExampleAddress', 'value': 'ExampleAddress' }
       ],
-      componentName: 'TreeV'
+      componentName: 'TreeVI'
     }
   },
   mounted () {
@@ -100,7 +104,6 @@ export default {
     }
   },
   components: {
-    TreeV,
     HelloWorld,
     ModifyingAForceLayout,
     ModifyingAForceLayoutII,
@@ -109,7 +112,9 @@ export default {
     TreeII,
     TreeIII,
     TreeIV,
-    
+    TreeV,
+    TreeVI,
+    TreeVII,
     GeneralUpdatePatternI,
     SelectElementAndBindData,
     UpdateEnterExit,
