@@ -30,20 +30,6 @@ export default {
     }
   },
   mounted () {
-    let treeData2 = {
-      "name": "Top Level",
-      "children": [
-        {
-          "name": "Level 2: A",
-          "children": [
-            { "name": "Son of A" },
-            { "name": "Daughter of A" }
-          ]
-        },
-        { "name": "Level 2: B" }
-      ]
-    }
-
     let treeData = {
       'name': 'flare',
       'children': [
@@ -126,12 +112,7 @@ export default {
   },
   computed: {
     treemap () {
-      console.log('height: ', this.height)
-      console.log('width: ', this.width)
-      // return d3.tree().size([this.height, this.width])
-      // return d3.tree().size([this.height, this.width]).nodeSize([30, 60])
       return d3.tree().nodeSize([30, 60])
-      // return d3.tree(this.root)
     }
   },
   methods: {
@@ -145,24 +126,18 @@ export default {
 
       let width = this.width
 
-      let dy = width / 4
+      // let dy = width / 4
       let dx = 30
-
-      // this.nodeObj = d3.hierarchy.prototype.constructor
       this.svg = d3
         .select('svg.d3-tree')
-        //  .attr('viewBox',[0, 0, 100, 100])
         .attr('viewBox', [-margin.left, -margin.top, width, dx])
-      // .attr('width', this.width)
-      // .attr('height', this.height)
 
-      // console.log(this.height)
       let translateTop = (this.height - 120) / 2
 
       let transform = d3.zoomIdentity
         .translate(this.margin.left, translateTop)
-        // .translate(this.margin.left, this.margin.top)
         .scale(1)
+      console.log(transform) // eslint-disable-line
       this.container = this.svg.select('g.container')
 
       // init zoom behavior, which is both an object and function
@@ -174,41 +149,26 @@ export default {
             .attr('transform', d3.event.transform)
         })
 
-      // this.container
-      //   .transition()
-      //   .duration(750)
-      //   .call(this.zoom.transform, transform)
-
       this.svg.call(this.zoom).on('dblclick.zoom', null)
-      // console.log('treeData: ', treeData)
-      // console.log(JSON.stringify(treeData))
       this.root = this.getRoot(treeData)
-      console.log('xxxxxxxxxx: ', this.root)
+      this.root.x0 = 0
+      this.root.y0 = 0
+      // this.root.descendants().forEach((d, i) => {
+      //   d.id = i
+      //   d._children = d.children
+      //   if (d.depth && d.data.name.length !== 7) d.children = null
+      // })
+
       this.update(this.root)
     },
     getRoot (treeData) {
-      let root2 = d3.hierarchy(treeData, d => {
-        console.log('d.children: ', d.children)
+      let root = d3.hierarchy(treeData, d => {
         return d.children
       })
-      // root2.x0 = this.height / 2
-      root2.x0 = 0
-      root2.y0 = 0
-      // root2.x = 1000
-      // root2.y = 1000
-      console.log('root2: ', root2)
-
-      const Node = d3.hierarchy.prototype.constructor
-      let root = new Node
       root.x0 = this.height / 2
-      root.y0 = 1000
-      root.x = 1000
-      root.y = 1000
-      root.name = 'abc'
-      root.data = root2.data
-
-      console.log('11111111111root: ', root)
-      return root2
+      // root.x0 = 0
+      root.y0 = 0
+      return root
     },
     dblclickNode (d) {
       // Double click the node, and expand the node if there are child nodes
@@ -233,7 +193,6 @@ export default {
               ${d.y} ${d.x}`
     },
     getNodesAndLinks () {
-      console.log('getNodesAndLinks this. root ', this.root)
       this.dTreeData = this.treemap(this.root)
       // let t = d3.tree().nodeSize([30, 60])
       // console.log('tttttttttttt ', t)
@@ -244,7 +203,6 @@ export default {
 
     // 数据与Dom进行绑定
     update (source) {
-      console.log('update')
       this.getNodesAndLinks()
       this.nodes.forEach(d => {
         d.y = d.depth * 180
@@ -259,7 +217,7 @@ export default {
         .attr('class', 'node')
         .on('click', this.clickNode)
         .on('dblclick', this.dblclickNode)
-        .attr('transform', d => {
+        .attr('transform', () => {
           return 'translate(' + source.y0 + ',' + source.x0 + ')'
         })
 
@@ -318,7 +276,7 @@ export default {
         .exit()
         .transition()
         .duration(this.duration)
-        .attr('transform', function (d) {
+        .attr('transform', function () {
           return 'translate(' + source.y + ',' + source.x + ')'
         })
         .remove()
@@ -338,7 +296,7 @@ export default {
         .enter()
         .insert('path', 'g')
         .attr('class', 'link')
-        .attr('d', d => {
+        .attr('d', () => {
           let o = { x: source.x0, y: source.y0 }
           return this.diagonal(o, o)
         })

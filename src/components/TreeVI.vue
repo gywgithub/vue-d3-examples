@@ -72,8 +72,6 @@ export default {
     let svg = d3
       .select('svg.d3-tree-vi')
       .attr('viewBox', [-margin.left, -margin.top, width, dx])
-    // .style('font', '10px sans-serif')
-    // .style('user-select', 'none')
 
     const gLink = svg.append('g')
       .attr('fill', 'none')
@@ -243,6 +241,5 @@ export default {
 .width-100-percent {
   width: 100%;
   height: 100vh;
-  border: 2px solid red;
 }
 </style>
