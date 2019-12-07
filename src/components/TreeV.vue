@@ -1,6 +1,12 @@
 <template>
   <div>
-    <h2>TreeII</h2>
+    <h2>TreeV Collapsible Tree</h2>
+    <div class="" style="text-align:left; padding-left:20px;;">
+      <a href="https://observablehq.com/@d3/collapsible-tree?collection=@d3/d3-hierarchy">Collapsible Tree</a><br>
+      <a href="https://observablehq.com/@d3/tidy-tree">Tidy Tree</a><br>
+      <a href="https://github.com/xswei/d3-hierarchy/blob/master/README.md#cluster_separation">https://github.com/xswei/d3-hierarchy/blob/master/README.md#cluster_separation</a><br>
+      <a href="https://github.com/xswei/d3-hierarchy/blob/master/README.md#tree">https://github.com/xswei/d3-hierarchy/blob/master/README.md#tree</a>
+    </div>
     <svg id="vizTreeII" />
   </div>
 </template>
@@ -11,22 +17,6 @@ export default {
     return {}
   },
   mounted () {
-    var treeData2 =
-    {
-      "name": "Top Level",
-      "children": [
-        {
-          "name": "Level 2: A",
-          "children": [
-            { "name": "Son of A" },
-            { "name": "Daughter of A" }
-          ]
-        },
-        { "name": "Level 2: B" }
-      ]
-    }
-    console.log(treeData2) // eslint-disable-line
-
     let treeData = {
       'name': 'flare',
       'children': [
@@ -105,18 +95,11 @@ export default {
         }
       ]
     }
-    // Set the dimensions and margins of the diagram
-    var margin = { top: 20, right: 90, bottom: 30, left: 90 },
-      width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
 
-    // append the svg object to the body of the page
-    // appends a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
-    // var svg = d3.select('#viz').attr("viewBox", [-10, -10, width, height]);
-    // var svg = d3.select("body").append("svg")
-    //   .attr("width", width + margin.right + margin.left)
-    //   .attr("height", height + margin.top + margin.bottom)
+    var margin = { top: 120, right: 90, bottom: 30, left: 90 },
+      width = 960 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
+
     var svg = d3.select('#vizTreeII').attr("viewBox", [-10, -10, width, height])
       .append("g")
       .attr("transform", "translate("
@@ -127,27 +110,27 @@ export default {
       root;
 
     // declares a tree layout and assigns the size
-    var treemap = d3.tree().size([height, width]).nodeSize([30, 59]);
+    var treemap = d3.tree().size([height, width]).nodeSize([30, 60]);
     // var treemap = d3.tree().nodeSize([width, height])
 
     // Assigns parent, children, height, depth
     root = d3.hierarchy(treeData, function (d) { return d.children; });
     root.x0 = height / 2;
-    root.y0 = 0;
+    root.y0 = 100;
 
     // Collapse after the second level
-    // root.children.forEach(collapse);
+    root.children.forEach(collapse);
 
     update(root);
 
     // Collapse the node and all it's children
-    // function collapse(d) {
-    //   if(d.children) {
-    //     d._children = d.children
-    //     d._children.forEach(collapse)
-    //     d.children = null
-    //   }
-    // }
+    function collapse(d) {
+      if(d.children) {
+        d._children = d.children
+        d._children.forEach(collapse)
+        d.children = null
+      }
+    }
 
     function update (source) {
 
@@ -295,7 +278,6 @@ export default {
 
       // Toggle children on click.
       function click (d) {
-        // console.log('click: ', d)
         if (d.children) {
           d._children = d.children;
           d.children = null;

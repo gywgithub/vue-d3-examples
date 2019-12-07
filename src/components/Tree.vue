@@ -10,7 +10,7 @@ export default {
   data () {
     return {}
   },
-    mounted () {
+  mounted () {
     let duration = 750
     let width = 1250
     let height = 800
@@ -84,7 +84,7 @@ export default {
 
     // invalidation.then(() => interval.stop())
 
-    return svg.node()
+    // return svg.node()
   }
 }
 </script>
