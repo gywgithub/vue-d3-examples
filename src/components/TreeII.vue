@@ -189,9 +189,6 @@ export default {
             .style('fill', function () {
               return '#6cfa00'
             })
-            // .style('stroke', function () {
-            //   return '#6cfa00'
-            // })
             .style('stroke-width', function () {
               return '3px'
             })

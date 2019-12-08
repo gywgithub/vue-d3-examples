@@ -163,22 +163,19 @@ export default {
         .attr('class', 'node')
         .attr('r', 1e-6)
         .style("fill", function (d) {
-          return d._children ? "lightsteelblue" : "#fff";
+          return d._children ? "#c9e4ff" : "#fff";
         })
-        .on('click', function () {
-          d3.select(this)
-            .transition()
-            .delay(1)
-            .style('fill', function () {
-              return '#6cfa00'
-            })
-            // .style('stroke', function () {
-            //   return '#6cfa00'
-            // })
-            .style('stroke-width', function () {
-              return '3px'
-            })
-        })
+        // .on('click', function () {
+        //   d3.select(this)
+        //     .transition()
+        //     .delay(1)
+        //     .style('fill', function () {
+        //       return '#6cfa00'
+        //     })
+        //     .style('stroke-width', function () {
+        //       return '3px'
+        //     })
+        // })
 
       // Add labels for the nodes
       nodeEnter.append('text')
@@ -205,7 +202,7 @@ export default {
       nodeUpdate.select('circle.node')
         .attr('r', 10)
         .style("fill", function (d) {
-          return d._children ? "lightsteelblue" : "#fff";
+          return d._children ? "#c9e4ff" : "#fff";
         })
         .style('stroke-width', function () {
           return '2px'
@@ -294,7 +291,7 @@ export default {
 <style>
 #vizTreeII circle {
   fill: #fff;
-  stroke: #99cc00;
+  stroke: #54a8ff;
   stroke-width: 3px;
 }
 #vizTreeII .node text {

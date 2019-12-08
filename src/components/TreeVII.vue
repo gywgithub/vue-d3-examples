@@ -11,9 +11,6 @@ import * as d3 from 'd3'
 export default {
   data () {
     return {
-      nodeId: '',
-      nodeName: '',
-      zoom: null,
       index: 0,
       duration: 750,
       root: null,
@@ -21,12 +18,9 @@ export default {
       links: [],
       dTreeData: null,
       margin: { top: 20, right: 90, bottom: 30, left: 90 },
-      currentNode: null,
+      selectedNode: null,
       svg: null,
-      container: null,
-      // nodeObj: null,
-      newNodeName: '',
-      rootNodeId: null
+      container: null
     }
   },
   mounted () {
@@ -141,7 +135,7 @@ export default {
       this.container = this.svg.select('g.container')
 
       // init zoom behavior, which is both an object and function
-      this.zoom = d3
+      let zoom = d3
         .zoom()
         .scaleExtent([1 / 2, 8])
         .on('zoom', function () {
@@ -149,7 +143,7 @@ export default {
             .attr('transform', d3.event.transform)
         })
 
-      this.svg.call(this.zoom).on('dblclick.zoom', null)
+      this.svg.call(zoom).on('dblclick.zoom', null)
       this.root = this.getRoot(treeData)
       this.root.x0 = 0
       this.root.y0 = 0
@@ -183,8 +177,19 @@ export default {
         this.update(d)
       })
     },
-    clickNode (d) {
-      this.currentNode = d
+    clickNode () {
+      // console.log('clickNode: ', d)
+      // this.selectedNode = d
+      // if (d.children) {
+      //   this.$set(d, '_children', d.children)
+      //   d.children = null
+      // } else {
+      //   this.$set(d, 'children', d._children)
+      //   d._children = null
+      // }
+      // this.$nextTick(() => {
+      //   this.update(d)
+      // })
     },
     diagonal (s, d) {
       return `M ${s.y} ${s.x}
@@ -194,16 +199,15 @@ export default {
     },
     getNodesAndLinks () {
       this.dTreeData = this.treemap(this.root)
-      // let t = d3.tree().nodeSize([30, 60])
-      // console.log('tttttttttttt ', t)
-      // this.dTreeData = t(this.root)
       this.nodes = this.dTreeData.descendants()
       this.links = this.dTreeData.descendants().slice(1)
     },
 
     // 数据与Dom进行绑定
     update (source) {
+      // let self = this
       this.getNodesAndLinks()
+
       this.nodes.forEach(d => {
         d.y = d.depth * 180
       })
@@ -226,8 +230,22 @@ export default {
         .attr('class', 'node')
         .attr('r', 1e-6)
         .style('fill', function (d) {
+          // console.log('d fill: ', d)
           return d._children ? '#c9e4ff' : '#fff'
         })
+        // add circle selection style
+        // .on('click', function (d) {
+        //   d3.select(this)
+        //     .transition()
+        //     .delay(1)
+        //     .style('fill', function () {
+        //       return '#54a8ff'
+        //     })
+        //     .style('stroke-width', function () {
+        //       return '4px'
+        //     })
+        //   // self.update(this)
+        // })
 
       nodeEnter
         .append('text')
@@ -255,6 +273,9 @@ export default {
         .attr('r', 10)
         .style('fill', function (d) {
           return d._children ? '#c9e4ff' : '#fff'
+        })
+        .style('stroke-width', function () {
+          return '2px'
         })
         .attr('cursor', 'pointer')
 
