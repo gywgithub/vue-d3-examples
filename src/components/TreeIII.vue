@@ -3,22 +3,33 @@
     <h2>TreeIII</h2>
     <div>tree editor with node create, delete, and rename</div>
     <div class="container">
-      <div class="width-200">
-        Current Node <br><br>
-        Id: {{currentNode.id}} <br><br>
+      <div class="width-300">
+        Current Node
+        <br />
+        <br />
+        Id: {{currentNode.id}}
+        <br />
+        <br />
         Name: {{currentNode.data.name}}
       </div>
-      <div class="width-200">
-        New Node <br><br>
-        Name: <input type="text" v-model="newNode.name" />
+      <div class="width-300">
+        New Node
+        <br />
+        <br />Name:
+        <input type="text" v-model="newNode.name" />
       </div>
-      <div class="width-200">
-        <input type="button" value="add node" @click="addNode">&nbsp;&nbsp;<br><br>
-    <input type="button" value="delete node" @click="deleteNode">&nbsp;&nbsp;<br><br>
-    <input type="button" value="rename node" @click="renameNode">&nbsp;&nbsp;
+      <div class="width-300">
+        <input type="button" value="add node" @click="addNode" />&nbsp;&nbsp;
+        <input type="button" value="add some nodes" @click="addSomeNodes" />&nbsp;&nbsp;
+        <br />
+        <br />
+        <input type="button" value="delete node" @click="deleteNode" />&nbsp;&nbsp;
+        <br />
+        <br />
+        <input type="button" value="rename node" @click="renameNode" />&nbsp;&nbsp;
       </div>
     </div>
-    <svg id="vizTreeIII"/>
+    <svg id="vizTreeIII" />
   </div>
 </template>
 <script>
@@ -31,22 +42,22 @@ export default {
       duration: null,
       treeData: {
         'name': 'Top Level',
-        'children': [
-          {
-            'name': 'Level 2: A',
-            'children': [
-              { 'name': 'Son of A' },
-              { 'name': 'Daughter of A' }
-            ]
-          },
-          { 'name': 'Level 2: B' }
-        ]
+        // 'children': [
+        //   {
+        //     'name': 'Level 2: A',
+        //     'children': [
+        //       { 'name': 'Son of A' },
+        //       { 'name': 'Daughter of A' }
+        //     ]
+        //   },
+        //   { 'name': 'Level 2: B' }
+        // ]
       },
       i: null,
       treemap: null,
       currentNode: {
         id: null,
-        data: {name: ''}
+        data: { name: '' }
       },
       newNode: {
         id: 0,
@@ -57,7 +68,7 @@ export default {
   },
   mounted () {
     // Set the dimensions and margins of the diagram
-    var margin = { top: 20, right: 90, bottom: 30, left: 90 },
+    var margin = { top: -200, right: 90, bottom: 30, left: 90 },
       width = 960 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom
 
@@ -68,7 +79,8 @@ export default {
     // var svg = d3.select('body').append('svg')
     //   .attr('width', width + margin.right + margin.left)
     //   .attr('height', height + margin.top + margin.bottom)
-    this.svg = d3.select('#vizTreeIII').attr('viewBox', [-10, -10, width, height])
+    this.svg = d3.select('#vizTreeIII')
+      .attr('viewBox', [-10, -10, width, height])
       .append('g')
       .attr('transform', 'translate('
         + margin.left + ',' + margin.top + ')')
@@ -89,16 +101,155 @@ export default {
     // Collapse after the second level
     // root.children.forEach(collapse)
 
+    // ****************  zoom ************************
+    // add zoom capabilities
+    let zoomHandler = d3.zoom()
+      .on('zoom', zoomActions)
+      .scaleExtent([1 / 2, 8])
+
+    this.svg.call(zoomHandler).on('dblclick.zoom', null)
+    zoomHandler(this.svg)
+
+
+    // Zoom functions
+    function zoomActions () {
+      gNode.attr('transform', d3.event.transform)
+      gLink.attr('transform', d3.event.transform)
+    }
+    // ***********************************************
+
+
     this.update(this.root)
   },
   methods: {
+    addSomeNodes () {
+      console.log('add some nodes')
+      let addData = {
+        'name': 'addFibonacciHeap3',
+        'id': 1767,
+        'children': [
+          {
+            'name': 'add333FibonacciHeap',
+            'id': 1,
+            'children': [
+              {
+                'name': '335fff',
+                'id': 4,
+                'children': [
+                  {
+                    'name': '666',
+                    'id': 6
+                  },
+                  {
+                    'name': '777',
+                    'id': 7,
+                    'children': [
+                      {
+                        'name': '9',
+                        'id': 9
+                      },
+                      {
+                        'name': '10',
+                        'id': 10
+                      },
+                      {
+                        'name': '1111',
+                        'id': 11
+                      }
+                    ]
+                  },
+                  {
+                    'name': '888',
+                    'id': 8,
+                    'children': [
+                      {
+                        'name': '12',
+                        'id': '12'
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                'name': 'vxfff',
+                'id': 5
+              }
+            ]
+          },
+          {
+            'name': 'add22FibonacciHeap2',
+            'id': 2
+          },
+          {
+            'name': 'add1FibonacciHeap3',
+            'id': 3
+          }
+        ]
+      }
+
+      let arr = []
+
+      console.log(JSON.stringify(arr))
+
+      cycleData(addData)
+
+      function cycleData (obj) {
+        arr.push({
+          id: obj.id,
+          name: obj.name
+        })
+        if (obj.children && obj.children.length > 0) {
+          let len = obj.children.length
+          let childrenArr = []
+          for (let i = 0; i < len; i++) {
+            cycleData(obj.children[i])
+          }
+        }
+      }
+
+      console.log('------ arr -------')
+      console.log(JSON.stringify(arr))
+      console.log(arr.length)
+
+      let parent = this.currentNode
+      console.log(parent.depth)
+
+      var self = this
+
+      addN(addData, this.currentNode)
+
+      function addN (node, parent) {
+        let nodeObj = d3.hierarchy.prototype.constructor
+        let child = Object.assign(new nodeObj, { parent, depth: parent.depth + 1 }) // eslint-disable-line
+        child.id = node.id
+        child.data = {
+          name: node.name
+        }
+        if (parent.children) parent.children.push(child)
+        else parent.children = [child]
+
+        self.nodes.push(child)
+        self.links.push({ source: parent, target: child })
+
+        self.update(parent)
+
+        if (node.children && node.children.length > 0) {
+          let len = node.children.length
+          for (let i = 0; i < len; i++) {
+            addN(node.children[i], child)
+          }
+        }
+      }
+
+
+    },
     addNode () {
       let min = 100
       let max = 999
       let id = parseInt(Math.random() * (max - min + 1) + min, 10)
       let parent = this.currentNode
 
-      let child = Object.assign(new this.nodeObj, {parent, depth: parent.depth + 1}) // eslint-disable-line
+      let child = Object.assign(new this.nodeObj, { parent, depth: parent.depth + 1 }) // eslint-disable-line
       child.id = id
       child.data = {
         name: this.newNode.name
@@ -310,7 +461,8 @@ export default {
   text-align: left;
   width: 100%;
 }
-.width-200 {
-  width: 200px;
+.width-300 {
+  width: 300px;
+  margin: 0 10px;
 }
 </style>

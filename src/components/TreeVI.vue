@@ -1,5 +1,8 @@
 <template>
-  <div class="main">
+  <div>
+    <!-- <div>
+      <input type="button" value="add node" @click="addNode()" />
+    </div> -->
     <svg class="d3-tree-vi width-100-percent" />
   </div>
 </template>
@@ -13,7 +16,6 @@ export default {
       nodeName: '',
       zoom: null,
       index: 0,
-      duration: 750,
       root: null,
       nodes: [],
       links: [],
@@ -29,17 +31,66 @@ export default {
   },
   mounted () {
     let data = {
-      'name': 'Top Level',
-      'children': [
-        {
-          'name': 'Level 2: A',
-          'children': [
-            { 'name': 'Son of A' },
-            { 'name': 'Daughter of A' }
-          ]
-        },
-        { 'name': 'Level 2: B' }
-      ]
+      'name': 'flare',
+      'value': 1,
+      'children': [{
+        'name': 'util',
+        'value': 23,
+        'children': [
+          {
+            'name': 'ssdf',
+            'value': 104993
+          },
+          {
+            'name': 'Geometry',
+            'value': 13033
+          },
+          {
+            'name': 'heap',
+            'value': 24,
+            'children': [
+              {
+                'name': 'FibonacciHeap',
+                'value': 9354
+              },
+              {
+                'name': 'FibonacciHeap2',
+                'value': 66
+              },
+              {
+                'name': 'FibonacciHeap3',
+                'value': 767,
+                'children': [
+                  {
+                    'name': '333FibonacciHeap',
+                    'value': 93541
+                  },
+                  {
+                    'name': '22FibonacciHeap2',
+                    'value': 662
+                  },
+                  {
+                    'name': '1FibonacciHeap3',
+                    'value': 7673
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            'name': 'math',
+            'value': 49
+          }
+        ]
+      },
+      {
+        'name': 'vis',
+        'value': 38,
+        'children': [{
+          'name': 'Visualization',
+          'value': 16540
+        }]
+      }]
     }
 
     let clientWidth = document.body.clientWidth
@@ -66,7 +117,7 @@ export default {
     root.descendants().forEach((d, i) => {
       d.id = i
       d._children = d.children
-      if (d.depth && d.data.name.length !== 7) d.children = null
+      if (d.depth && d.data.name.length !== 4) d.children = null
     })
 
     let svg = d3
