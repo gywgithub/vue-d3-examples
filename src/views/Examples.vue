@@ -7,7 +7,7 @@
       </div>
       <h2>Vue D3 V5 Example</h2>
       <ul>
-        <li v-for="(item, key) in examples" :key="key" @click="change(item.value, $event)">{{item.label}}</li>
+        <li v-for="(item, key) in examples" :key="key" @click="change(item.value, $event, key)">{{item.label}}</li>
       </ul>
     </div>
     <div class="right">
@@ -87,13 +87,22 @@ export default {
     }
   },
   mounted () {
-    document.getElementsByTagName('li')[0].classList.add('selected')
+    let index = 0
+    if (sessionStorage.getItem('key')) {
+      index = sessionStorage.getItem('key')
+    }
+    document.getElementsByTagName('li')[index].classList.add('selected')
+    if (sessionStorage.getItem('componentName')) {
+      this.componentName = sessionStorage.getItem('componentName')
+    }
   },
   methods: {
     goHome () {
       this.$router.push('/')
     },
-    change (path, event) {
+    change (path, event, key) {
+      sessionStorage.setItem('componentName', path)
+      sessionStorage.setItem('key', key)
       this.componentName = path
       let el = event.target
       let nodeList = document.getElementsByTagName('li')
