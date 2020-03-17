@@ -128,6 +128,7 @@ export default {
       }
 
       function focus (d) {
+        console.log(d) // eslint-disable-line
         let index = d3.select(d3.event.target).datum().index
         node.style('opacity', function (o) {
           return neigh(index, o.index) ? 1 : 0.1

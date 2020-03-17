@@ -119,8 +119,8 @@ export default {
 
       self.labelNode.each(function (d, i) {
         if (i % 2 === 0) {
-          d.x = d.x
-          d.y = d.y
+          // d.x = d.x
+          // d.y = d.y
         } else {
           let b = this.getBBox()
           let diffX = d.x - d.x
