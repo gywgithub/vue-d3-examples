@@ -16,6 +16,11 @@ export default new Router({
       path: '/Examples',
       name: 'Examples',
       component: () => import('./views/Examples.vue')
+    },
+    {
+      path: '/NextBranch',
+      name: 'NextBranch',
+      component: () => import('./views/NextBranch.vue')
     }
   ]
 })

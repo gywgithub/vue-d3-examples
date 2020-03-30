@@ -1,7 +1,11 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <!-- <div id="app"> -->
+    <v-app>
+      <v-container>
+        <router-view/>
+      </v-container>
+    </v-app>
+  <!-- </div> -->
 </template>
 
 <style>

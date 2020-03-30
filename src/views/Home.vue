@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="img-container">
-      <img src="../assets/img/vue.png" class="logo-img">
-      <img src="../assets/img/d3.svg" class="logo-img width-30-percent">
+      <img src="../assets/img/vue.png" class="logo-img" />
+      <img src="../assets/img/d3.svg" class="logo-img width-30-percent" />
     </div>
     <span>Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</span>
     <p class="margin-top-5-percent">
-      <a href="https://github.com/gywgithub/vue-d3-examples" target="_blank" >Github</a>
+      <a href="https://github.com/gywgithub/vue-d3-examples" target="_blank">Github</a>
       <router-link to="/Examples">Examples</router-link>
+      <router-link to="/NextBranch">Next Branch</router-link>
     </p>
   </div>
 </template>
@@ -22,8 +23,8 @@
 }
 .logo-img {
   object-fit: contain;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   margin: 0 25px;
 }
 .width-30-percent {
