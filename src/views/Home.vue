@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div class="img-container">
       <img src="../assets/img/vue.png" class="logo-img" />
       <img src="../assets/img/d3.svg" class="logo-img width-30-percent" />
@@ -10,36 +10,25 @@
       <router-link to="/Examples">Examples</router-link>
       <router-link to="/NextBranch">Next Branch</router-link>
     </p>
-    <v-btn fixed fab bottom right color="primary" @click="changeTheme">
-      <v-icon v-if="!dark">mdi-brightness-7</v-icon>
-      <v-icon v-else>mdi-brightness-4</v-icon>
-    </v-btn>
   </div>
 </template>
 <script>
 export default {
   name: 'Home',
   data () {
-    return {
-      dark: false
-    }
+    return {}
   },
-  created () {
-    if (localStorage.getItem('themeDark') && localStorage.getItem('themeDark') === 'true') {
-      this.$vuetify.theme.dark = true
-      this.dark = true
-    }
-  },
-  methods: {
-    changeTheme () {
-      this.dark = !this.dark
-      localStorage.setItem('themeDark', String(this.dark))
-      this.$vuetify.theme.dark = this.dark
-    }
+  mounted () {
+    console.log('home') // eslint-disable-line
   }
 }
 </script>
 <style scoped>
+.main {
+  border: 1px solid white;
+  width: 100%;
+  height: 100vh;
+}
 .img-container {
   display: flex;
   padding: 0 20px;

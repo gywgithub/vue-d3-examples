@@ -1,7 +1,9 @@
 <template>
-  <v-app>
-    <router-view />
-  </v-app>
+  <div id="app">
+    <v-app>
+      <router-view />
+    </v-app>
+  </div>
 </template>
 
 <style>
@@ -15,8 +17,7 @@
 html,
 body,
 #app {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+  padding: 0 0;
+  margin: 0 0;
 }
 </style>
