@@ -1,34 +1,71 @@
 <template>
-  <div class="main">
-    <div class="img-container">
+  <div class="main justify-center">
+    <div class="flex-column" style="margin-top:200px;">
+      <div class="d-flex justify-center">
+        <img src="../assets/img/vue.png" class="d-flex img-width" />
+        <img src="../assets/img/d3.svg" class="d-flex img-width img-d3-margin" />
+      </div>
+      <span
+        class="display-3 font-weight-regular span-margin"
+      >Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</span>
+      <div>
+        <a href="https://github.com/gywgithub/vue-d3-examples" target="_blank">Github</a>
+        <router-link to="/Examples">Examples</router-link>
+      </div>
+    </div>
+    <!-- <div class="img-container">
       <img src="../assets/img/vue.png" class="logo-img" />
       <img src="../assets/img/d3.svg" class="logo-img width-30-percent" />
     </div>
-    <span>Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</span>
+    <span class="display-3 font-weight-regular">Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</span>
     <p class="margin-top-5-percent">
       <a href="https://github.com/gywgithub/vue-d3-examples" target="_blank">Github</a>
       <router-link to="/Examples">Examples</router-link>
-      <router-link to="/NextBranch">Next Branch</router-link>
-    </p>
+    </p>-->
+    <v-btn fixed icon bottom right @click="changeTheme">
+      <v-icon v-if="!dark">mdi-brightness-7</v-icon>
+      <v-icon v-else>mdi-brightness-4</v-icon>
+    </v-btn>
   </div>
 </template>
 <script>
 export default {
   name: 'Home',
   data () {
-    return {}
+    return {
+      dark: false
+    }
   },
-  mounted () {
-    console.log('home') // eslint-disable-line
+  created () {
+    if (localStorage.getItem('themeDark') && localStorage.getItem('themeDark') === 'true') {
+      this.$vuetify.theme.dark = true
+      this.dark = true
+    }
+  },
+  methods: {
+    changeTheme () {
+      this.dark = !this.dark
+      localStorage.setItem('themeDark', String(this.dark))
+      this.$vuetify.theme.dark = this.dark
+    }
   }
 }
 </script>
 <style scoped>
-.main {
-  border: 1px solid white;
-  width: 100%;
-  height: 100vh;
+.img-width {
+  width: 200px !important;
 }
+
+.img-d3-margin {
+  padding: 16px;
+  margin-left: 80px;
+}
+
+.span-margin {
+  /* margin: 20px !important; */
+  padding: 200px;
+}
+
 .img-container {
   display: flex;
   padding: 0 20px;
@@ -46,9 +83,9 @@ export default {
 .width-30-percent {
   width: 34%;
 }
-span {
+/* span {
   font-size: 50px;
-}
+} */
 a {
   color: #448aff;
   text-decoration: none;

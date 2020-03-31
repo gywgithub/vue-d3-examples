@@ -1,198 +1,297 @@
 <template>
-  <div class="main">
-    <div class="left">
-      <div class="img-container">
-        <img src="../assets/img/logo.png" class="logo-img" @click="goHome">
-        <img src="../assets/img/d3.svg" class="logo-img" @click="goHome">
-      </div>
-      <h2>Vue D3 V5 Example</h2>
-      <ul>
-        <li v-for="(item, key) in examples" :key="key" @click="change(item.value, $event, key)">{{item.label}}</li>
-      </ul>
-    </div>
-    <div class="right">
-      <keep-alive>
-        <component v-bind:is="componentName"></component>
-      </keep-alive>
-    </div>
-  </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.lgAndUp"
+      app
+    >
+      <v-list dense>
+        <template v-for="item in items">
+          <v-row
+            v-if="item.heading"
+            :key="item.heading"
+            align="center"
+          >
+            <v-col cols="6">
+              <v-subheader v-if="item.heading">
+                {{ item.heading }}
+              </v-subheader>
+            </v-col>
+            <v-col
+              cols="6"
+              class="text-center"
+            >
+              <a
+                href="#!"
+                class="body-2 black--text"
+              >EDIT</a>
+            </v-col>
+          </v-row>
+          <v-list-group
+            v-else-if="item.children"
+            :key="item.text"
+            v-model="item.model"
+            :prepend-icon="item.model ? item.icon : item['icon-alt']"
+            append-icon=""
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ item.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              link
+            >
+              <v-list-item-action v-if="child.icon">
+                <v-icon>{{ child.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ child.text }}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+          <v-list-item
+            v-else
+            :key="item.text"
+            link
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>
+                {{ item.text }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      app
+      color="blue darken-3"
+      dark
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title
+        style="width: 300px"
+        class="ml-0 pl-4"
+      >
+        <span class="hidden-sm-and-down">Google Contacts</span>
+      </v-toolbar-title>
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="mdi-magnify"
+        label="Search"
+        class="hidden-sm-and-down"
+      />
+      <v-spacer />
+      <v-btn icon>
+        <v-icon>mdi-apps</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-bell</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        large
+      >
+        <v-avatar
+          size="32px"
+          item
+        >
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+            alt="Vuetify"
+          /></v-avatar>
+      </v-btn>
+    </v-app-bar>
+    <v-content>
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-tooltip right>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                :href="source"
+                icon
+                large
+                target="_blank"
+                v-on="on"
+              >
+                <v-icon large>mdi-code-tags</v-icon>
+              </v-btn>
+            </template>
+            <span>Source</span>
+          </v-tooltip>
+          <v-tooltip right>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                large
+                href="https://codepen.io/johnjleider/pen/MNYLdL"
+                target="_blank"
+                v-on="on"
+              >
+                <v-icon large>mdi-codepen</v-icon>
+              </v-btn>
+            </template>
+            <span>Codepen</span>
+          </v-tooltip>
+        </v-row>
+      </v-container>
+    </v-content>
+    <v-btn
+      bottom
+      color="pink"
+      dark
+      fab
+      fixed
+      right
+      @click="dialog = !dialog"
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+    <v-dialog
+      v-model="dialog"
+      width="800px"
+    >
+      <v-card>
+        <v-card-title class="grey darken-2">
+          Create contact
+        </v-card-title>
+        <v-container>
+          <v-row class="mx-2">
+            <v-col
+              class="align-center justify-space-between"
+              cols="12"
+            >
+              <v-row
+                align="center"
+                class="mr-0"
+              >
+                <v-avatar
+                  size="40px"
+                  class="mx-3"
+                >
+                  <img
+                    src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
+                    alt=""
+                  >
+                </v-avatar>
+                <v-text-field
+                  placeholder="Name"
+                />
+              </v-row>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                prepend-icon="mdi-account-card-details-outline"
+                placeholder="Company"
+              />
+            </v-col>
+            <v-col cols="6">
+              <v-text-field
+                placeholder="Job title"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                prepend-icon="mdi-mail"
+                placeholder="Email"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                type="tel"
+                prepend-icon="mdi-phone"
+                placeholder="(000) 000 - 0000"
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                prepend-icon="mdi-text"
+                placeholder="Notes"
+              />
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-card-actions>
+          <v-btn
+            text
+            color="primary"
+          >More</v-btn>
+          <v-spacer />
+          <v-btn
+            text
+            color="primary"
+            @click="dialog = false"
+          >Cancel</v-btn>
+          <v-btn
+            text
+            @click="dialog = false"
+          >Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-app>
 </template>
+
 <script>
-import HelloWorld from '../components/HelloWorld'
-import ModifyingAForceLayout from '../components/ModifyingAForceLayout'
-import ModifyingAForceLayoutII from '../components/ModifyingAForceLayoutII'
-import ModifyingAForceLayoutIII from '../components/ModifyingAForceLayoutIII'
-import Tree from '../components/Tree'
-import TreeII from '../components/TreeII'
-import TreeIII from '../components/TreeIII'
-import TreeIV from '../components/TreeIV'
-import TreeV from '../components/TreeV'
-import TreeVI from '../components/TreeVI'
-import TreeVII from '../components/TreeVII'
-import GeneralUpdatePatternI from '../components/GeneralUpdatePatternI'
-import SelectElementAndBindData from '../components/SelectElementAndBindData'
-import UpdateEnterExit from '../components/UpdateEnterExit'
-import SelectInsertRemove from '../components/SelectInsertRemove'
-import SimpleBarChart from '../components/SimpleBarChart'
-import Scale from '../components/Scale'
-import Axis from '../components/Axis'
-import CompleteHistogram from '../components/CompleteHistogram'
-import CompleteHistogramII from '../components/CompleteHistogramII'
-import CompleteHistogramIII from '../components/CompleteHistogramIII'
-import ForceDirectedGraph from '../components/ForceDirectedGraph'
-import BarChartI from '../components/BarChartI'
-import BarChartII from '../components/BarChartII'
-import Zoomable from '../components/Zoomable'
-import ZoomableAddText from '../components/ZoomableAddText'
-import ForceBasedLabelPlacement from '../components/ForceBasedLabelPlacement'
-import ForceBasedLabelPlacementII from '../components/ForceBasedLabelPlacementII'
-import ForceBasedLabelPlacementIII from '../components/ForceBasedLabelPlacementIII'
-import ExampleAddress from '../components/ExampleAddress'
-export default {
-  data () {
-    return {
-      examples: [
-        { 'label': 'HelloWorld', 'value': 'HelloWorld' },
-        { 'label': 'Modifying a Force Layout', 'value': 'ModifyingAForceLayout' },
-        { 'label': 'Modifying a Force Layout II', 'value': 'ModifyingAForceLayoutII' },
-        { 'label': 'Modifying a Force Layout III', 'value': 'ModifyingAForceLayoutIII' },
-        { 'label': 'Tree', 'value': 'Tree' },
-        { 'label': 'TreeII', 'value': 'TreeII' },
-        { 'label': 'TreeIII', 'value': 'TreeIII' },
-        { 'label': 'TreeIV', 'value': 'TreeIV' },
-        { 'label': 'TreeV', 'value': 'TreeV' },
-        { 'label': 'TreeVI', 'value': 'TreeVI' },
-        { 'label': 'TreeVII', 'value': 'TreeVII' },
-        { 'label': 'General Update Pattern I', 'value': 'GeneralUpdatePatternI' },
-        { 'label': 'SelectElementAndBindData', 'value': 'SelectElementAndBindData' },
-        { 'label': 'UpdateEnterExit', 'value': 'UpdateEnterExit' },
-        { 'label': 'SelectInsertRemove', 'value': 'SelectInsertRemove' },
-        { 'label': 'SimpleBarChart', 'value': 'SimpleBarChart' },
-        { 'label': 'Scale', 'value': 'Scale' },
-        { 'label': 'Axis', 'value': 'Axis' },
-        { 'label': 'CompleteHistogram', 'value': 'CompleteHistogram' },
-        { 'label': 'CompleteHistogramII', 'value': 'CompleteHistogramII' },
-        { 'label': 'CompleteHistogramIII', 'value': 'CompleteHistogramIII' },
-        { 'label': 'ForceDirectedGraph', 'value': 'ForceDirectedGraph' },
-        { 'label': 'Bar Chart I', 'value': 'BarChartI' },
-        { 'label': 'Bar Chart II', 'value': 'BarChartII' },
-        { 'label': 'Zoomable', 'value': 'Zoomable' },
-        { 'label': 'Zoomable Add Text', 'value': 'ZoomableAddText' },
-        { 'label': 'Force-based label placement', 'value': 'ForceBasedLabelPlacement' },
-        { 'label': 'Force-based label placement II', 'value': 'ForceBasedLabelPlacementII' },
-        { 'label': 'Force-based label placement III', 'value': 'ForceBasedLabelPlacementIII' },
-        { 'label': 'ExampleAddress', 'value': 'ExampleAddress' }
-      ],
-      componentName: 'TreeVI'
-    }
-  },
-  mounted () {
-    let index = 0
-    if (sessionStorage.getItem('key')) {
-      index = sessionStorage.getItem('key')
-    }
-    document.getElementsByTagName('li')[index].classList.add('selected')
-    if (sessionStorage.getItem('componentName')) {
-      this.componentName = sessionStorage.getItem('componentName')
-    }
-  },
-  methods: {
-    goHome () {
-      this.$router.push('/')
+  export default {
+    props: {
+      source: String,
     },
-    change (path, event, key) {
-      sessionStorage.setItem('componentName', path)
-      sessionStorage.setItem('key', key)
-      this.componentName = path
-      let el = event.target
-      let nodeList = document.getElementsByTagName('li')
-      for (const iterator of nodeList) {
-        iterator.classList.remove('selected')
-      }
-      el.classList.add('selected')
-    }
-  },
-  components: {
-    HelloWorld,
-    ModifyingAForceLayout,
-    ModifyingAForceLayoutII,
-    ModifyingAForceLayoutIII,
-    Tree,
-    TreeII,
-    TreeIII,
-    TreeIV,
-    TreeV,
-    TreeVI,
-    TreeVII,
-    GeneralUpdatePatternI,
-    SelectElementAndBindData,
-    UpdateEnterExit,
-    SelectInsertRemove,
-    SimpleBarChart,
-    Scale,
-    Axis,
-    CompleteHistogram,
-    CompleteHistogramII,
-    CompleteHistogramIII,
-    ForceDirectedGraph,
-    BarChartI,
-    BarChartII,
-    Zoomable,
-    ZoomableAddText,
-    ForceBasedLabelPlacement,
-    ForceBasedLabelPlacementII,
-    ForceBasedLabelPlacementIII,
-    ExampleAddress
+    data: () => ({
+      dialog: false,
+      drawer: null,
+      items: [
+        { icon: 'mdi-contacts', text: 'Contacts' },
+        { icon: 'mdi-history', text: 'Frequently contacted' },
+        { icon: 'mdi-content-copy', text: 'Duplicates' },
+        {
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-chevron-down',
+          text: 'Labels',
+          model: true,
+          children: [
+            { icon: 'mdi-plus', text: 'Create label' },
+          ],
+        },
+        {
+          icon: 'mdi-chevron-up',
+          'icon-alt': 'mdi-chevron-down',
+          text: 'More',
+          model: false,
+          children: [
+            { text: 'Import' },
+            { text: 'Export' },
+            { text: 'Print' },
+            { text: 'Undo changes' },
+            { text: 'Other contacts' },
+          ],
+        },
+        { icon: 'mdi-settings', text: 'Settings' },
+        { icon: 'mdi-message', text: 'Send feedback' },
+        { icon: 'mdi-help-circle', text: 'Help' },
+        { icon: 'mdi-cellphone-link', text: 'App downloads' },
+        { icon: 'mdi-keyboard', text: 'Go to the old version' },
+      ],
+    }),
   }
-}
 </script>
-<style scoped>
-.main {
-  display: flex;
-}
-.left {
-  width: 300px;
-  height: 100vh;
-  box-shadow: 1px 0 5px #ccc;
-}
-.right {
-  width: calc(100% - 300px);
-  height: 100vh;
-}
-.img-container {
-  display: flex;
-  padding: 40px 20px;
-}
-.logo-img {
-  width: 45%;
-  object-fit: contain;
-  margin: 0 10px;
-}
-.logo-img:hover {
-  cursor: pointer;
-}
-ul {
-  padding: 0;
-  margin: 0;
-  border-top: 1px solid #eee;
-  height: calc(100vh - 270px);
-  overflow: auto;
-}
-li {
-  cursor: pointer;
-  border-bottom: 1px solid #eee;
-  list-style: none;
-  line-height: 48px;
-}
-li:hover {
-  color: #0080ff;
-  background-color: #f4f9ff;
-}
-li:active {
-  background-color: #eee;
-}
-.selected {
-  color: #0080ff;
-  font-weight: 700;
-}
-</style>
