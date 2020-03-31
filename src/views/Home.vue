@@ -10,8 +10,35 @@
       <router-link to="/Examples">Examples</router-link>
       <router-link to="/NextBranch">Next Branch</router-link>
     </p>
+    <v-btn fixed fab bottom right color="primary" @click="changeTheme">
+      <v-icon v-if="!dark">mdi-brightness-7</v-icon>
+      <v-icon v-else>mdi-brightness-4</v-icon>
+    </v-btn>
   </div>
 </template>
+<script>
+export default {
+  name: 'Home',
+  data () {
+    return {
+      dark: false
+    }
+  },
+  created () {
+    if (localStorage.getItem('themeDark') && localStorage.getItem('themeDark') === 'true') {
+      this.$vuetify.theme.dark = true
+      this.dark = true
+    }
+  },
+  methods: {
+    changeTheme () {
+      this.dark = !this.dark
+      localStorage.setItem('themeDark', String(this.dark))
+      this.$vuetify.theme.dark = this.dark
+    }
+  }
+}
+</script>
 <style scoped>
 .img-container {
   display: flex;
