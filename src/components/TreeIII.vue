@@ -41,7 +41,7 @@ export default {
       svg: null,
       duration: null,
       treeData: {
-        'name': 'Top Level',
+        'name': 'Top Level'
         // 'children': [
         //   {
         //     'name': 'Level 2: A',
@@ -68,9 +68,9 @@ export default {
   },
   mounted () {
     // Set the dimensions and margins of the diagram
-    var margin = { top: -200, right: 90, bottom: 30, left: 90 },
-      width = 960 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom
+    var margin = { top: -200, right: 90, bottom: 30, left: 90 }
+    var width = 960 - margin.left - margin.right
+    var height = 500 - margin.top - margin.bottom
 
     // append the svg object to the body of the page
     // appends a 'group' element to 'svg'
@@ -82,8 +82,8 @@ export default {
     this.svg = d3.select('#vizTreeIII')
       .attr('viewBox', [-10, -10, width, height])
       .append('g')
-      .attr('transform', 'translate('
-        + margin.left + ',' + margin.top + ')')
+      .attr('transform', 'translate(' +
+        margin.left + ',' + margin.top + ')')
 
     this.nodeObj = d3.hierarchy.prototype.constructor
     this.i = 0
@@ -110,14 +110,12 @@ export default {
     this.svg.call(zoomHandler).on('dblclick.zoom', null)
     zoomHandler(this.svg)
 
-
     // Zoom functions
     function zoomActions () {
       // gNode.attr('transform', d3.event.transform)
       // gLink.attr('transform', d3.event.transform)
     }
     // ***********************************************
-
 
     this.update(this.root)
   },
@@ -230,8 +228,6 @@ export default {
           }
         }
       }
-
-
     },
     addNode () {
       let min = 100
@@ -346,7 +342,6 @@ export default {
           return d._children ? 'lightsteelblue' : '#fff'
         })
         .attr('cursor', 'pointer')
-
 
       // Remove any exiting nodes
       var nodeExit = node.exit().transition()

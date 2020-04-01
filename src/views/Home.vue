@@ -38,7 +38,7 @@ export default {
       window.open('https://github.com/gywgithub/vue-d3-examples', '_blank')
     },
     routerRedirect () {
-      this.$router.push('Examples')
+      this.$router.push('/examples')
     },
     changeTheme () {
       this.dark = !this.dark
@@ -49,6 +49,9 @@ export default {
 }
 </script>
 <style scoped>
+.main {
+  text-align: center;
+}
 .margin-top-200 {
   margin-top: 200px;
 }

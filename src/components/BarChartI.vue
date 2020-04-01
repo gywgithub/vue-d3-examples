@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Bar Chart I</h2>
-    <div class="container">
+    <div class="container-chart">
       <div class="chart"></div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
   margin: 1px;
   color: white;
 }
-.container {
+.container-chart {
   width: 50%;
   margin: auto;
 }

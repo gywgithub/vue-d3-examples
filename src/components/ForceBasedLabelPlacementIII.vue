@@ -63,7 +63,8 @@ export default {
       d3.zoom()
         .scaleExtent([1.6 / 2, 4])
         .on('zoom', function () {
-          self.container.attr('transform', d3.event.transform)        })
+          self.container.attr('transform', d3.event.transform)
+        })
     )
 
     this.link = this.container.append('g').attr('class', 'links')
@@ -79,7 +80,7 @@ export default {
 
     setTimeout(() => {
       let addData = [{ 'id': 'Four', 'group': 4 }, { 'id': 'Five', 'group': 5 }]
-      let addLinks = [{'source': 'Four','target': 'Five','value': 3},{'source': 'Five','target': 'Feuilly','value': 4}]
+      let addLinks = [{ 'source': 'Four', 'target': 'Five', 'value': 3 }, { 'source': 'Five', 'target': 'Feuilly', 'value': 4 }]
       this.graph.nodes = [...this.graph.nodes, ...addData]
       this.graph.links = [...this.graph.links, ...addLinks]
       this.restart()
@@ -100,11 +101,13 @@ export default {
       this.link.exit().remove()
       this.link = this.link.enter().append('line').merge(this.link)
       this.labelNode = this.labelNode.data(this.graph.nodes, function (d) {
-        return d.id })
+        return d.id
+      })
       this.labelNode.exit().remove()
       this.labelNode = this.labelNode.enter().append('text').merge(this.labelNode)
         .text(function (d) {
-          return d.id })
+          return d.id
+        })
         .style('fill', '#555')
         .style('font-size', 12)
         .style('pointer-events', 'none')

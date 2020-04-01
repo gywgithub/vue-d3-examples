@@ -109,7 +109,6 @@ export default {
     let tree = d3.tree().nodeSize([dx, dy])
     let diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x)
 
-
     const root = d3.hierarchy(data)
 
     root.x0 = 0
@@ -134,7 +133,6 @@ export default {
       .attr('cursor', 'pointer')
       .attr('pointer-events', 'all')
 
-
     // ****************  zoom ************************
     // add zoom capabilities
     let zoomHandler = d3.zoom()
@@ -144,14 +142,12 @@ export default {
     svg.call(zoomHandler).on('dblclick.zoom', null)
     zoomHandler(svg)
 
-
     // Zoom functions
     function zoomActions () {
       gNode.attr('transform', d3.event.transform)
       gLink.attr('transform', d3.event.transform)
     }
     // ***********************************************
-
 
     function update (source) {
       const duration = d3.event && d3.event.altKey ? 2500 : 250
@@ -193,11 +189,11 @@ export default {
         })
 
       nodeEnter.append('circle')
-        // .attr('class', 'node')
-        // .attr('r', 1e-6)
-        // .style('fill', function (d) {
-        //   return d._children ? '#c9e4ff' : '#fff'
-        // })
+      // .attr('class', 'node')
+      // .attr('r', 1e-6)
+      // .style('fill', function (d) {
+      //   return d._children ? '#c9e4ff' : '#fff'
+      // })
 
         .attr('r', 10)
         .attr('fill', d => d._children ? '#c9e4ff' : '#fff')

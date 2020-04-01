@@ -1,297 +1,223 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      app
-    >
-      <v-list dense>
-        <template v-for="item in items">
-          <v-row
-            v-if="item.heading"
-            :key="item.heading"
-            align="center"
-          >
-            <v-col cols="6">
-              <v-subheader v-if="item.heading">
-                {{ item.heading }}
-              </v-subheader>
-            </v-col>
-            <v-col
-              cols="6"
-              class="text-center"
-            >
-              <a
-                href="#!"
-                class="body-2 black--text"
-              >EDIT</a>
-            </v-col>
-          </v-row>
-          <v-list-group
-            v-else-if="item.children"
-            :key="item.text"
-            v-model="item.model"
-            :prepend-icon="item.model ? item.icon : item['icon-alt']"
-            append-icon=""
-          >
-            <template v-slot:activator>
-              <v-list-item-content>
-                <v-list-item-title>
-                  {{ item.text }}
-                </v-list-item-title>
-              </v-list-item-content>
-            </template>
+    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app width="280">
+      <div class="img-container cursor-pointer">
+        <img src="../assets/img/logo.png" class="logo-img" @click="goHome" />
+        <img src="../assets/img/d3.svg" class="logo-img img-d3-padding" @click="goHome" />
+      </div>
+      <v-divider></v-divider>
+      <v-list>
+        <v-list-group
+          v-for="(item, key) in items"
+          :key="key"
+          v-model="item.active"
+          :append-icon="item.appendIcon"
+          @click="itemClick(item,key)"
+        >
+          <template v-slot:activator>
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item-group v-if="item.children" color="primary" v-model="subItemActive">
             <v-list-item
-              v-for="(child, i) in item.children"
-              :key="i"
-              link
+              v-for="(subItem, k) in item.children"
+              :key="k"
+              @click="subItemClick(subItem, k)"
             >
-              <v-list-item-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
-              </v-list-item-action>
+              <v-list-item-icon></v-list-item-icon>
+
               <v-list-item-content>
-                <v-list-item-title>
-                  {{ child.text }}
-                </v-list-item-title>
+                <v-list-item-title v-text="subItem.title"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-          </v-list-group>
-          <v-list-item
-            v-else
-            :key="item.text"
-            link
-          >
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ item.text }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </template>
+          </v-list-item-group>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      app
-      color="blue darken-3"
-      dark
-    >
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title
-        style="width: 300px"
-        class="ml-0 pl-4"
-      >
-        <span class="hidden-sm-and-down">Google Contacts</span>
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+        <span class="hidden-sm-and-down">Vue D3 Examples</span>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Search"
         class="hidden-sm-and-down"
-      />
+      />-->
       <v-spacer />
+      <v-btn icon @click="changeTheme">
+        <v-icon v-if="!dark">mdi-brightness-7</v-icon>
+        <v-icon v-else>mdi-brightness-4</v-icon>
+      </v-btn>
       <v-btn icon>
         <v-icon>mdi-apps</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        large
-      >
-        <v-avatar
-          size="32px"
-          item
-        >
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-          /></v-avatar>
-      </v-btn>
     </v-app-bar>
     <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                :href="source"
-                icon
-                large
-                target="_blank"
-                v-on="on"
-              >
-                <v-icon large>mdi-code-tags</v-icon>
-              </v-btn>
-            </template>
-            <span>Source</span>
-          </v-tooltip>
-          <v-tooltip right>
-            <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                large
-                href="https://codepen.io/johnjleider/pen/MNYLdL"
-                target="_blank"
-                v-on="on"
-              >
-                <v-icon large>mdi-codepen</v-icon>
-              </v-btn>
-            </template>
-            <span>Codepen</span>
-          </v-tooltip>
-        </v-row>
+      <v-container>
+        <router-view></router-view>
       </v-container>
     </v-content>
-    <v-btn
-      bottom
-      color="pink"
-      dark
-      fab
-      fixed
-      right
-      @click="dialog = !dialog"
-    >
+    <v-btn bottom color="secondary" dark fab fixed right>
       <v-icon>mdi-plus</v-icon>
     </v-btn>
-    <v-dialog
-      v-model="dialog"
-      width="800px"
-    >
-      <v-card>
-        <v-card-title class="grey darken-2">
-          Create contact
-        </v-card-title>
-        <v-container>
-          <v-row class="mx-2">
-            <v-col
-              class="align-center justify-space-between"
-              cols="12"
-            >
-              <v-row
-                align="center"
-                class="mr-0"
-              >
-                <v-avatar
-                  size="40px"
-                  class="mx-3"
-                >
-                  <img
-                    src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                    alt=""
-                  >
-                </v-avatar>
-                <v-text-field
-                  placeholder="Name"
-                />
-              </v-row>
-            </v-col>
-            <v-col cols="6">
-              <v-text-field
-                prepend-icon="mdi-account-card-details-outline"
-                placeholder="Company"
-              />
-            </v-col>
-            <v-col cols="6">
-              <v-text-field
-                placeholder="Job title"
-              />
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-mail"
-                placeholder="Email"
-              />
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                type="tel"
-                prepend-icon="mdi-phone"
-                placeholder="(000) 000 - 0000"
-              />
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-text"
-                placeholder="Notes"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
-        <v-card-actions>
-          <v-btn
-            text
-            color="primary"
-          >More</v-btn>
-          <v-spacer />
-          <v-btn
-            text
-            color="primary"
-            @click="dialog = false"
-          >Cancel</v-btn>
-          <v-btn
-            text
-            @click="dialog = false"
-          >Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-app>
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
+export default {
+  data: () => ({
+    dark: false,
+    drawer: null,
+    itemActive: 0,
+    subItemActive: null,
+    items: [
+      // {
+      //   icon: 'mdi-alpha-b-box-outline',
+      //   title: 'Introduction',
+      //   path: '/examples/introduction',
+      //   appendIcon: null,
+      //   active: true
+      // },
+      {
+        icon: 'mdi-alpha-b-box-outline',
+        title: 'Basic',
+        children: [
+          { title: 'HelloWorld', path: '/examples/helloworld' },
+          { title: 'UpdateEnterExit', path: '/examples/updateenterexit' }
+        ],
+        appendIcon: 'mdi-chevron-down',
+        active: true
+      },
+      {
+        icon: 'mdi-alpha-t-box-outline',
+        title: 'Tree',
+        children: [
+          { title: 'TreeI', path: '/examples/treeI' },
+          { title: 'TreeII', path: '/examples/treeII' },
+          { title: 'TreeIII', path: '/examples/treeIII' },
+          { title: 'TreeIV', path: '/examples/treeIV' },
+          { title: 'TreeV', path: '/examples/treeV' },
+          { title: 'TreeVI', path: '/examples/treeVI' },
+          { title: 'TreeVII', path: '/examples/treeVII' }
+        ],
+        appendIcon: 'mdi-chevron-down'
+      },
+      {
+        icon: 'mdi-alpha-b-box-outline',
+        title: 'BarChart',
+        children: [
+          { title: 'BarChartI', path: '/examples/barchartI' },
+          { title: 'BarChartII', path: '/examples/barchartII' },
+          { title: 'BarChartAxis', path: '/examples/axis' }
+        ],
+        appendIcon: 'mdi-chevron-down'
+      },
+      {
+        icon: 'mdi-alpha-f-box-outline',
+        title: 'Force',
+        children: [
+          { title: 'ForceBasedI', path: '/examples/forcebasedI' },
+          { title: 'ForceBasedII', path: '/examples/forcebasedII' },
+          { title: 'ForceBasedIII', path: '/examples/forcebasedIII' }
+        ],
+        appendIcon: 'mdi-chevron-down'
+      },
+      {
+        icon: 'mdi-alpha-h-box-outline',
+        title: 'Histogram',
+        children: [
+          { title: 'HistogramI', path: '/examples/histogramI' },
+          { title: 'HistogramII', path: '/examples/histogramII' },
+          { title: 'HistogramIII', path: '/examples/histogramIII' }
+        ],
+        appendIcon: 'mdi-chevron-down'
+      }
+    ]
+  }),
+  created () {
+    if (localStorage.getItem('themeDark') && localStorage.getItem('themeDark') === 'true') {
+      this.$vuetify.theme.dark = true
+      this.dark = true
+    }
+    if (this.$route.path === '/examples') {
+      console.log('/example') // eslint-disable-line
+      this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
+    } else {
+      console.log(this.$route) // eslint-disable-line
+      this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
+    }
+    if (sessionStorage.getItem('itemActive')) {
+      this.items[0].active = false
+      this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+    }
+    console.log(this.items)
+
+    if (sessionStorage.getItem('subItemActive')) {
+      this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
+      console.log(sessionStorage.getItem('subItemActive'))
+      console.log(133)
+    }
+  },
+  mounted () {
+    // console.log(this.items)
+    // if (sessionStorage.getItem('itemActive')) {
+    //   this.items[0].active = false
+    //   this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+    // }
+    // console.log(this.items)
+
+    // if (sessionStorage.getItem('subItemActive')) {
+    //   this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
+    //   console.log(sessionStorage.getItem('subItemActive'))
+    //   console.log(133)
+    // }
+  },
+  methods: {
+    itemClick (item, key) {
+      this.subItemActive = null
+      console.log(item, key) // eslint-disable-line
+      sessionStorage.setItem('itemActive', key)
     },
-    data: () => ({
-      dialog: false,
-      drawer: null,
-      items: [
-        { icon: 'mdi-contacts', text: 'Contacts' },
-        { icon: 'mdi-history', text: 'Frequently contacted' },
-        { icon: 'mdi-content-copy', text: 'Duplicates' },
-        {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
-          text: 'Labels',
-          model: true,
-          children: [
-            { icon: 'mdi-plus', text: 'Create label' },
-          ],
-        },
-        {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' },
-          ],
-        },
-        { icon: 'mdi-settings', text: 'Settings' },
-        { icon: 'mdi-message', text: 'Send feedback' },
-        { icon: 'mdi-help-circle', text: 'Help' },
-        { icon: 'mdi-cellphone-link', text: 'App downloads' },
-        { icon: 'mdi-keyboard', text: 'Go to the old version' },
-      ],
-    }),
+    subItemClick (item, key) {
+      // let paht = item.path
+      console.log(item, key) // eslint-disable-line
+      sessionStorage.setItem('subItemActive', key)
+      this.$router.push(item.path).catch(err => { }) // eslint-disable-line
+    },
+    goHome () {
+      this.$router.push('/Home').catch(err => { }) // eslint-disable-line
+    },
+    changeTheme () {
+      this.dark = !this.dark
+      localStorage.setItem('themeDark', String(this.dark))
+      this.$vuetify.theme.dark = this.dark
+    }
   }
+}
 </script>
+<style scoped>
+.img-container {
+  display: flex;
+  padding: 40px 20px;
+}
+.logo-img {
+  width: 45%;
+  object-fit: contain;
+  margin: 0 5px;
+}
+.img-d3-padding {
+  padding: 4px !important;
+}
+</style>

@@ -22,7 +22,7 @@ const opts = {
         success: '#4caf50'
       },
       dark: {
-        primary: colors.blue.lighten3
+        primary: colors.blue.darken1
       }
     }
   }

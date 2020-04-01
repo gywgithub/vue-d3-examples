@@ -18,7 +18,7 @@ export default {
     const layoutTree = d3.tree().size([width - 20, height - 20])
     const renderLink = d3.linkVertical().x(d => d.x).y(d => d.y)
     const Node = d3.hierarchy.prototype.constructor
-    const root = new Node
+    const root = new Node()
     const nodes = [root]
     const links = []
 
@@ -41,7 +41,7 @@ export default {
 
       // Add a new node to a random parent.
       const parent = nodes[Math.random() * nodes.length | 0]
-      const child = Object.assign(new Node, { parent, depth: parent.depth + 1 })
+      const child = Object.assign(new Node(), { parent, depth: parent.depth + 1 })
       if (parent.children) parent.children.push(child)
       else parent.children = [child]
 
@@ -56,8 +56,8 @@ export default {
       node = node.enter().append('circle')
         .attr('class', 'node')
         .attr('r', 4)
-        .attr('cx', d => d.parent ? d.parent.px : d.px = d.x)
-        .attr('cy', d => d.parent ? d.parent.py : d.py = d.y)
+        .attr('cx', d => d.parent ? d.parent.px : d.px = d.x) // eslint-disable-line
+        .attr('cy', d => d.parent ? d.parent.py : d.py = d.y) // eslint-disable-line
         .merge(node)
 
       // Add entering links in the parent’s old position.
@@ -78,8 +78,8 @@ export default {
         .attr('d', renderLink)
 
       node.transition(t)
-        .attr('cx', d => d.px = d.x)
-        .attr('cy', d => d.py = d.y)
+        .attr('cx', d => d.px = d.x) // eslint-disable-line
+        .attr('cy', d => d.py = d.y) // eslint-disable-line
     }, duration)
 
     // invalidation.then(() => interval.stop())

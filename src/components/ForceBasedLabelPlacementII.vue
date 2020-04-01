@@ -59,7 +59,8 @@ export default {
       d3.zoom()
         .scaleExtent([.1, 4]) // eslint-disable-line
         .on('zoom', function () {
-          container.attr('transform', d3.event.transform) })
+          container.attr('transform', d3.event.transform)
+        })
     )
 
     let link = container.append('g').attr('class', 'links')

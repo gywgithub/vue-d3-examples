@@ -148,8 +148,6 @@ export default {
       this.simulation.nodes(this.nodes)
       this.simulation.force('link').links(this.links)
       // this.simulation.alpha(1).restart()
-
-
     },
     ticked () {
       this.node
