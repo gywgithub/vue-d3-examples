@@ -1,27 +1,18 @@
 <template>
   <div class="main justify-center">
-    <div class="flex-column" style="margin-top:200px;">
+    <div class="flex-column margin-top-200">
       <div class="d-flex justify-center">
         <img src="../assets/img/vue.png" class="d-flex img-width" />
         <img src="../assets/img/d3.svg" class="d-flex img-width img-d3-margin" />
       </div>
-      <span
+      <div
         class="display-3 font-weight-regular span-margin"
-      >Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</span>
+      >Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</div>
       <div>
-        <a href="https://github.com/gywgithub/vue-d3-examples" target="_blank">Github</a>
-        <router-link to="/Examples">Examples</router-link>
+        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="openTab">Github</v-btn>
+        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="routerRedirect">Examples</v-btn>
       </div>
     </div>
-    <!-- <div class="img-container">
-      <img src="../assets/img/vue.png" class="logo-img" />
-      <img src="../assets/img/d3.svg" class="logo-img width-30-percent" />
-    </div>
-    <span class="display-3 font-weight-regular">Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</span>
-    <p class="margin-top-5-percent">
-      <a href="https://github.com/gywgithub/vue-d3-examples" target="_blank">Github</a>
-      <router-link to="/Examples">Examples</router-link>
-    </p>-->
     <v-btn fixed icon bottom right @click="changeTheme">
       <v-icon v-if="!dark">mdi-brightness-7</v-icon>
       <v-icon v-else>mdi-brightness-4</v-icon>
@@ -43,6 +34,12 @@ export default {
     }
   },
   methods: {
+    openTab () {
+      window.open('https://github.com/gywgithub/vue-d3-examples', '_blank')
+    },
+    routerRedirect () {
+      this.$router.push('Examples')
+    },
     changeTheme () {
       this.dark = !this.dark
       localStorage.setItem('themeDark', String(this.dark))
@@ -52,8 +49,12 @@ export default {
 }
 </script>
 <style scoped>
+.margin-top-200 {
+  margin-top: 200px;
+}
+
 .img-width {
-  width: 200px !important;
+  width: 180px !important;
 }
 
 .img-d3-margin {
@@ -62,46 +63,10 @@ export default {
 }
 
 .span-margin {
-  /* margin: 20px !important; */
-  padding: 200px;
+  margin: 20px 0 40px 0;
 }
 
-.img-container {
-  display: flex;
-  padding: 0 20px;
-  margin: auto;
-  width: 400px;
-  margin-top: 6%;
-  margin-bottom: 2%;
-}
-.logo-img {
-  object-fit: contain;
-  width: 140px;
-  height: 140px;
-  margin: 0 25px;
-}
-.width-30-percent {
-  width: 34%;
-}
-/* span {
-  font-size: 50px;
-} */
-a {
-  color: #448aff;
-  text-decoration: none;
-  font-size: 1.05rem;
-  border: 1px solid #448aff;
-  border-radius: 2rem;
-  box-sizing: border-box;
-  font-size: 1.05rem;
-  letter-spacing: 0.1rem;
-  margin: 0.5rem 1rem;
-  padding: 0.75em 2rem;
-}
-a:hover {
-  color: #000;
-}
-.margin-top-5-percent {
-  margin-top: 5%;
+.margin-0-15 {
+  margin: 0 15px;
 }
 </style>
