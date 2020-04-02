@@ -163,7 +163,7 @@ export default new Router({
           component: () => import('./components/Zoomable.vue')
         },
         {
-          path: '/examples/zoomableatext',
+          path: '/examples/zoomabletext',
           name: 'zoomabletext',
           component: () => import('./components/ZoomableText.vue')
         }
