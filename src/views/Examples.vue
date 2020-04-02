@@ -95,7 +95,10 @@ export default {
         title: 'Basic',
         children: [
           { title: 'HelloWorld', path: '/examples/helloworld' },
-          { title: 'UpdateEnterExit', path: '/examples/updateenterexit' }
+          { title: 'UpdateEnterExit', path: '/examples/updateenterexit' },
+          { title: 'GeneralUpdatePatternI', path: '/examples/generalupdatepattern' },
+          { title: 'SelectElementAndBindData', path: '/examples/selectelementbinddata' },
+          { title: 'SelectInsertRemove', path: '/examples/selectinsertremove' }
         ],
         appendIcon: 'mdi-chevron-down',
         active: true
@@ -120,7 +123,20 @@ export default {
         children: [
           { title: 'BarChartI', path: '/examples/barchartI' },
           { title: 'BarChartII', path: '/examples/barchartII' },
-          { title: 'BarChartAxis', path: '/examples/axis' }
+          { title: 'BarChartAxis', path: '/examples/axis' },
+          { title: 'SimpleBarChart', path: '/examples/simplebarchart' },
+          { title: 'Scale', path: '/examples/scale' }
+        ],
+        appendIcon: 'mdi-chevron-down'
+      },
+      {
+        icon: 'mdi-alpha-z-box-outline',
+        title: 'Zoom',
+        children: [
+          { title: 'Zoomable', path: '/examples/zoomable' },
+          { title: 'ZoomableText', path: '/examples/zoomabletext' },
+          { title: 'BarChartAxis', path: '/examples/axis' },
+          { title: 'SimpleBarChart', path: '/examples/simplebarchart' }
         ],
         appendIcon: 'mdi-chevron-down'
       },
@@ -130,7 +146,11 @@ export default {
         children: [
           { title: 'ForceBasedI', path: '/examples/forcebasedI' },
           { title: 'ForceBasedII', path: '/examples/forcebasedII' },
-          { title: 'ForceBasedIII', path: '/examples/forcebasedIII' }
+          { title: 'ForceBasedIII', path: '/examples/forcebasedIII' },
+          { title: 'ForceDirected', path: '/examples/forcedirected' },
+          { title: 'ForceLayoutI', path: '/examples/forcelayoutI' },
+          { title: 'ForceLayoutII', path: '/examples/forcelayoutII' },
+          { title: 'ForceLayoutIII', path: '/examples/forcelayoutIII' }
         ],
         appendIcon: 'mdi-chevron-down'
       },
@@ -170,19 +190,11 @@ export default {
       console.log(133)
     }
   },
+  beforeDestory () {
+    sessionStorage.removeItem('subItemActive')
+    sessionStorage.removeItem('itemActive')
+  },
   mounted () {
-    // console.log(this.items)
-    // if (sessionStorage.getItem('itemActive')) {
-    //   this.items[0].active = false
-    //   this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
-    // }
-    // console.log(this.items)
-
-    // if (sessionStorage.getItem('subItemActive')) {
-    //   this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
-    //   console.log(sessionStorage.getItem('subItemActive'))
-    //   console.log(133)
-    // }
   },
   methods: {
     itemClick (item, key) {
@@ -191,7 +203,6 @@ export default {
       sessionStorage.setItem('itemActive', key)
     },
     subItemClick (item, key) {
-      // let paht = item.path
       console.log(item, key) // eslint-disable-line
       sessionStorage.setItem('subItemActive', key)
       this.$router.push(item.path).catch(err => { }) // eslint-disable-line

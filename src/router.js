@@ -33,6 +33,21 @@ export default new Router({
           component: () => import('./components/UpdateEnterExit.vue')
         },
         {
+          path: '/examples/generalupdatepattern',
+          name: 'generalupdatepattern',
+          component: () => import('./components/GeneralUpdatePatternI.vue')
+        },
+        {
+          path: '/examples/selectelementbinddata',
+          name: 'selectelementbinddata',
+          component: () => import('./components/SelectElementAndBindData.vue')
+        },
+        {
+          path: '/examples/selectinsertremove',
+          name: 'selectinsertremove',
+          component: () => import('./components/SelectInsertRemove.vue')
+        },
+        {
           path: '/examples/treeI',
           name: 'treeI',
           component: () => import('./components/TreeI.vue')
@@ -83,6 +98,16 @@ export default new Router({
           component: () => import('./components/Axis.vue')
         },
         {
+          path: '/examples/simplebarchart',
+          name: 'simplebarchart',
+          component: () => import('./components/SimpleBarChart.vue')
+        },
+        {
+          path: '/examples/scale',
+          name: 'scale',
+          component: () => import('./components/Scale.vue')
+        },
+        {
           path: '/examples/histogramI',
           name: 'histogramI',
           component: () => import('./components/CompleteHistogramI.vue')
@@ -111,6 +136,36 @@ export default new Router({
           path: '/examples/forcebasedIII',
           name: 'forcebasedIII',
           component: () => import('./components/ForceBasedLabelPlacementIII.vue')
+        },
+        {
+          path: '/examples/forcedirected',
+          name: 'forcedirected',
+          component: () => import('./components/ForceDirectedGraph.vue')
+        },
+        {
+          path: '/examples/forcelayoutI',
+          name: 'forcelayoutI',
+          component: () => import('./components/ModifyingAForceLayoutI.vue')
+        },
+        {
+          path: '/examples/forcelayoutII',
+          name: 'forcelayoutII',
+          component: () => import('./components/ModifyingAForceLayoutII.vue')
+        },
+        {
+          path: '/examples/forcelayoutIII',
+          name: 'forcelayoutIII',
+          component: () => import('./components/ModifyingAForceLayoutIII.vue')
+        },
+        {
+          path: '/examples/zoomable',
+          name: 'zoomable',
+          component: () => import('./components/Zoomable.vue')
+        },
+        {
+          path: '/examples/zoomableatext',
+          name: 'zoomabletext',
+          component: () => import('./components/ZoomableText.vue')
         }
       ]
     },
