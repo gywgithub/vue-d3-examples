@@ -63,6 +63,11 @@
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
+      <v-btn icon>
+        <v-avatar size="36">
+          <span class="white--text subtitle-1">language</span>
+        </v-avatar>
+      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -82,6 +87,7 @@ export default {
     drawer: null,
     itemActive: 0,
     subItemActive: null,
+    language: 'EN',
     items: [
       // {
       //   icon: 'mdi-alpha-b-box-outline',
