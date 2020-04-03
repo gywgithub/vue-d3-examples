@@ -8,9 +8,9 @@ node: `v11.10.0`
 
 d3: `v5.9.1`
 
-### Preview
+### Online Preview
 
-![preview](src/assets/img/preview.gif)
+https://gywgithub.github.io/vue-d3-examples/
 
 ### Project setup
 ```

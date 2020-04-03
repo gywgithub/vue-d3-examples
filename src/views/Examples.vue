@@ -134,9 +134,7 @@ export default {
         title: 'Zoom',
         children: [
           { title: 'Zoomable', path: '/examples/zoomable' },
-          { title: 'ZoomableText', path: '/examples/zoomabletext' },
-          { title: 'BarChartAxis', path: '/examples/axis' },
-          { title: 'SimpleBarChart', path: '/examples/simplebarchart' }
+          { title: 'ZoomableText', path: '/examples/zoomabletext' }
         ],
         appendIcon: 'mdi-chevron-down'
       },
