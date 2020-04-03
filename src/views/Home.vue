@@ -9,8 +9,8 @@
         class="display-3 font-weight-regular span-margin"
       >Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</div>
       <div>
-        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="openTab">Github</v-btn>
-        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="routerRedirect">Examples</v-btn>
+        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="openTab"><v-icon left>mdi-github</v-icon>Github</v-btn>
+        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="routerRedirect"><v-icon left>mdi-palm-tree</v-icon>Examples</v-btn>
       </div>
     </div>
     <v-btn fixed icon bottom right @click="changeTheme">
@@ -61,7 +61,7 @@ export default {
 }
 
 .img-d3-margin {
-  padding: 16px;
+  padding: 10px;
   margin-left: 80px;
 }
 

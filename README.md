@@ -1,4 +1,4 @@
-# Vue D3 V5 Examples
+## Vue D3 V5 Examples
 
 `Vue`   `D3`   `V5`   `Examples`
 
@@ -36,7 +36,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).

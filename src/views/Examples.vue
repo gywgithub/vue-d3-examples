@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app width="280">
       <div class="img-container cursor-pointer">
-        <img src="../assets/img/logo.png" class="logo-img" @click="goHome" />
+        <img src="../assets/img/vue.png" class="logo-img" @click="goHome" />
         <img src="../assets/img/d3.svg" class="logo-img img-d3-padding" @click="goHome" />
       </div>
       <v-divider></v-divider>
@@ -57,16 +57,11 @@
         <v-icon v-if="!dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
       </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-apps</v-icon>
+      <v-btn icon @click="openTab">
+        <v-icon size="28">mdi-github</v-icon>
       </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-bell</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-avatar size="36">
-          <span class="white--text subtitle-1">language</span>
-        </v-avatar>
+      <v-btn icon @click="dialog = true">
+        <v-icon size="28">mdi-information-outline</v-icon>
       </v-btn>
     </v-app-bar>
     <v-content>
@@ -74,20 +69,27 @@
         <router-view></router-view>
       </v-container>
     </v-content>
-    <v-btn bottom color="secondary" dark fab fixed right>
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+    <v-dialog v-model="dialog" width="500">
+      <v-card>
+        <v-card-title primary-title>Vue D3 Examples</v-card-title>
+        <v-card-text>Version: v{{version}}</v-card-text>
+        <v-card-text>Author: YuanWei Guo</v-card-text>
+        <v-card-text>Email: qingyi_w@outlook.com</v-card-text>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
 <script>
+import packageJson from '../../package.json'
 export default {
   data: () => ({
+    version: 'v0.1.0',
+    dialog: false,
     dark: false,
     drawer: null,
     itemActive: 0,
     subItemActive: null,
-    language: 'EN',
     items: [
       // {
       //   icon: 'mdi-alpha-b-box-outline',
@@ -171,6 +173,7 @@ export default {
     ]
   }),
   created () {
+    this.version = packageJson.version
     if (localStorage.getItem('themeDark') && localStorage.getItem('themeDark') === 'true') {
       this.$vuetify.theme.dark = true
       this.dark = true
@@ -198,9 +201,10 @@ export default {
     sessionStorage.removeItem('subItemActive')
     sessionStorage.removeItem('itemActive')
   },
-  mounted () {
-  },
   methods: {
+    openTab () {
+      window.open('https://github.com/gywgithub/vue-d3-examples', '_blank')
+    },
     itemClick (item, key) {
       this.subItemActive = null
       console.log(item, key) // eslint-disable-line
