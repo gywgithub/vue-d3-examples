@@ -20,10 +20,15 @@ export default {
       url: fileAddress,
       method: 'get'
     }).then(res => {
+      console.log(1)
       console.log(res) // eslint-disable-line
+      if (res.status === 404) {
+        fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
+      }
     }).catch(err => {
+      console.log(2)
       console.log(err) // eslint-disable-line
-      fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
+      // fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
     })
     console.log('json file url: ', fileAddress) // eslint-disable-line
     d3.json(fileAddress).then(function (graph) {
