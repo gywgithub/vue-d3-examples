@@ -17,7 +17,7 @@ export default {
     // localhost or 127.0.0.1
     let fileAddress = window.location.origin + '/json/miserables.json'
     await fetch({
-      url: 'fileAddress',
+      url: fileAddress,
       method: 'get'
     }).then(res => {
       console.log(res) // eslint-disable-line
