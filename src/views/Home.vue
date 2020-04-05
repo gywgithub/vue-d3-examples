@@ -1,9 +1,9 @@
 <template>
   <div class="main justify-center">
-    <div class="flex-column margin-top-200">
+    <div class="flex-column margin-top-15vh">
       <div class="d-flex justify-center">
         <img src="../assets/img/vue.png" class="d-flex img-width" />
-        <img src="../assets/img/d3.svg" class="d-flex img-width img-d3-margin" />
+        <img src="../assets/img/d3.svg" class="d-flex img-width img-d3-padding" />
       </div>
       <div
         class="display-3 font-weight-regular span-margin"
@@ -52,17 +52,17 @@ export default {
 .main {
   text-align: center;
 }
-.margin-top-200 {
-  margin-top: 200px;
+.margin-top-15vh {
+  margin-top: 15vh;
 }
 
 .img-width {
-  width: 180px !important;
+  width: 12% !important;
+  margin: 0 35px;
 }
 
-.img-d3-margin {
+.img-d3-padding {
   padding: 10px;
-  margin-left: 80px;
 }
 
 .span-margin {
