@@ -182,14 +182,15 @@ export default {
       this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
     } else {
       this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
-    }
-    if (sessionStorage.getItem('itemActive')) {
-      this.items[0].active = false
-      this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
-    }
 
-    if (sessionStorage.getItem('subItemActive')) {
-      this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
+      if (sessionStorage.getItem('itemActive')) {
+        this.items[0].active = false
+        this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+      }
+
+      if (sessionStorage.getItem('subItemActive')) {
+        this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
+      }
     }
   },
   beforeDestroy () {
