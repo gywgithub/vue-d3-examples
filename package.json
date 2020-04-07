@@ -25,6 +25,7 @@
     "d3": "^5.12.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "minimist": "^1.2.5",
     "validate-commit-msg": "^2.14.0",
     "vue-template-compiler": "^2.5.21",
     "vuetify": "^2.2.19"
