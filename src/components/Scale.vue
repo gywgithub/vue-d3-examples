@@ -70,4 +70,10 @@ export default {
 }
 </script>
 <style scoped>
+.container {
+  width: 100%;
+  padding: 0 !important;
+  margin-right: auto;
+  margin-left: auto;
+}
 </style>

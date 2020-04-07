@@ -89,7 +89,7 @@ export default {
     dark: false,
     drawer: null,
     itemActive: 0,
-    subItemActive: null,
+    subItemActive: 0,
     items: [
       // {
       //   icon: 'mdi-alpha-b-box-outline',
@@ -179,25 +179,21 @@ export default {
       this.dark = true
     }
     if (this.$route.path === '/examples') {
-      console.log('/example') // eslint-disable-line
       this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
     } else {
-      console.log(this.$route) // eslint-disable-line
       this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
-    }
-    if (sessionStorage.getItem('itemActive')) {
-      this.items[0].active = false
-      this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
-    }
-    console.log(this.items)
 
-    if (sessionStorage.getItem('subItemActive')) {
-      this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
-      console.log(sessionStorage.getItem('subItemActive'))
-      console.log(133)
+      if (sessionStorage.getItem('itemActive')) {
+        this.items[0].active = false
+        this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+      }
+
+      if (sessionStorage.getItem('subItemActive')) {
+        this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
+      }
     }
   },
-  beforeDestory () {
+  beforeDestroy () {
     sessionStorage.removeItem('subItemActive')
     sessionStorage.removeItem('itemActive')
   },
@@ -207,11 +203,9 @@ export default {
     },
     itemClick (item, key) {
       this.subItemActive = null
-      console.log(item, key) // eslint-disable-line
       sessionStorage.setItem('itemActive', key)
     },
     subItemClick (item, key) {
-      console.log(item, key) // eslint-disable-line
       sessionStorage.setItem('subItemActive', key)
       this.$router.push(item.path).catch(err => { }) // eslint-disable-line
     },

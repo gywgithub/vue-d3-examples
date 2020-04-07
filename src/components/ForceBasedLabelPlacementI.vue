@@ -9,12 +9,28 @@
 import * as d3 from 'd3'
 export default {
   name: 'ForceBasedLabelPlacementI',
-  mounted () {
+  async mounted () {
     let width = 1000
     let height = 700
     let color = d3.scaleOrdinal(d3.schemeCategory10)
+    console.log(window.location) // eslint-disable-line
+    // localhost or 127.0.0.1
     let fileAddress = window.location.origin + '/json/miserables.json'
-    console.log(fileAddress)
+    await fetch({
+      url: fileAddress,
+      method: 'get'
+    }).then(res => {
+      console.log(1)
+      console.log(res) // eslint-disable-line
+      if (res.status === 404) {
+        fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
+      }
+    }).catch(err => {
+      console.log(2)
+      console.log(err) // eslint-disable-line
+      // fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
+    })
+    console.log('json file url: ', fileAddress) // eslint-disable-line
     d3.json(fileAddress).then(function (graph) {
       let label = {
         'nodes': [],

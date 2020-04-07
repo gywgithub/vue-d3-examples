@@ -27,4 +27,12 @@ body,
 .cursor-pointer {
   cursor: pointer;
 }
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
 </style>
