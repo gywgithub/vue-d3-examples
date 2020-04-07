@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Bar Chart I</h2>
-    <div class="container-chart">
+    <div class="container-chart text-align-left">
       <div class="chart"></div>
     </div>
   </div>
@@ -24,7 +24,6 @@ export default {
 }
 </script>
 <style scoped>
-
 </style>
 
 <style>
@@ -37,7 +36,7 @@ export default {
   color: white;
 }
 .container-chart {
-  width: 50%;
+  /* width: 50%; */
   margin: auto;
 }
 </style>

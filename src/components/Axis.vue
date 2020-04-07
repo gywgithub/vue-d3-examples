@@ -11,7 +11,7 @@ export default {
     return {}
   },
   mounted () {
-    let marge = { top: 60, bottom: 60, left: 60, right: 60 }
+    let marge = { top: 10, bottom: 60, left: 10, right: 60 }
     let dataset = [ 2.5, 2.1, 1.7, 1.3, 0.9 ]
     let scaleLinear = d3.scaleLinear()
       .domain([0, d3.max(dataset)])
