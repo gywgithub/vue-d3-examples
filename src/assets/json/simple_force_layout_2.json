@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "苹果",
+      "group": 1
+    },
+    {
+      "id": "APPLE",
+      "group": 2
+    },
+    {
+      "id": "Apple",
+      "group": 3
+    },
+    {
+      "id": "苹果股份有限公司",
+      "group": 4
+    },
+    {
+      "id": "Apple, Inc",
+      "group": 5
+    },
+    {
+      "id": "成立时间",
+      "group": 6
+    },
+    {
+      "id": "苹果公司发展历程",
+      "group": 7
+    },
+    {
+      "id": "苹果logo",
+      "group": 8
+    },
+    {
+      "id": "APPLE市场调查报告",
+      "group": 9
+    },
+    {
+      "id": "苹果公司简介",
+      "group": 10
+    },
+    {
+      "id": "苹果公司发展历史及大事记",
+      "group": 11
+    }
+  ],
+  "links": [
+    {
+      "source": "APPLE",
+      "target": "苹果",
+      "value": 1
+    },
+    {
+      "source": "Apple",
+      "target": "苹果",
+      "value": 2
+    },
+    {
+      "source": "苹果股份有限公司",
+      "target": "苹果",
+      "value": 3
+    },
+    {
+      "source": "Apple, Inc",
+      "target": "苹果",
+      "value": 3
+    },
+    {
+      "source": "成立时间",
+      "target": "苹果",
+      "value": 3
+    },
+    {
+      "source": "苹果公司发展历程",
+      "target": "苹果",
+      "value": 6
+    },
+    {
+      "source": "苹果logo",
+      "target": "苹果",
+      "value": 7
+    },
+    {
+      "source": "APPLE市场调查报告",
+      "target": "苹果",
+      "value": 7
+    },
+    {
+      "source": "苹果公司简介",
+      "target": "苹果",
+      "value": 7
+    },
+    {
+      "source": "苹果公司发展历史及大事记",
+      "target": "苹果",
+      "value": 10
+    }
+  ]
+}

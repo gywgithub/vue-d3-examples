@@ -7,7 +7,9 @@
 
 <script>
 import * as d3 from 'd3'
-import jsonData from '../assets/json/simple_force_layout.json'
+// import jsonData from '../assets/json/simple_force_layout.json'
+// import jsonData from '../assets/json/simple_force_layout_2.json' // 金融数据
+import jsonData from '../assets/json/simple_force_layout_3.json'
 export default {
   name: 'ForceBasedLabelPlacement',
   data () {
@@ -78,13 +80,13 @@ export default {
 
     this.restart()
 
-    setTimeout(() => {
-      let addData = [{ 'id': 'Four', 'group': 4 }, { 'id': 'Five', 'group': 5 }]
-      let addLinks = [{ 'source': 'Four', 'target': 'Five', 'value': 3 }, { 'source': 'Five', 'target': 'Feuilly', 'value': 4 }]
-      this.graph.nodes = [...this.graph.nodes, ...addData]
-      this.graph.links = [...this.graph.links, ...addLinks]
-      this.restart()
-    }, 1000)
+    // setTimeout(() => {
+    //   let addData = [{ 'id': 'Four', 'group': 4 }, { 'id': 'Five', 'group': 5 }]
+    //   let addLinks = [{ 'source': 'Four', 'target': 'Five', 'value': 3 }, { 'source': 'Five', 'target': 'Feuilly', 'value': 4 }]
+    //   this.graph.nodes = [...this.graph.nodes, ...addData]
+    //   this.graph.links = [...this.graph.links, ...addLinks]
+    //   this.restart()
+    // }, 1000)
   },
   methods: {
     restart () {
