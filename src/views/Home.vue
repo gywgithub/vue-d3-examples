@@ -9,11 +9,11 @@
         class="display-3 font-weight-regular span-margin"
       >Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</div>
       <div>
-        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="openTab"><v-icon left>mdi-github</v-icon>Github</v-btn>
-        <v-btn outlined large rounded color="primary" class="margin-0-15" @click="routerRedirect"><v-icon left>mdi-palm-tree</v-icon>Examples</v-btn>
+        <v-btn outlined large rounded color="primary" class="margin-0-15 z-index-2" @click="openTab"><v-icon left>mdi-github</v-icon>Github</v-btn>
+        <v-btn outlined large rounded color="primary" class="margin-0-15 z-index-2" @click="routerRedirect"><v-icon left>mdi-palm-tree</v-icon>Examples</v-btn>
       </div>
     </div>
-    <v-btn fixed icon bottom right @click="changeTheme">
+    <v-btn fixed icon bottom right @click="changeTheme" class="z-index-2">
       <v-icon v-if="!dark">mdi-brightness-7</v-icon>
       <v-icon v-else>mdi-brightness-4</v-icon>
     </v-btn>
@@ -71,5 +71,9 @@ export default {
 
 .margin-0-15 {
   margin: 0 15px;
+}
+
+.z-index-2 {
+  z-index: 2;
 }
 </style>
