@@ -35,4 +35,8 @@ body,
 .text-align-left {
   text-align: left;
 }
+
+.container-border {
+  border: 1px solid #eee;
+}
 </style>

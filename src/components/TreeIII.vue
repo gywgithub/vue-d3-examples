@@ -2,7 +2,7 @@
   <div>
     <h2>TreeIII</h2>
     <div>tree editor with node create, delete, and rename</div>
-    <div class="container">
+    <div class="container container-border">
       <div class="width-300">
         Current Node
         <br />
@@ -29,7 +29,7 @@
         <input type="button" value="rename node" @click="renameNode" />&nbsp;&nbsp;
       </div>
     </div>
-    <svg id="vizTreeIII" />
+    <svg id="vizTreeIII" class="container-border" />
   </div>
 </template>
 <script>
@@ -440,8 +440,7 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  border: 1px solid #ccc;
-  margin: 20px;
+  margin: 10px 0;
   text-align: left;
   width: 100%;
 }

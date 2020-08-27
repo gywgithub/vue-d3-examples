@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Force-based label placement I</h2>
-    <svg id="viz"></svg>
+    <svg id="viz" class="container-border"></svg>
   </div>
 </template>
 
@@ -199,14 +199,8 @@ export default {
   }
 }
 </script>
-<style scoped>
-svg {
-  /* border: 1px solid #ccc; */
-  width: 100%;
-}
-</style>
 <style>
-.links line {
+/* .links line {
   stroke: #999;
   stroke-opacity: 0.6;
 }
@@ -214,5 +208,5 @@ svg {
 .nodes circle {
   stroke: black;
   stroke-width: 0px;
-}
+} */
 </style>

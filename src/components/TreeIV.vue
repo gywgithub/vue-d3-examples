@@ -8,7 +8,7 @@
       :view-box.camel="viewbox"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      style="border:1px solid #ccc; width: 80%;height:90vh;"
+      style="width: 80%;height:80vh;" class="container-border"
     >
       <g>
         <g v-for="(v, k) in nodes" :key="k" :cx="v.x" :cy="v.y" r="5">

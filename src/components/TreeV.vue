@@ -1,13 +1,13 @@
 <template>
   <div>
     <h2>TreeV Collapsible Tree</h2>
-    <div class="" style="text-align:left; padding-left:20px;;">
+    <div class="text-align-left">
       <a href="https://observablehq.com/@d3/collapsible-tree?collection=@d3/d3-hierarchy">Collapsible Tree</a><br>
       <a href="https://observablehq.com/@d3/tidy-tree">Tidy Tree</a><br>
       <a href="https://github.com/xswei/d3-hierarchy/blob/master/README.md#cluster_separation">https://github.com/xswei/d3-hierarchy/blob/master/README.md#cluster_separation</a><br>
       <a href="https://github.com/xswei/d3-hierarchy/blob/master/README.md#tree">https://github.com/xswei/d3-hierarchy/blob/master/README.md#tree</a>
     </div>
-    <svg id="vizTreeII" />
+    <svg id="vizTreeV" class="container-border" />
   </div>
 </template>
 <script>
@@ -100,7 +100,7 @@ export default {
     var width = 960 - margin.left - margin.right
     var height = 600 - margin.top - margin.bottom
 
-    var svg = d3.select('#vizTreeII').attr('viewBox', [-10, -10, width, height])
+    var svg = d3.select('#vizTreeV').attr('viewBox', [-10, -10, width, height])
       .append('g')
       .attr('transform', 'translate(' +
         margin.left + ',' + margin.top + ')')
@@ -287,15 +287,15 @@ export default {
 }
 </script>
 <style>
-#vizTreeII circle {
+#vizTreeV circle {
   fill: #fff;
   stroke: #54a8ff;
   stroke-width: 3px;
 }
-#vizTreeII .node text {
+#vizTreeV .node text {
   font: 12px sans-serif;
 }
-#vizTreeII .link {
+#vizTreeV .link {
   fill: none;
   stroke: #ccc;
   stroke-width: 2px;

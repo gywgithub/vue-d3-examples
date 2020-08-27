@@ -1,9 +1,6 @@
 <template>
   <div>
-    <!-- <div>
-      <input type="button" value="add node" @click="addNode()" />
-    </div> -->
-    <svg class="d3-tree-vi width-100-percent" />
+    <svg class="d3-tree-vi width-100-percent container-border" />
   </div>
 </template>
 
@@ -267,23 +264,6 @@ export default {
   }
 }
 </script>
-<style>
-/* .d3-tree-vi circle {
-  fill: #fff;
-  stroke: #54a8ff;
-  stroke-width: 2px;
-}
-
-.d3-tree-vi .node text {
-  font: 12px sans-serif;
-}
-
-.d3-tree-vi .link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 2px;
-} */
-</style>
 <style scoped>
 .width-100-percent {
   width: 100%;
