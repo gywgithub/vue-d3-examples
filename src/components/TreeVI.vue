@@ -96,7 +96,7 @@ export default {
     this.height = clientHeight - 72
     console.log('width: ' + this.width + ' height: ' + this.height) // eslint-disable-line
 
-    let margin = ({ top: 10, right: 120, bottom: 10, left: 40 })
+    let margin = ({ top: 10, right: 120, bottom: 10, left: 100 })
 
     let width = this.width
 

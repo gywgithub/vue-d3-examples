@@ -182,6 +182,21 @@ export default {
       this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
     } else {
       this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
+      const path = this.$route.path
+      this.items.forEach((item, key) => {
+        if (item.path === path) {
+          this.itemActive = key
+        } else {
+          if (item.children && item.children.length > 0) {
+            item.children.forEach((v, k) => {
+              if (v.path === path) {
+                sessionStorage.setItem('itemActive', key)
+                sessionStorage.setItem('subItemActive', k)
+              }
+            })
+          }
+        }
+      })
 
       if (sessionStorage.getItem('itemActive')) {
         this.items[0].active = false

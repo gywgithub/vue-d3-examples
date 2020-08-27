@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Force-Direct Graph</h2>
-    <svg width="960" height="600"></svg>
+    <svg width="960" height="600" class="container-border"></svg>
   </div>
 </template>
 <script>

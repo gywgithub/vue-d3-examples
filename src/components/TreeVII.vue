@@ -17,7 +17,7 @@ export default {
       nodes: [],
       links: [],
       dTreeData: null,
-      margin: { top: 20, right: 90, bottom: 30, left: 90 },
+      margin: { top: 20, right: 90, bottom: 30, left: 100 },
       selectedNode: null,
       svg: null,
       container: null
@@ -116,7 +116,7 @@ export default {
       this.width = Math.floor(clientWidth * 0.6)
       this.height = clientHeight - 72
 
-      let margin = ({ top: 10, right: 120, bottom: 10, left: 40 })
+      let margin = ({ top: 10, right: 120, bottom: 10, left: 100 })
 
       let width = this.width
 
