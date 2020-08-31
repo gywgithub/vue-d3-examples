@@ -1,4 +1,4 @@
-English | [简体中文](./README.zh-CN.md)
+简体中文 | [English](./README.md)
 
 ## Vue D3 V5 Examples
 
@@ -10,11 +10,11 @@ node: `v11.10.0`
 
 d3: `v5.9.1`
 
-### 在线预览
+### Online Preview
 
 https://gywgithub.github.io/vue-d3-examples/
 
-**请使用 Chrome 浏览器**
+**Please use chrome browser**
 
 ### Project setup
 ```
