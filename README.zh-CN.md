@@ -10,11 +10,11 @@ node: `v11.10.0`
 
 d3: `v5.9.1`
 
-### Online Preview
+### 在线预览
 
 https://gywgithub.github.io/vue-d3-examples/
 
-**Please use chrome browser**
+**请使用 Chrome 浏览器**
 
 ### Project setup
 ```
