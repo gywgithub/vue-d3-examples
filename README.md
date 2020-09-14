@@ -14,8 +14,6 @@ d3: `v5.9.1`
 
 https://gywgithub.github.io/vue-d3-examples/
 
-**Please use Chrome browser**
-
 ### Project setup
 ```
 npm install
