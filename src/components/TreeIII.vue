@@ -16,17 +16,27 @@
         New Node
         <br />
         <br />Name:
-        <input type="text" v-model="newNode.name" />
+        <!-- <input type="text" v-model="newNode.name" /> -->
+        <v-text-field
+          v-model="newNode.name"
+          label="New node name"
+        ></v-text-field>
       </div>
       <div class="width-300">
-        <input type="button" value="add node" @click="addNode" />&nbsp;&nbsp;
-        <input type="button" value="add some nodes" @click="addSomeNodes" />&nbsp;&nbsp;
+        <v-btn small color="primary" @click="addNode">Add Node</v-btn>
+        <!-- <input type="button" value="add node" @click="addNode" />&nbsp;&nbsp;
+        <input type="button" value="add some nodes" @click="addSomeNodes" />&nbsp;&nbsp; -->
         <br />
         <br />
-        <input type="button" value="delete node" @click="deleteNode" />&nbsp;&nbsp;
+        <!-- <input type="button" value="delete node" @click="deleteNode" />&nbsp;&nbsp; -->
+        <v-btn small color="success" @click="addSomeNodes">Add Some Nodes</v-btn>
         <br />
         <br />
-        <input type="button" value="rename node" @click="renameNode" />&nbsp;&nbsp;
+        <v-btn small color="secondary" @click="renameNode">Rename Node</v-btn>
+        <!-- <input type="button" value="rename node" @click="renameNode" />&nbsp;&nbsp; -->
+        <br />
+        <br />
+        <v-btn small color="error" @click="deleteNode">Delete Node</v-btn>
       </div>
     </div>
     <svg id="vizTreeIII" class="container-border" />
