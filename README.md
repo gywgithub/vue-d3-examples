@@ -8,7 +8,9 @@ npm: `v6.7.0`
 
 node: `v11.10.0`
 
-d3: `v5.9.1`
+vue: `v2.6.6`
+
+d3: `v5.12.0`
 
 ### Online Preview
 
