@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <svg class="d3-tree width-100-percent">
+    <svg class="d3-tree-vii width-100-percent container-border">
       <g class="container" />
     </svg>
   </div>
@@ -17,7 +17,7 @@ export default {
       nodes: [],
       links: [],
       dTreeData: null,
-      margin: { top: 20, right: 90, bottom: 30, left: 90 },
+      margin: { top: 20, right: 90, bottom: 30, left: 100 },
       selectedNode: null,
       svg: null,
       container: null
@@ -116,14 +116,14 @@ export default {
       this.width = Math.floor(clientWidth * 0.6)
       this.height = clientHeight - 72
 
-      let margin = ({ top: 10, right: 120, bottom: 10, left: 40 })
+      let margin = ({ top: 10, right: 120, bottom: 10, left: 100 })
 
       let width = this.width
 
       // let dy = width / 4
       let dx = 30
       this.svg = d3
-        .select('svg.d3-tree')
+        .select('svg.d3-tree-vii')
         .attr('viewBox', [-margin.left, -margin.top, width, dx])
 
       let translateTop = (this.height - 120) / 2
@@ -354,17 +354,17 @@ export default {
 }
 </script>
 <style>
-.d3-tree circle {
+.d3-tree-vii circle {
   fill: #fff;
   stroke: #54a8ff;
   stroke-width: 2px;
 }
 
-.d3-tree .node text {
+.d3-tree-vii .node text {
   font: 12px sans-serif;
 }
 
-.d3-tree .link {
+.d3-tree-vii .link {
   fill: none;
   stroke: #ccc;
   stroke-width: 2px;

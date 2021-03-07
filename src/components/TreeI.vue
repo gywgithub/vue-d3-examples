@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Tree</h2>
-    <svg id="viz" width="1250" height="800" />
+    <svg id="viz" width="1250" height="800" class="container-border" />
   </div>
 </template>
 <script>
@@ -89,7 +89,4 @@ export default {
 }
 </script>
 <style scoped>
-svg {
-  border: 1px solid #ccc;
-}
 </style>

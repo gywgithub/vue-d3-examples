@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>TreeII</h2>
-    <svg id="vizTreeII" />
+    <svg id="vizTreeII" class="container-border" />
   </div>
 </template>
 <script>
@@ -186,7 +186,7 @@ export default {
             .transition()
             .delay(1)
             .style('fill', function () {
-              return '#6cfa00'
+              return '#aacc00'
             })
             .style('stroke-width', function () {
               return '3px'

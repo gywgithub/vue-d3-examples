@@ -14,8 +14,9 @@ export default {
     let alphbet = 'abcdefghijklmnopqrstuvwxyz'.split('')
     let svg = d3.select('svg')
     // let width = +svg.attr('width')
-    let height = +svg.attr('height')
-    let g = svg.append('g').attr('transform', 'translate(32, ' + (height / 2) + ')')
+    // let height = +svg.attr('height')
+    // let g = svg.append('g').attr('transform', 'translate(32, ' + (height / 2) + ')')
+    let g = svg.append('g').attr('transform', 'translate(20, 30)')
 
     function update (data) {
       // DATA JOIN

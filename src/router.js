@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -82,6 +82,11 @@ export default new Router({
           name: 'treeVII',
           component: () => import('./components/TreeVII.vue')
         },
+        // {
+        //   path: '/examples/treeVIII',
+        //   name: 'treeVIII',
+        //   component: () => import('./components/TreeVIII.vue')
+        // },
         {
           path: '/examples/barchartI',
           name: 'barchartI',
@@ -168,6 +173,11 @@ export default new Router({
           component: () => import('./components/ZoomableText.vue')
         }
       ]
+    },
+    {
+      path: '/examples/treeVIII',
+      name: 'treeVIII',
+      component: () => import('./components/TreeVIII.vue')
     },
     {
       path: '*',

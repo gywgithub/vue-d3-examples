@@ -64,11 +64,11 @@
         <v-icon size="28">mdi-information-outline</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container>
         <router-view></router-view>
       </v-container>
-    </v-content>
+    </v-main>
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title primary-title>Vue D3 Examples</v-card-title>
@@ -121,7 +121,8 @@ export default {
           { title: 'TreeIV', path: '/examples/treeIV' },
           { title: 'TreeV', path: '/examples/treeV' },
           { title: 'TreeVI', path: '/examples/treeVI' },
-          { title: 'TreeVII', path: '/examples/treeVII' }
+          { title: 'TreeVII', path: '/examples/treeVII' },
+          { title: 'TreeVIII', path: '/examples/treeVIII' }
         ],
         appendIcon: 'mdi-chevron-down'
       },
@@ -182,6 +183,21 @@ export default {
       this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
     } else {
       this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
+      const path = this.$route.path
+      this.items.forEach((item, key) => {
+        if (item.path === path) {
+          this.itemActive = key
+        } else {
+          if (item.children && item.children.length > 0) {
+            item.children.forEach((v, k) => {
+              if (v.path === path) {
+                sessionStorage.setItem('itemActive', key)
+                sessionStorage.setItem('subItemActive', k)
+              }
+            })
+          }
+        }
+      })
 
       if (sessionStorage.getItem('itemActive')) {
         this.items[0].active = false

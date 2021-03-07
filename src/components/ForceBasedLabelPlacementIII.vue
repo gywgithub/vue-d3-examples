@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <h2>Force-based label placement II</h2>
-    <svg id="viz"></svg>
+  <div class="force-base-iii">
+    <h2>Force-based label placement III</h2>
+    <svg id="viz" class="container-border"></svg>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
 import jsonData from '../assets/json/simple_force_layout.json'
+// import jsonData from '../assets/json/simple_force_layout_2.json' // 金融数据
+// import jsonData from '../assets/json/simple_force_layout_3.json' // 新基建数据
 export default {
   name: 'ForceBasedLabelPlacement',
   data () {
@@ -159,8 +161,14 @@ export default {
   }
 }
 </script>
-<style scoped>
-svg {
-  border: 1px solid #ccc;
+<style>
+.force-base-iii .links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.force-base-iii .nodes circle {
+  stroke: black;
+  stroke-width: 0px;
 }
 </style>

@@ -1,3 +1,5 @@
+English | [简体中文](./README.zh-CN.md)
+
 ## Vue D3 V5 Examples
 
 `Vue`   `D3`   `V5`   `Examples`
@@ -6,7 +8,9 @@ npm: `v6.7.0`
 
 node: `v11.10.0`
 
-d3: `v5.9.1`
+vue: `v2.6.6`
+
+d3: `v5.12.0`
 
 ### Online Preview
 
@@ -36,3 +40,7 @@ npm run build
 ```
 npm run lint
 ```
+
+## License
+
+[MIT License](https://github.com/gywgithub/vue-d3-examples/blob/master/LICENSE)

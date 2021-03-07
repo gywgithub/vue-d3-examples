@@ -8,7 +8,8 @@
       :view-box.camel="viewbox"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      style="border:1px solid #ccc; width: 80%;height:90vh;"
+      style="width: 80%; height: 80vh"
+      class="container-border"
     >
       <g>
         <g v-for="(v, k) in nodes" :key="k" :cx="v.x" :cy="v.y" r="5">
@@ -25,10 +26,12 @@
           <text
             :x="v.x"
             :y="v.y"
-            style="cursor:pointer;"
+            style="cursor: pointer"
             fill="#656565"
             @click="textClick(v)"
-          >{{v.name}}</text>
+          >
+            {{ v.name }}
+          </text>
         </g>
       </g>
     </svg>
@@ -70,17 +73,33 @@ export default {
           'children': [
             { 'name': 'Level 3: A' },
             { 'name': 'Level 3: B' }
+            // ,
+            // { 'name': 'Level 3: C' }
           ]
         },
         { 'name': 'Level 2: C' }
       ]
     }
     this.initTree(this.treeData)
+
+    // 更新树效果
+    setTimeout(() => {
+      this.nodes = []
+      this.treeData = {
+        'name': 'Top Level',
+        'children': [
+          { 'name': 'Level 2: C' }
+        ]
+      }
+      this.initTree(this.treeData)
+    }, 5000)
   },
   methods: {
     initTree (data) {
+      // 根节点坐标设置
       this.rootX = Math.floor(this.svgWidth * 0.5)
       this.rootY = Math.floor(this.svgHeight * 0.4)
+
       let dx = 0 // node X distance
       let dy = 150 // node Y distance
       let by = 100 // Y axis of Bezier coordinate

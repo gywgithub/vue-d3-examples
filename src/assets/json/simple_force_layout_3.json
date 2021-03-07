@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "新基建",
+      "group": 1
+    },
+    {
+      "id": "最新消息",
+      "group": 2
+    },
+    {
+      "id": "新基建介绍",
+      "group": 3
+    },
+    {
+      "id": "新基建龙头股",
+      "group": 4
+    },
+    {
+      "id": "发展历程",
+      "group": 5
+    },
+    {
+      "id": "存在优势",
+      "group": 8
+    },
+    {
+      "id": "5G",
+      "group": 6
+    },
+    {
+      "id": "特高压",
+      "group": 8
+    },
+    {
+      "id": "人工智能",
+      "group": 8
+    },
+    {
+      "id": "城际高速铁路",
+      "group": 8
+    },
+    {
+      "id": "工业互联网",
+      "group": 8
+    }
+  ],
+  "links": [
+    {
+      "source": "城际高速铁路",
+      "target": "新基建",
+      "value": 1
+    },
+    {
+      "source": "工业互联网",
+      "target": "新基建",
+      "value": 1
+    },
+    {
+      "source": "最新消息",
+      "target": "新基建",
+      "value": 1
+    },
+    {
+      "source": "新基建介绍",
+      "target": "新基建",
+      "value": 2
+    },
+    {
+      "source": "新基建龙头股",
+      "target": "新基建",
+      "value": 3
+    },
+    {
+      "source": "发展历程",
+      "target": "新基建",
+      "value": 3
+    },
+    {
+      "source": "5G",
+      "target": "新基建",
+      "value": 3
+    },
+    {
+      "source": "特高压",
+      "target": "新基建",
+      "value": 3
+    },
+    {
+      "source": "人工智能",
+      "target": "新基建",
+      "value": 3
+    },
+    {
+      "source": "存在优势",
+      "target": "新基建",
+      "value": 7
+    }
+  ]
+}

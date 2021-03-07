@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Zoomable Force Directed Graph Add Text</h2>
-    <svg id="svg" width="1000" height="700"></svg>
+    <svg id="svg" width="1000" height="700" class="container-border"></svg>
   </div>
 </template>
 
@@ -138,6 +138,8 @@ export default {
       .attr('r', radius)
       .attr('fill', circleColour)
 
+    console.log('node: ', node)
+
     // add title
     node.append('title')
       .text(function (d) { return d.name })
@@ -221,7 +223,7 @@ export default {
 }
 </script>
 <style>
-.links line {
+/* .links line {
   stroke: #999;
   stroke-opacity: 0.6;
 }
@@ -229,5 +231,5 @@ export default {
 .nodes circle {
   stroke: black;
   stroke-width: 0px;
-}
+} */
 </style>

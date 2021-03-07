@@ -2,7 +2,7 @@
   <div>
     <h2>TreeIII</h2>
     <div>tree editor with node create, delete, and rename</div>
-    <div class="container">
+    <div class="container container-border">
       <div class="width-300">
         Current Node
         <br />
@@ -16,20 +16,26 @@
         New Node
         <br />
         <br />Name:
-        <input type="text" v-model="newNode.name" />
+        <!-- <input type="text" v-model="newNode.name" /> -->
+        <v-text-field
+          v-model="newNode.name"
+          label="New node name"
+        ></v-text-field>
       </div>
       <div class="width-300">
-        <input type="button" value="add node" @click="addNode" />&nbsp;&nbsp;
-        <input type="button" value="add some nodes" @click="addSomeNodes" />&nbsp;&nbsp;
+        <v-btn small color="primary" @click="addNode">Add Node</v-btn>
         <br />
         <br />
-        <input type="button" value="delete node" @click="deleteNode" />&nbsp;&nbsp;
+        <v-btn small color="success" @click="addSomeNodes">Add Some Nodes</v-btn>
         <br />
         <br />
-        <input type="button" value="rename node" @click="renameNode" />&nbsp;&nbsp;
+        <v-btn small color="secondary" @click="renameNode">Rename Node</v-btn>
+        <br />
+        <br />
+        <v-btn small color="error" @click="deleteNode">Delete Node</v-btn>
       </div>
     </div>
-    <svg id="vizTreeIII" />
+    <svg id="vizTreeIII" class="container-border" />
   </div>
 </template>
 <script>
@@ -440,8 +446,7 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  border: 1px solid #ccc;
-  margin: 20px;
+  margin: 10px 0;
   text-align: left;
   width: 100%;
 }
