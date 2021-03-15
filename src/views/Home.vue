@@ -10,7 +10,7 @@
       >Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</div>
       <div>
         <v-btn outlined large rounded color="primary" class="margin-0-15 z-index-2" @click="openTab"><v-icon left>mdi-github</v-icon>Github</v-btn>
-        <v-btn outlined large rounded color="primary" class="margin-0-15 z-index-2" @click="routerRedirect"><v-icon left>mdi-palm-tree</v-icon>Examples</v-btn>
+        <v-btn outlined large rounded color="primary" class="margin-0-15 z-index-2" @click="routerRedirect"><v-icon left>mdi-palm-tree</v-icon>{{$vuetify.lang.t('$vuetify.examplesButton')}}</v-btn>
       </div>
     </div>
     <v-btn fixed icon bottom right @click="changeTheme" class="z-index-2">

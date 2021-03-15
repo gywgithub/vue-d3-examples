@@ -5,8 +5,28 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
 import colors from 'vuetify/lib/util/colors'
+import VueI18n from 'vue-i18n'
 
 Vue.use(Vuetify)
+Vue.use(VueI18n)
+
+const messages = {
+  en: {
+    $vuetify: {
+      examplesButton: 'Examples'
+    }
+  },
+  zh: {
+    $vuetify: {
+      examplesButton: '示例'
+    }
+  }
+}
+
+const i18n = new VueI18n({
+  locale: 'en',
+  messages
+})
 
 const opts = {
   theme: {
@@ -25,6 +45,9 @@ const opts = {
         primary: colors.blue.darken1
       }
     }
+  },
+  lang: {
+    t: (key, ...params) => i18n.t(key, params)
   }
 }
 
