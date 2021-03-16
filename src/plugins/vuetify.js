@@ -51,4 +51,5 @@ const opts = {
   }
 }
 
-export default new Vuetify(opts)
+const vuetify = new Vuetify(opts)
+export { vuetify, i18n }

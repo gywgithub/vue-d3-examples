@@ -53,6 +53,33 @@
         class="hidden-sm-and-down"
       />-->
       <v-spacer />
+      <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          text
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon>mdi-translate</v-icon>
+          <v-icon small>
+            mdi-chevron-down
+          </v-icon>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item-group
+          v-model="selectedItem"
+          color="primary"
+        >
+          <v-list-item>
+            <v-list-item-title @click="changeLang('en')">English</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title @click="changeLang('zh')">简体中文</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-menu>
       <v-btn icon @click="changeTheme">
         <v-icon v-if="!dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
@@ -90,6 +117,7 @@ export default {
     drawer: null,
     itemActive: 0,
     subItemActive: 0,
+    selectedItem: 0,
     items: [
       // {
       //   icon: 'mdi-alpha-b-box-outline',
@@ -214,6 +242,9 @@ export default {
     sessionStorage.removeItem('itemActive')
   },
   methods: {
+    changeLang (lang) {
+      this.$i18n.locale = lang
+    },
     openTab () {
       window.open('https://github.com/gywgithub/vue-d3-examples', '_blank')
     },
