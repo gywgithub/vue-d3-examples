@@ -117,8 +117,11 @@ export default {
     drawer: null,
     itemActive: 0,
     subItemActive: 0,
-    selectedItem: 0,
-    items: [
+    selectedItem: 0
+  }),
+  computed: {
+    items: function () {
+      return [
       // {
       //   icon: 'mdi-alpha-b-box-outline',
       //   title: 'Introduction',
@@ -126,81 +129,82 @@ export default {
       //   appendIcon: null,
       //   active: true
       // },
-      {
-        icon: 'mdi-alpha-b-box-outline',
-        title: 'Basic',
-        children: [
-          { title: 'HelloWorld', path: '/examples/helloworld' },
-          { title: 'UpdateEnterExit', path: '/examples/updateenterexit' },
-          { title: 'GeneralUpdatePatternI', path: '/examples/generalupdatepattern' },
-          { title: 'SelectElementAndBindData', path: '/examples/selectelementbinddata' },
-          { title: 'SelectInsertRemove', path: '/examples/selectinsertremove' }
-        ],
-        appendIcon: 'mdi-chevron-down',
-        active: true
-      },
-      {
-        icon: 'mdi-alpha-t-box-outline',
-        title: 'Tree',
-        children: [
-          { title: 'TreeI', path: '/examples/treeI' },
-          { title: 'TreeII', path: '/examples/treeII' },
-          { title: 'TreeIII', path: '/examples/treeIII' },
-          { title: 'TreeIV', path: '/examples/treeIV' },
-          { title: 'TreeV', path: '/examples/treeV' },
-          { title: 'TreeVI', path: '/examples/treeVI' },
-          { title: 'TreeVII', path: '/examples/treeVII' },
-          { title: 'TreeVIII', path: '/examples/treeVIII' }
-        ],
-        appendIcon: 'mdi-chevron-down'
-      },
-      {
-        icon: 'mdi-alpha-b-box-outline',
-        title: 'BarChart',
-        children: [
-          { title: 'BarChartI', path: '/examples/barchartI' },
-          { title: 'BarChartII', path: '/examples/barchartII' },
-          { title: 'BarChartAxis', path: '/examples/axis' },
-          { title: 'SimpleBarChart', path: '/examples/simplebarchart' },
-          { title: 'Scale', path: '/examples/scale' }
-        ],
-        appendIcon: 'mdi-chevron-down'
-      },
-      {
-        icon: 'mdi-alpha-z-box-outline',
-        title: 'Zoom',
-        children: [
-          { title: 'Zoomable', path: '/examples/zoomable' },
-          { title: 'ZoomableText', path: '/examples/zoomabletext' }
-        ],
-        appendIcon: 'mdi-chevron-down'
-      },
-      {
-        icon: 'mdi-alpha-f-box-outline',
-        title: 'Force',
-        children: [
-          { title: 'ForceBasedI', path: '/examples/forcebasedI' },
-          { title: 'ForceBasedII', path: '/examples/forcebasedII' },
-          { title: 'ForceBasedIII', path: '/examples/forcebasedIII' },
-          { title: 'ForceDirected', path: '/examples/forcedirected' },
-          { title: 'ForceLayoutI', path: '/examples/forcelayoutI' },
-          { title: 'ForceLayoutII', path: '/examples/forcelayoutII' },
-          { title: 'ForceLayoutIII', path: '/examples/forcelayoutIII' }
-        ],
-        appendIcon: 'mdi-chevron-down'
-      },
-      {
-        icon: 'mdi-alpha-h-box-outline',
-        title: 'Histogram',
-        children: [
-          { title: 'HistogramI', path: '/examples/histogramI' },
-          { title: 'HistogramII', path: '/examples/histogramII' },
-          { title: 'HistogramIII', path: '/examples/histogramIII' }
-        ],
-        appendIcon: 'mdi-chevron-down'
-      }
-    ]
-  }),
+        {
+          icon: 'mdi-alpha-b-box-outline',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title1.value'),
+          children: [
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title1.value'), path: '/examples/helloworld' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title2.value'), path: '/examples/updateenterexit' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title3.value'), path: '/examples/generalupdatepattern' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title4.value'), path: '/examples/selectelementbinddata' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title5.value'), path: '/examples/selectinsertremove' }
+          ],
+          appendIcon: 'mdi-chevron-down',
+          active: true
+        },
+        {
+          icon: 'mdi-alpha-t-box-outline',
+          title: 'Tree',
+          children: [
+            { title: 'TreeI', path: '/examples/treeI' },
+            { title: 'TreeII', path: '/examples/treeII' },
+            { title: 'TreeIII', path: '/examples/treeIII' },
+            { title: 'TreeIV', path: '/examples/treeIV' },
+            { title: 'TreeV', path: '/examples/treeV' },
+            { title: 'TreeVI', path: '/examples/treeVI' },
+            { title: 'TreeVII', path: '/examples/treeVII' },
+            { title: 'TreeVIII', path: '/examples/treeVIII' }
+          ],
+          appendIcon: 'mdi-chevron-down'
+        },
+        {
+          icon: 'mdi-alpha-b-box-outline',
+          title: 'BarChart',
+          children: [
+            { title: 'BarChartI', path: '/examples/barchartI' },
+            { title: 'BarChartII', path: '/examples/barchartII' },
+            { title: 'BarChartAxis', path: '/examples/axis' },
+            { title: 'SimpleBarChart', path: '/examples/simplebarchart' },
+            { title: 'Scale', path: '/examples/scale' }
+          ],
+          appendIcon: 'mdi-chevron-down'
+        },
+        {
+          icon: 'mdi-alpha-z-box-outline',
+          title: 'Zoom',
+          children: [
+            { title: 'Zoomable', path: '/examples/zoomable' },
+            { title: 'ZoomableText', path: '/examples/zoomabletext' }
+          ],
+          appendIcon: 'mdi-chevron-down'
+        },
+        {
+          icon: 'mdi-alpha-f-box-outline',
+          title: 'Force',
+          children: [
+            { title: 'ForceBasedI', path: '/examples/forcebasedI' },
+            { title: 'ForceBasedII', path: '/examples/forcebasedII' },
+            { title: 'ForceBasedIII', path: '/examples/forcebasedIII' },
+            { title: 'ForceDirected', path: '/examples/forcedirected' },
+            { title: 'ForceLayoutI', path: '/examples/forcelayoutI' },
+            { title: 'ForceLayoutII', path: '/examples/forcelayoutII' },
+            { title: 'ForceLayoutIII', path: '/examples/forcelayoutIII' }
+          ],
+          appendIcon: 'mdi-chevron-down'
+        },
+        {
+          icon: 'mdi-alpha-h-box-outline',
+          title: 'Histogram',
+          children: [
+            { title: 'HistogramI', path: '/examples/histogramI' },
+            { title: 'HistogramII', path: '/examples/histogramII' },
+            { title: 'HistogramIII', path: '/examples/histogramIII' }
+          ],
+          appendIcon: 'mdi-chevron-down'
+        }
+      ]
+    }
+  },
   created () {
     this.version = packageJson.version
     if (localStorage.getItem('themeDark') && localStorage.getItem('themeDark') === 'true') {
@@ -237,6 +241,12 @@ export default {
       }
     }
   },
+  mounted () {
+    console.log(sessionStorage.getItem('i18nLocale'))
+    if (sessionStorage.getItem('i18nLocale') && sessionStorage.getItem('i18nLocale') === 'zh') {
+      this.selectedItem = 1
+    }
+  },
   beforeDestroy () {
     sessionStorage.removeItem('subItemActive')
     sessionStorage.removeItem('itemActive')
@@ -244,6 +254,7 @@ export default {
   methods: {
     changeLang (lang) {
       this.$i18n.locale = lang
+      sessionStorage.setItem('i18nLocale', lang)
     },
     openTab () {
       window.open('https://github.com/gywgithub/vue-d3-examples', '_blank')
