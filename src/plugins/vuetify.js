@@ -34,6 +34,35 @@ const messages = {
               value: 'SelectInsertRemove'
             }
           }
+        },
+        title2: {
+          value: 'Tree',
+          children: {
+            title1: {
+              value: 'TreeI'
+            },
+            title2: {
+              value: 'TreeII'
+            },
+            title3: {
+              value: 'TreeIII'
+            },
+            title4: {
+              value: 'TreeIV'
+            },
+            title5: {
+              value: 'TreeV'
+            },
+            title6: {
+              value: 'TreeVI'
+            },
+            title7: {
+              value: 'TreeVII'
+            },
+            title8: {
+              value: 'TreeVIII'
+            }
+          }
         }
       }
     }
@@ -59,6 +88,35 @@ const messages = {
             },
             title5: {
               value: '选择、添加、移除'
+            }
+          }
+        },
+        title2: {
+          value: '树',
+          children: {
+            title1: {
+              value: '树 I'
+            },
+            title2: {
+              value: '树 II'
+            },
+            title3: {
+              value: '树 III'
+            },
+            title4: {
+              value: '树 IV'
+            },
+            title5: {
+              value: '树 V'
+            },
+            title6: {
+              value: '树 VI'
+            },
+            title7: {
+              value: '树 VII'
+            },
+            title8: {
+              value: '树 VIII'
             }
           }
         }

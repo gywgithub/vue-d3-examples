@@ -144,16 +144,16 @@ export default {
         },
         {
           icon: 'mdi-alpha-t-box-outline',
-          title: 'Tree',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title2.value'),
           children: [
-            { title: 'TreeI', path: '/examples/treeI' },
-            { title: 'TreeII', path: '/examples/treeII' },
-            { title: 'TreeIII', path: '/examples/treeIII' },
-            { title: 'TreeIV', path: '/examples/treeIV' },
-            { title: 'TreeV', path: '/examples/treeV' },
-            { title: 'TreeVI', path: '/examples/treeVI' },
-            { title: 'TreeVII', path: '/examples/treeVII' },
-            { title: 'TreeVIII', path: '/examples/treeVIII' }
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title1.value'), path: '/examples/treeI' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title2.value'), path: '/examples/treeII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title3.value'), path: '/examples/treeIII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title4.value'), path: '/examples/treeIV' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title5.value'), path: '/examples/treeV' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title6.value'), path: '/examples/treeVI' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title7.value'), path: '/examples/treeVII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title2.children.title8.value'), path: '/examples/treeVIII' }
           ],
           appendIcon: 'mdi-chevron-down'
         },
