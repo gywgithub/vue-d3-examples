@@ -63,6 +63,77 @@ const messages = {
               value: 'TreeVIII'
             }
           }
+        },
+        title3: {
+          value: 'BarChart',
+          children: {
+            title1: {
+              value: 'BarChartI'
+            },
+            title2: {
+              value: 'BarChartII'
+            },
+            title3: {
+              value: 'BarChartAxis'
+            },
+            title4: {
+              value: 'SimpleBarChart'
+            },
+            title5: {
+              value: 'Scale'
+            }
+          }
+        },
+        title4: {
+          value: 'Zoom',
+          children: {
+            title1: {
+              value: 'Zoomable'
+            },
+            title2: {
+              value: 'ZoomableText'
+            }
+          }
+        },
+        title5: {
+          value: 'Force',
+          children: {
+            title1: {
+              value: 'ForceBasedI'
+            },
+            title2: {
+              value: 'ForceBasedII'
+            },
+            title3: {
+              value: 'ForceBasedIII'
+            },
+            title4: {
+              value: 'ForceDirected'
+            },
+            title5: {
+              value: 'ForceLayoutI'
+            },
+            title6: {
+              value: 'ForceLayoutII'
+            },
+            title7: {
+              value: 'ForceLayoutIII'
+            }
+          }
+        },
+        title6: {
+          value: 'Histogram',
+          children: {
+            title1: {
+              value: 'HistogramI'
+            },
+            title2: {
+              value: 'HistogramII'
+            },
+            title3: {
+              value: 'HistogramIII'
+            }
+          }
         }
       }
     }
@@ -119,6 +190,77 @@ const messages = {
               value: '树 VIII'
             }
           }
+        },
+        title3: {
+          value: '条形图',
+          children: {
+            title1: {
+              value: '条形图 I'
+            },
+            title2: {
+              value: '条形图 II'
+            },
+            title3: {
+              value: '坐标轴 条形图'
+            },
+            title4: {
+              value: '简单条形图'
+            },
+            title5: {
+              value: '比例尺'
+            }
+          }
+        },
+        title4: {
+          value: '缩放',
+          children: {
+            title1: {
+              value: '可缩放的力导向图'
+            },
+            title2: {
+              value: '缩放,显示节点文本'
+            }
+          }
+        },
+        title5: {
+          value: '力导向图',
+          children: {
+            title1: {
+              value: '力导向图 I'
+            },
+            title2: {
+              value: '力导向图 II'
+            },
+            title3: {
+              value: '力导向图 III'
+            },
+            title4: {
+              value: '力导向图 关系'
+            },
+            title5: {
+              value: '力导向图 布局 I'
+            },
+            title6: {
+              value: '力导向图 布局 II'
+            },
+            title7: {
+              value: '力导向图 布局 III'
+            }
+          }
+        },
+        title6: {
+          value: '直方图',
+          children: {
+            title1: {
+              value: '直方图 I'
+            },
+            title2: {
+              value: '直方图 II'
+            },
+            title3: {
+              value: '直方图 III'
+            }
+          }
         }
       }
     }
@@ -126,6 +268,7 @@ const messages = {
 }
 
 let i18nLocale = 'en'
+
 if (sessionStorage.getItem('i18nLocale')) {
   i18nLocale = sessionStorage.getItem('i18nLocale')
 }

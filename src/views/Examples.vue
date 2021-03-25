@@ -159,46 +159,46 @@ export default {
         },
         {
           icon: 'mdi-alpha-b-box-outline',
-          title: 'BarChart',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title3.value'),
           children: [
-            { title: 'BarChartI', path: '/examples/barchartI' },
-            { title: 'BarChartII', path: '/examples/barchartII' },
-            { title: 'BarChartAxis', path: '/examples/axis' },
-            { title: 'SimpleBarChart', path: '/examples/simplebarchart' },
-            { title: 'Scale', path: '/examples/scale' }
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title3.children.title1.value'), path: '/examples/barchartI' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title3.children.title2.value'), path: '/examples/barchartII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title3.children.title3.value'), path: '/examples/axis' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title3.children.title4.value'), path: '/examples/simplebarchart' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title3.children.title5.value'), path: '/examples/scale' }
           ],
           appendIcon: 'mdi-chevron-down'
         },
         {
           icon: 'mdi-alpha-z-box-outline',
-          title: 'Zoom',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title4.value'),
           children: [
-            { title: 'Zoomable', path: '/examples/zoomable' },
-            { title: 'ZoomableText', path: '/examples/zoomabletext' }
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title4.children.title1.value'), path: '/examples/zoomable' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title4.children.title2.value'), path: '/examples/zoomabletext' }
           ],
           appendIcon: 'mdi-chevron-down'
         },
         {
           icon: 'mdi-alpha-f-box-outline',
-          title: 'Force',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title5.value'),
           children: [
-            { title: 'ForceBasedI', path: '/examples/forcebasedI' },
-            { title: 'ForceBasedII', path: '/examples/forcebasedII' },
-            { title: 'ForceBasedIII', path: '/examples/forcebasedIII' },
-            { title: 'ForceDirected', path: '/examples/forcedirected' },
-            { title: 'ForceLayoutI', path: '/examples/forcelayoutI' },
-            { title: 'ForceLayoutII', path: '/examples/forcelayoutII' },
-            { title: 'ForceLayoutIII', path: '/examples/forcelayoutIII' }
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title1.value'), path: '/examples/forcebasedI' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title2.value'), path: '/examples/forcebasedII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title3.value'), path: '/examples/forcebasedIII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title4.value'), path: '/examples/forcedirected' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title5.value'), path: '/examples/forcelayoutI' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title6.value'), path: '/examples/forcelayoutII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title5.children.title7.value'), path: '/examples/forcelayoutIII' }
           ],
           appendIcon: 'mdi-chevron-down'
         },
         {
           icon: 'mdi-alpha-h-box-outline',
-          title: 'Histogram',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title6.value'),
           children: [
-            { title: 'HistogramI', path: '/examples/histogramI' },
-            { title: 'HistogramII', path: '/examples/histogramII' },
-            { title: 'HistogramIII', path: '/examples/histogramIII' }
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title6.children.title1.value'), path: '/examples/histogramI' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title6.children.title2.value'), path: '/examples/histogramII' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title6.children.title3.value'), path: '/examples/histogramIII' }
           ],
           appendIcon: 'mdi-chevron-down'
         }
