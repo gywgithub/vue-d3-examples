@@ -1,10 +1,7 @@
 <template>
-  <div >
-    <v-toolbar dark color="secondary">
-      <v-btn icon dark @click="back">
-        <v-icon>mdi-keyboard-backspace</v-icon>
-      </v-btn>
-      <v-toolbar-title>Node Tree</v-toolbar-title>
+  <div>
+    <v-toolbar dense>
+      <v-toolbar-title>Toolbars</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -560,7 +557,8 @@ export default {
 .drawer-container {
   width: 400px;
   position: fixed;
-  top: 65px !important;
+  top: 130px !important;
+  right: 20px !important;
   right: 0;
   z-index: 99;
   padding: 10px;

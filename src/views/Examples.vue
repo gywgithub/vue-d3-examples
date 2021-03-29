@@ -242,7 +242,6 @@ export default {
     }
   },
   mounted () {
-    console.log(sessionStorage.getItem('i18nLocale'))
     if (sessionStorage.getItem('i18nLocale') && sessionStorage.getItem('i18nLocale') === 'zh') {
       this.selectedItem = 1
     }
@@ -255,6 +254,13 @@ export default {
     changeLang (lang) {
       this.$i18n.locale = lang
       sessionStorage.setItem('i18nLocale', lang)
+      if (sessionStorage.getItem('itemActive')) {
+        this.items[0].active = false
+        this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+        if (sessionStorage.getItem('subItemActive')) {
+          this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
+        }
+      }
     },
     openTab () {
       window.open('https://github.com/gywgithub/vue-d3-examples', '_blank')
