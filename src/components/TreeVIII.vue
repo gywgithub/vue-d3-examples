@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card style="padding: 4px; text-align:right;">
+    <v-card class="card-container">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on" :disabled="buttonDisabled" @click="addNode">
@@ -537,6 +537,10 @@ export default {
 }
 </style>
 <style scoped>
+.card-container {
+  padding: 4px;
+  text-align: right;
+}
 .display-flex {
   display: flex;
 }
