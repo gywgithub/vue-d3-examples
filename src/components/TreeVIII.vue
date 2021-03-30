@@ -1,6 +1,43 @@
 <template>
   <div>
-    <v-toolbar dense>
+    <v-card style="padding: 4px; text-align:right;">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" :disabled="buttonDisabled" @click="addNode">
+            <v-icon>mdi-playlist-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>新增节点</span>
+      </v-tooltip>
+
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" :disabled="buttonDisabled" @click="deleteNode">
+            <v-icon>mdi-delete-outline</v-icon>
+          </v-btn>
+        </template>
+        <span>删除节点</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" :disabled="buttonDisabled" @click="editNode">
+            <v-icon>mdi-square-edit-outline</v-icon>
+          </v-btn>
+        </template>
+        <span>编辑节点</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" @click="showDetails = !showDetails">
+            <v-icon v-show="showDetails">mdi-eye-outline</v-icon>
+            <v-icon v-show="!showDetails">mdi-eye-off-outline</v-icon>
+          </v-btn>
+        </template>
+        <span v-show="!showDetails">显示详情</span>
+        <span v-show="showDetails">关闭详情</span>
+      </v-tooltip>
+    </v-card>
+    <!-- <v-toolbar dense>
       <v-toolbar-title>Toolbars</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tooltip bottom>
@@ -37,32 +74,31 @@
         <span v-show="!showDetails">显示详情</span>
         <span v-show="showDetails">关闭详情</span>
       </v-tooltip>
-    </v-toolbar>
+    </v-toolbar> -->
     <svg class="d3-tree width-100-percent">
       <g class="container" />
     </svg>
-      <v-card v-show="showDetails" class="drawer-container">
-        <div class="text-align-left margin-top-10">
-          节点ID: &nbsp; {{ nodeId }} &nbsp;&nbsp;&nbsp;&nbsp; 节点名称: &nbsp;
-          {{ nodeName }}
-        </div>
-        <div>
-          <v-text-field
-            label="新增(编辑)节点名称"
-            outlined
-            maxlength="50"
-            dense
-            v-model="newNodeName"
-            class="text-height"
-          ></v-text-field>
-        </div>
-      </v-card>
+    <v-card v-show="showDetails" class="drawer-container">
+      <div class="text-align-left margin-top-10">
+        节点ID: &nbsp; {{ nodeId }} &nbsp;&nbsp;&nbsp;&nbsp; 节点名称: &nbsp;
+        {{ nodeName }}
+      </div>
+      <div>
+        <v-text-field
+          label="新增(编辑)节点名称"
+          outlined
+          maxlength="50"
+          dense
+          v-model="newNodeName"
+          class="text-height"
+        ></v-text-field>
+      </div>
+    </v-card>
     <v-dialog v-model="dialog" max-width="400">
       <v-card>
         <v-card-title class="headline">提示</v-card-title>
         <v-card-text class="subtitle-1 text-align-left"
-          >确定要删除节点吗? 如果删除节点后, 节点详情内容也将删除,
-          并且不可恢复.</v-card-text
+          >确定要删除节点吗? </v-card-text
         >
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -78,7 +114,7 @@
 import * as d3 from 'd3'
 
 export default {
-  name: 'EditNode',
+  name: 'TreeVIII',
   data () {
     return {
       showDetails: false,
@@ -150,9 +186,6 @@ export default {
     }
   },
   methods: {
-    back () {
-      this.$router.go(-1)
-    },
     initSvg (treeData) {
       let clientWidth = document.body.clientWidth
       let clientHeight = document.body.clientHeight
@@ -195,14 +228,7 @@ export default {
       this.nodeName = ''
       this.currentNode = null
     },
-    disabledBtn () {
-      this.buttonDisabled = true
-      setTimeout(() => {
-        this.buttonDisabled = false
-      }, 1000)
-    },
     addNode () {
-      this.disabledBtn()
       if (!this.newNodeName) {
         console.warn('新增节点名称不能为空')
         return false
@@ -212,38 +238,24 @@ export default {
         return false
       }
 
-      this.axios({
-        url: '/api/v1/nodes/node',
-        method: 'POST',
-        data: {
-          parents_nodes: [this.nodeId],
-          name: this.newNodeName
-        }
-      }).then(res => {
-        if (res.data.status && res.data.data) {
-          let parent = this.currentNode
-          const child = Object.assign(new this.nodeObj, { parent, depth: parent.depth + 1 }) // eslint-disable-line
-          let value = res.data.data.id
-          child.value = value
-          child.data = {
-            name: this.newNodeName,
-            value: value
-          }
+      let parent = this.currentNode
+      const child = Object.assign(new this.nodeObj, { parent, depth: parent.depth + 1 }) // eslint-disable-line
+      let value = parseInt(Math.random() * 9999, 10) + 1
+      child.value = value
+      child.data = {
+        name: this.newNodeName,
+        value: value
+      }
 
-          if (parent.children) parent.children.push(child)
-          else parent.children = [child]
+      if (parent.children) parent.children.push(child)
+      else parent.children = [child]
 
-          this.nodes.push(child)
-          this.links.push({ source: parent, target: child })
+      this.nodes.push(child)
+      this.links.push({ source: parent, target: child })
 
-          this.update(parent)
+      this.update(parent)
 
-          console.info('新增成功')
-          // this.initDrawer()
-        } else {
-          console.error('网络异常!请稍后再试')
-        }
-      })
+      console.info('新增成功')
     },
     deleteNodeData () {
       this.dialog = false
@@ -255,23 +267,12 @@ export default {
               delete this.currentNode.parent.children
             }
             this.update(this.currentNode)
+            this.initDrawer()
           }
         })
       }
-      this.axios({
-        url: '/api/v1/nodes/node/' + this.nodeId,
-        method: 'DELETE'
-      }).then(res => {
-        if (res.data.status) {
-          console.info('节点已删除')
-          this.initDrawer()
-        } else {
-          console.error('网络异常!请稍后再试')
-        }
-      })
     },
     deleteNode () {
-      this.disabledBtn()
       if (!this.currentNode) {
         console.warn('请选择要删除的节点')
         return false
@@ -283,24 +284,14 @@ export default {
       this.dialog = true
     },
     editNode () {
-      this.disabledBtn()
       if (!this.currentNode) {
         console.warn('请选择要编辑的节点')
         return false
       }
 
-      this.axios({
-        url: '/api/v1/nodes/node',
-        method: 'PUT',
-        data: {
-          name: this.newNodeName,
-          id: this.nodeId
-        }
-      }).then(res => {
-        this.currentNode.data.name = this.newNodeName
-        let parent = this.currentNode.parent
-        this.update(parent)
-      })
+      this.currentNode.data.name = this.newNodeName
+      let parent = this.currentNode.parent
+      this.update(parent)
     },
     async handleDrop (evt) {
       evt.preventDefault()
@@ -349,6 +340,8 @@ export default {
     },
     clickNode (d) {
       this.currentNode = d
+      this.nodeId = d.data.value
+      this.nodeName = d.data.name
       if (d.children) {
         this.$set(d, '_children', d.children)
         d.children = null
@@ -359,7 +352,6 @@ export default {
       this.$nextTick(() => {
         this.update(d)
       })
-      console.log(d)
     },
     diagonal (s, d) {
       return `M ${s.y} ${s.x}
@@ -558,7 +550,7 @@ export default {
   width: 400px;
   position: fixed;
   top: 130px !important;
-  right: 20px !important;
+  right: 14px !important;
   right: 0;
   z-index: 99;
   padding: 10px;
