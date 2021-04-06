@@ -7,18 +7,18 @@
 <script>
 import * as d3 from 'd3'
 export default {
-  data () {
+  data() {
     return {}
   },
-  mounted () {
+  mounted() {
     let marge = { top: 10, bottom: 60, left: 10, right: 60 }
-    let dataset = [ 2.5, 2.1, 1.7, 1.3, 0.9 ]
-    let scaleLinear = d3.scaleLinear()
+    let dataset = [2.5, 2.1, 1.7, 1.3, 0.9]
+    let scaleLinear = d3
+      .scaleLinear()
       .domain([0, d3.max(dataset)])
       .range([0, 250])
     let svg = d3.select('svg')
-    let g = svg.append('g')
-      .attr('transform', 'translate(' + marge.top + ',' + marge.left + ')')
+    let g = svg.append('g').attr('transform', 'translate(' + marge.top + ',' + marge.left + ')')
     let rectHeight = 30
     g.selectAll('rect')
       .data(dataset)
@@ -33,13 +33,13 @@ export default {
       })
       .attr('height', rectHeight - 5)
       .attr('fill', 'lightblue')
-    let xScale = d3.scaleLinear()
+    let xScale = d3
+      .scaleLinear()
       .domain([0, d3.max(dataset)])
       .range([0, 250])
-    let xAxis = d3.axisBottom(xScale)
-      .ticks(7)
+    let xAxis = d3.axisBottom(xScale).ticks(7)
     g.append('g')
-      .attr('transform', 'translate(' + 20 + ',' + (dataset.length * rectHeight) + ')')
+      .attr('transform', 'translate(' + 20 + ',' + dataset.length * rectHeight + ')')
       .call(xAxis)
   }
 }
