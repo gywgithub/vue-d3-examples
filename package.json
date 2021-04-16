@@ -8,7 +8,9 @@
     "dev": "npm run lint & vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "new:view": "node ./scripts/generateView/index",
+    "new:comp": "node ./scripts/generateComponent/index"
   },
   "dependencies": {
     "vue": "^2.6.6",
