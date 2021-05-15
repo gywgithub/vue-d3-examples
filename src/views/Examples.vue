@@ -80,6 +80,12 @@
         </v-list-item-group>
       </v-list>
     </v-menu>
+      <v-btn icon @click="requestFullscreen">
+        <v-icon>mdi-fullscreen</v-icon>
+      </v-btn>
+      <v-btn icon @click="exitFullScreen">
+        <v-icon>mdi-fullscreen-exit</v-icon>
+      </v-btn>
       <v-btn icon @click="changeTheme">
         <v-icon v-if="!dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
@@ -245,12 +251,38 @@ export default {
     if (sessionStorage.getItem('i18nLocale') && sessionStorage.getItem('i18nLocale') === 'zh') {
       this.selectedItem = 1
     }
+    document.addEventListener('fullscreenchange', () => {
+      console.log('fullscreenchange')
+    })
   },
   beforeDestroy () {
     sessionStorage.removeItem('subItemActive')
     sessionStorage.removeItem('itemActive')
   },
   methods: {
+    requestFullscreen () {
+      const docElm = document.documentElement
+      if (docElm.requestFullscreen) {
+        docElm.requestFullscreen()
+      } else if (docElm.msRequestFullscreen) {
+        docElm.msRequestFullscreen()
+      } else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen()
+      } else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen()
+      }
+    },
+    exitFullScreen () {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen()
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen()
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen()
+      }
+    },
     changeLang (lang) {
       this.$i18n.locale = lang
       sessionStorage.setItem('i18nLocale', lang)
