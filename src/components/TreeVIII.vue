@@ -253,7 +253,7 @@ export default {
       this.dialog = false
       if (this.currentNode.parent && this.currentNode.parent.children.length > 0) {
         this.currentNode.parent.children.filter((item, i) => {
-          if (item.data && item.data.value === this.currentNode.data.value) {
+          if (this.currentNode && item.data && item.data.value === this.currentNode.data.value) {
             this.currentNode.parent.children.splice(i, 1)
             if (this.currentNode.parent.children.length === 0) {
               delete this.currentNode.parent.children
