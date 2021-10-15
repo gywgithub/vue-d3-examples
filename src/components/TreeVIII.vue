@@ -37,54 +37,16 @@
         <span v-show="showDetails">关闭详情</span>
       </v-tooltip>
     </v-card>
-    <!-- <v-toolbar dense>
-      <v-toolbar-title>Toolbars</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" :disabled="buttonDisabled" @click="addNode">
-            <v-icon>mdi-playlist-plus</v-icon>
-          </v-btn>
-        </template>
-        <span>新增节点</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" :disabled="buttonDisabled" @click="deleteNode">
-            <v-icon>mdi-delete-outline</v-icon>
-          </v-btn>
-        </template>
-        <span>删除节点</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" :disabled="buttonDisabled" @click="editNode">
-            <v-icon>mdi-square-edit-outline</v-icon>
-          </v-btn>
-        </template>
-        <span>编辑节点</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" @click="showDetails = !showDetails">
-            <v-icon v-show="showDetails">mdi-eye-outline</v-icon>
-            <v-icon v-show="!showDetails">mdi-eye-off-outline</v-icon>
-          </v-btn>
-        </template>
-        <span v-show="!showDetails">显示详情</span>
-        <span v-show="showDetails">关闭详情</span>
-      </v-tooltip>
-    </v-toolbar> -->
     <svg class="d3-tree width-100-percent">
       <g class="container" />
     </svg>
     <v-card v-show="showDetails" class="drawer-container">
       <div class="text-align-left margin-top-10">
-        节点ID: &nbsp; {{ nodeId }} &nbsp;&nbsp;&nbsp;&nbsp; 节点名称: &nbsp;
-        {{ nodeName }}
+        <span class="span-title">Selected Node</span><span class="span-id-margin">nodeId:  {{ nodeId }}</span>
+        <span>nodeName:  {{ nodeName }}</span>
       </div>
       <div>
-        <v-text-field label="新增(编辑)节点名称" outlined maxlength="50" dense v-model="newNodeName" class="text-height"></v-text-field>
+        <v-text-field label="Insert/Edit Node" outlined maxlength="50" dense v-model="newNodeName" class="text-height"></v-text-field>
       </div>
     </v-card>
     <v-dialog v-model="dialog" max-width="400">
@@ -108,9 +70,9 @@ export default {
   name: 'TreeVIII',
   data() {
     return {
-      showDetails: false,
-      nodeId: '1',
-      nodeName: 'flare',
+      showDetails: true,
+      nodeId: '',
+      nodeName: '',
       zoom: null,
       index: 0,
       duration: 750,
@@ -559,7 +521,7 @@ export default {
 }
 
 .drawer-container {
-  width: 400px;
+  width: 480px;
   position: fixed;
   top: 130px !important;
   right: 14px !important;
@@ -575,5 +537,14 @@ export default {
 .text-height {
   height: 48px;
   margin-top: 20px;
+}
+
+.span-title {
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.span-id-margin {
+  margin-right: 20px;
 }
 </style>
