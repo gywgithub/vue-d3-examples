@@ -319,7 +319,9 @@ export default {
 <style scoped>
 .img-container {
   display: flex;
-  padding: 40px 20px;
+  padding: 20px;
+  width: 280px;
+  height: 140px;
 }
 .logo-img {
   width: 45%;
