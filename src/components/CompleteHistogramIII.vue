@@ -32,12 +32,15 @@ export default {
     g.append('g')
       .attr('transform', 'trnslate(0, 0)')
       .call(yAxis)
+
+    // Draw rectangle and text
     // 绘制矩形和文字
     let gs = g.selectAll('.rect')
       .data(dataset)
       .enter()
       .append('g')
 
+    // Draw rectangle
     // 绘制矩形
     let rectPadding = 20
     gs.append('rect')
@@ -67,6 +70,8 @@ export default {
           .duration(1000)
           .attr('fill', 'lightblue')
       })
+
+    // Draw text
     // 绘制文字
     gs.append('text')
       .attr('x', function (d, i) {

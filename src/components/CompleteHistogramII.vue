@@ -11,7 +11,6 @@ export default {
     return {}
   },
   mounted () {
-    // 得到 SVG 画布
     let marge = { top: 60, bottom: 60, left: 60, right: 60 }
     let svg = d3.select('svg')
     let width = svg.attr('width')
@@ -21,6 +20,7 @@ export default {
 
     let dataset = [10, 20, 30, 23, 13, 40, 27, 35, 20]
 
+    // Draw the axis in the X, Y direction
     // x , y 方向绘制坐标轴
     let xScale = d3.scaleBand()
       .domain(d3.range(dataset.length))
@@ -40,12 +40,14 @@ export default {
       .attr('transform', 'translate(0, 0)')
       .call(yAxis)
 
+    // Create gourps for rectangles and corresponding text
     // 给矩形和对应文字创建分组
     let gs = g.selectAll('.rect')
       .data(dataset)
       .enter()
       .append('g')
 
+    // draw rectangle
     // 绘制矩形
     let rectPadding = 20
     gs.append('rect')
@@ -53,6 +55,7 @@ export default {
         return xScale(i) + rectPadding / 2
       })
       .attr('y', function () {
+        // init state
         // 初始状态
         let min = yScale.domain()[0]
         return yScale(min)
@@ -61,6 +64,7 @@ export default {
         return xScale.step() - rectPadding
       })
       .attr('height', function () {
+        // init state
         // 初始状态
         return 0
       })
@@ -72,13 +76,16 @@ export default {
       })
       // .ease(d3.easeElasticInout)
       .attr('y', function (d) {
+        // Return to the final state
         // 回到最终状态
         return yScale(d)
       })
       .attr('height', function (d) {
+        // Return to the final state
         // 回到最终状态
         return height - marge.top - marge.bottom - yScale(d)
       })
+    // Draw text
     // 绘制文字
     gs.append('text')
       .attr('x', function (d, i) {
