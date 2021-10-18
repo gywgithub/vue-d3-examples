@@ -4,9 +4,9 @@
       <div class="display-4">404</div>
       <br />
       <div class="container">
-        <div class="message-position">没有找到您要查找的页面, 请确保地址正确并且页面未移动</div>
+        <div class="message-position">The page you are looking for was not found. Please make sure the address is correct and page is not moved.</div>
         <br />
-        <a href="javascript:history.back()">上一页</a>
+        <a href="javascript:history.back()">previous page</a>
       </div>
     </div>
     <div class="svg-container">

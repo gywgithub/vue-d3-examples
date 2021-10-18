@@ -7,7 +7,7 @@
             <v-icon>mdi-playlist-plus</v-icon>
           </v-btn>
         </template>
-        <span>新增节点</span>
+        <span>Insert node</span>
       </v-tooltip>
 
       <v-tooltip bottom>
@@ -16,7 +16,7 @@
             <v-icon>mdi-delete-outline</v-icon>
           </v-btn>
         </template>
-        <span>删除节点</span>
+        <span>Delete node</span>
       </v-tooltip>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -24,7 +24,7 @@
             <v-icon>mdi-square-edit-outline</v-icon>
           </v-btn>
         </template>
-        <span>编辑节点</span>
+        <span>Edit node</span>
       </v-tooltip>
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -33,8 +33,8 @@
             <v-icon v-show="!showDetails">mdi-eye-off-outline</v-icon>
           </v-btn>
         </template>
-        <span v-show="!showDetails">显示详情</span>
-        <span v-show="showDetails">关闭详情</span>
+        <span v-show="!showDetails">Display details</span>
+        <span v-show="showDetails">Close details</span>
       </v-tooltip>
     </v-card>
     <svg class="d3-tree width-100-percent">
@@ -51,12 +51,12 @@
     </v-card>
     <v-dialog v-model="dialog" max-width="400">
       <v-card>
-        <v-card-title class="headline">提示</v-card-title>
-        <v-card-text class="subtitle-1 text-align-left">确定要删除节点吗? </v-card-text>
+        <v-card-title class="headline">Tips</v-card-title>
+        <v-card-text class="subtitle-1 text-align-left">Are you sure you want to delete the node? </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text @click="dialog = false">取消</v-btn>
-          <v-btn color="red" text @click="deleteNodeData()">确定</v-btn>
+          <v-btn text @click="dialog = false">Cancel</v-btn>
+          <v-btn color="red" text @click="deleteNodeData()">Confirm</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -181,11 +181,11 @@ export default {
     },
     addNode() {
       if (!this.newNodeName) {
-        console.warn('新增节点名称不能为空')
+        console.warn('New node cannot be empty')
         return false
       }
       if (!this.currentNode) {
-        console.warn('请先选择一个节点')
+        console.warn('Please select a node')
         return false
       }
 
@@ -209,7 +209,7 @@ export default {
 
       this.update(parent)
 
-      console.info('新增成功')
+      console.info('Successfully added')
     },
     deleteNodeData() {
       this.dialog = false
@@ -228,18 +228,18 @@ export default {
     },
     deleteNode() {
       if (!this.currentNode) {
-        console.warn('请选择要删除的节点')
+        console.warn('Please select the node to delete')
         return false
       }
       if (this.currentNode.data.value === this.rootNodeId) {
-        console.warn('不能删除根节点')
+        console.warn('The root node cannot be deleted')
         return false
       }
       this.dialog = true
     },
     editNode() {
       if (!this.currentNode) {
-        console.warn('请选择要编辑的节点')
+        console.warn('Please select the node to edit')
         return false
       }
 
@@ -323,6 +323,7 @@ export default {
       this.links = this.dTreeData.descendants().slice(1)
     },
 
+    // Data binding with DOM
     // 数据与Dom进行绑定
     update(source) {
       console.log('update')

@@ -57,8 +57,6 @@ export default {
     }
   },
   mounted () {
-    // 添加一个窗口监控方法, 修改 svg 宽高, https://blog.csdn.net/qq_25386583/article/details/77161478
-
     let clientWidth = document.body.clientWidth
     let clientHeight = document.body.clientHeight
 
@@ -82,6 +80,7 @@ export default {
     }
     this.initTree(this.treeData)
 
+    // Update tree
     // 更新树效果
     setTimeout(() => {
       this.nodes = []
@@ -96,6 +95,7 @@ export default {
   },
   methods: {
     initTree (data) {
+      // Set root node coordinates
       // 根节点坐标设置
       this.rootX = Math.floor(this.svgWidth * 0.5)
       this.rootY = Math.floor(this.svgHeight * 0.4)
@@ -126,6 +126,7 @@ export default {
       function traverseNode (arr, parentNode, num) {
         let len = arr.length
 
+        // The margin needs to be adjusted in real time according to the number of nodes at the bottom
         // distance 边距需要根据底层的节点个数去实时调整
         dx = self.svgWidth / num
         if (dx < 200) {
@@ -140,6 +141,7 @@ export default {
           if (len > 1) {
             obj.x = i * dx + (dx * 0.5)
           } else {
+            // There is only one node under the current parent node, and the X coordinate of the child node is consistent with that of the parent node
             // 当前父节点下面只有一个节点, 子节点X坐标和父节点X坐标一致
             obj.x = parentNode.x
           }
@@ -148,11 +150,13 @@ export default {
           obj.d = d
           self.nodes.push(obj)
 
+          // Depth first
           // 深度优先 !!!
           // if (arr[i].children && arr[i].children.length > 0) {
           //   traverseNode(arr[i].children, obj)
           // }
 
+          // Breadth first, step one
           // 广度优先 第一步 !!!
           if (arr[i].children && arr[i].children.length > 0) {
             nodeNum = nodeNum + arr[i].children.length
@@ -163,6 +167,7 @@ export default {
             childrenArr = childrenArr.concat(nodeObj)
           }
         }
+        // Breadth first, step two
         // 广度优先 第二步 !!!
         for (let i = 0; i < childrenArr.length; i++) {
           traverseNode(childrenArr[i].arr, childrenArr[i].node, nodeNum)

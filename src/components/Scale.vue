@@ -11,6 +11,7 @@ export default {
     return {}
   },
   mounted () {
+    // Linear scale
     // 线性比例尺
     let dataset = [1.2, 2.3, 0.9, 1.5, 3.3]
     let min = d3.min(dataset)
@@ -33,6 +34,7 @@ export default {
 
     // ----------------------------------------------------------
 
+    // Sequence scale
     // 序数比例尺
     let index = [0, 1, 2, 3, 4]
     let color = ['red', 'blue', 'yellow', 'black', 'green']
