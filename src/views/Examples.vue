@@ -219,9 +219,8 @@ export default {
       this.dark = true
     }
     if (this.$route.path === '/examples') {
-      // this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
       // default route path
-      this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
+      this.$router.push('/examples/introduction').catch(err => { }) // eslint-disable-line
     } else {
       this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
       const path = this.$route.path
