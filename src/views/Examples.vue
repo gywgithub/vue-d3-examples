@@ -117,7 +117,7 @@
 import packageJson from '../../package.json'
 export default {
   data: () => ({
-    version: 'v0.1.0',
+    version: '',
     dialog: false,
     dark: false,
     drawer: null,
@@ -128,13 +128,13 @@ export default {
   computed: {
     items: function () {
       return [
-      // {
-      //   icon: 'mdi-alpha-b-box-outline',
-      //   title: 'Introduction',
-      //   path: '/examples/introduction',
-      //   appendIcon: null,
-      //   active: true
-      // },
+        {
+          icon: 'mdi-alpha-i-box-outline',
+          title: 'Introduction',
+          path: '/examples/introduction',
+          appendIcon: null,
+          active: true
+        },
         {
           icon: 'mdi-alpha-b-box-outline',
           title: this.$vuetify.lang.t('$vuetify.sidebar.title1.value'),
@@ -145,8 +145,9 @@ export default {
             { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title4.value'), path: '/examples/selectelementbinddata' },
             { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title5.value'), path: '/examples/selectinsertremove' }
           ],
-          appendIcon: 'mdi-chevron-down',
-          active: true
+          appendIcon: 'mdi-chevron-down'
+          // ,
+          // active: true
         },
         {
           icon: 'mdi-alpha-t-box-outline',
@@ -218,6 +219,8 @@ export default {
       this.dark = true
     }
     if (this.$route.path === '/examples') {
+      // this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
+      // default route path
       this.$router.push('/examples/helloworld').catch(err => { }) // eslint-disable-line
     } else {
       this.$router.push(this.$route.path).catch(err => { }) // eslint-disable-line
@@ -300,6 +303,10 @@ export default {
     itemClick (item, key) {
       this.subItemActive = null
       sessionStorage.setItem('itemActive', key)
+      console.dir(item)
+      if (!item.children) {
+        this.$router.push(item.path).catch(err => { }) // eslint-disable-line
+      }
     },
     subItemClick (item, key) {
       sessionStorage.setItem('subItemActive', key)

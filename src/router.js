@@ -26,6 +26,12 @@ const router = new Router({
       meta: { title: 'Examples' },
       children: [
         {
+          path: '/examples/introduction',
+          name: 'introduction',
+          component: () => import('./components/Introduction.vue'),
+          meta: { title: 'Introduction' }
+        },
+        {
           path: '/examples/helloworld',
           name: 'helloworld',
           component: () => import('./components/HelloWorld.vue'),
