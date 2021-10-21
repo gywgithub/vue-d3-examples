@@ -110,6 +110,11 @@
         <v-card-text>Email: qingyi_w@outlook.com</v-card-text>
       </v-card>
     </v-dialog>
+    <v-fab-transition>
+      <v-btn v-if="!hidden" color="primary" dark fixed bottom right fab @click="scrollTop">
+        <v-icon>mdi-chevron-up</v-icon>
+      </v-btn>
+    </v-fab-transition>
   </v-app>
 </template>
 
@@ -118,6 +123,7 @@ import packageJson from '../../package.json'
 export default {
   data: () => ({
     version: '',
+    hidden: true,
     dialog: false,
     dark: false,
     drawer: null,
@@ -256,12 +262,27 @@ export default {
     document.addEventListener('fullscreenchange', () => {
       console.log('fullscreenchange')
     })
+
+    window.addEventListener('scroll', () => {
+      let scrollTop = document.documentElement.scrollTop
+      if (scrollTop > 100) {
+        this.hidden = false
+      } else {
+        this.hidden = true
+      }
+    })
   },
   beforeDestroy () {
     sessionStorage.removeItem('subItemActive')
     sessionStorage.removeItem('itemActive')
   },
   methods: {
+    scrollTop () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    },
     requestFullscreen () {
       const docElm = document.documentElement
       if (docElm.requestFullscreen) {

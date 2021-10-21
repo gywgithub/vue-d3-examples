@@ -1,11 +1,36 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app  v-scroll:#scroll-target="onScroll">
       <router-view class="view-position" />
       <vue-particles color="#409eff" class="particles-position" :lineOpacity="0.5" :clickEffect="false" :particlesNumber="60" :particleSize="3"></vue-particles>
     </v-app>
   </div>
 </template>
+<script>
+export default {
+  data () {
+    return {
+      hidden: false,
+      offsetTop: 0
+    }
+  },
+  mounted () {
+    console.log('Introduction')
+  },
+  methods: {
+    scrollTop () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    },
+    onScroll (e) {
+      this.offsetTop = e.target.scrollTop
+      console.log(this.offsetTop)
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

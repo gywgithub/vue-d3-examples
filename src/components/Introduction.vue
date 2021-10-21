@@ -24,36 +24,19 @@
       <p>Vuetify is a Vue UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.</p>
       <a href="https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f" target="_blank">What is Vuetify</a><br /><br />
     </div>
-    <v-fab-transition>
-      <v-btn v-show="!hidden" color="primary" dark fixed bottom right fab @click="scrollTop">
-        <v-icon>mdi-chevron-up</v-icon>
-      </v-btn>
-    </v-fab-transition>
   </div>
 </template>
 <script>
 export default {
   data () {
-    return {
-      hidden: false
-    }
-  },
-  mounted () {
-    console.log('Introduction')
-  },
-  methods: {
-    scrollTop () {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
-    }
+    return {}
   }
 }
 </script>
 <style scoped>
 .container-width {
   width: calc(100% - 280px);
+  margin: 0 auto;
 }
 .img-size {
   width: 300px;
