@@ -136,7 +136,7 @@ export default {
       return [
         {
           icon: 'mdi-alpha-i-box-outline',
-          title: 'Introduction',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.titleIntroduction.value'),
           path: '/examples/introduction',
           appendIcon: null,
           active: true
@@ -152,8 +152,6 @@ export default {
             { title: this.$vuetify.lang.t('$vuetify.sidebar.title1.children.title5.value'), path: '/examples/selectinsertremove' }
           ],
           appendIcon: 'mdi-chevron-down'
-          // ,
-          // active: true
         },
         {
           icon: 'mdi-alpha-t-box-outline',

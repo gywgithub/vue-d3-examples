@@ -15,6 +15,9 @@ const messages = {
     $vuetify: {
       examplesButton: 'Examples',
       sidebar: {
+        titleIntroduction: {
+          value: 'Introduction'
+        },
         title1: {
           value: 'Basic',
           children: {
@@ -142,6 +145,9 @@ const messages = {
     $vuetify: {
       examplesButton: '示例',
       sidebar: {
+        titleIntroduction: {
+          value: '介绍'
+        },
         title1: {
           value: '基础',
           children: {
