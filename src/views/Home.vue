@@ -19,7 +19,7 @@
     </a>
     <div class="flex-column margin-top-20vh">
       <div class="d-flex justify-center">
-        <img src="../assets/img/vue.png" class="d-flex img-width" />
+        <img src="../assets/img/vue-logo.svg" class="d-flex img-width" />
         <img src="../assets/img/d3.svg" class="d-flex img-width img-d3-padding" />
       </div>
       <div class="display-3 font-weight-regular span-margin">Vue&nbsp;&nbsp;D3&nbsp;&nbsp;V5&nbsp;&nbsp;Examples</div>

@@ -2,18 +2,12 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app width="280">
       <div class="img-container cursor-pointer">
-        <img src="../assets/img/vue.png" class="logo-img" @click="goHome" />
+        <img src="../assets/img/vue-logo.svg" class="logo-img" @click="goHome" />
         <img src="../assets/img/d3.svg" class="logo-img img-d3-padding" @click="goHome" />
       </div>
       <v-divider></v-divider>
       <v-list>
-        <v-list-group
-          v-for="(item, key) in items"
-          :key="key"
-          v-model="item.active"
-          :append-icon="item.appendIcon"
-          @click="itemClick(item,key)"
-        >
+        <v-list-group v-for="(item, key) in items" :key="key" v-model="item.active" :append-icon="item.appendIcon" @click="itemClick(item, key)">
           <template v-slot:activator>
             <v-list-item-icon>
               <v-icon v-text="item.icon"></v-icon>
@@ -23,11 +17,7 @@
             </v-list-item-content>
           </template>
           <v-list-item-group v-if="item.children" color="primary" v-model="subItemActive">
-            <v-list-item
-              v-for="(subItem, k) in item.children"
-              :key="k"
-              @click="subItemClick(subItem, k)"
-            >
+            <v-list-item v-for="(subItem, k) in item.children" :key="k" @click="subItemClick(subItem, k)">
               <v-list-item-icon></v-list-item-icon>
 
               <v-list-item-content>
@@ -54,38 +44,40 @@
       />-->
       <v-spacer />
       <v-menu offset-y>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          text
-          v-bind="attrs"
-          v-on="on"
-        >
-          <v-icon>mdi-translate</v-icon>
-          <v-icon small>
-            mdi-chevron-down
-          </v-icon>
-        </v-btn>
-      </template>
-      <v-list>
-        <v-list-item-group
-          v-model="selectedItem"
-          color="primary"
-        >
-          <v-list-item>
-            <v-list-item-title @click="changeLang('en')">English</v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title @click="changeLang('zh')">简体中文</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-menu>
-      <v-btn icon @click="requestFullscreen">
-        <v-icon>mdi-fullscreen</v-icon>
-      </v-btn>
-      <v-btn icon @click="exitFullScreen">
-        <v-icon>mdi-fullscreen-exit</v-icon>
-      </v-btn>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on" small>
+            <v-icon>mdi-translate</v-icon>
+            <v-icon small> mdi-chevron-down </v-icon>
+          </v-btn>
+        </template>
+        <v-list dense>
+          <v-list-item-group v-model="selectedItem" color="primary">
+            <v-subheader>TRANSLATIONS</v-subheader>
+            <v-list-item>
+              <v-list-item-title @click="changeLang('en')">English</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title @click="changeLang('zh')">简体中文</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-menu>
+      <v-tooltip v-if="!fullScreen" bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="requestFullscreen" v-bind="attrs" v-on="on">
+            <v-icon>mdi-fullscreen</v-icon>
+          </v-btn>
+        </template>
+        <span>Full Screen</span>
+      </v-tooltip>
+      <v-tooltip v-else bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="exitFullScreen" v-bind="attrs" v-on="on">
+            <v-icon>mdi-fullscreen-exit</v-icon>
+          </v-btn>
+        </template>
+        <span>Exit Full Screen</span>
+      </v-tooltip>
       <v-btn icon @click="changeTheme">
         <v-icon v-if="!dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
@@ -105,7 +97,7 @@
     <v-dialog v-model="dialog" width="500">
       <v-card>
         <v-card-title primary-title>Vue D3 Examples</v-card-title>
-        <v-card-text>Version: v{{version}}</v-card-text>
+        <v-card-text>Version: v{{ version }}</v-card-text>
         <v-card-text>Author: YuanWei Guo</v-card-text>
         <v-card-text>Email: qingyi_w@outlook.com</v-card-text>
       </v-card>
@@ -123,6 +115,7 @@ import packageJson from '../../package.json'
 export default {
   data: () => ({
     version: '',
+    fullScreen: false,
     hidden: true,
     dialog: false,
     dark: false,
@@ -282,6 +275,7 @@ export default {
       })
     },
     requestFullscreen () {
+      this.fullScreen = true
       const docElm = document.documentElement
       if (docElm.requestFullscreen) {
         docElm.requestFullscreen()
@@ -294,6 +288,7 @@ export default {
       }
     },
     exitFullScreen () {
+      this.fullScreen = false
       if (document.exitFullscreen) {
         document.exitFullscreen()
       } else if (document.msExitFullscreen) {
