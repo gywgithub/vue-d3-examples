@@ -78,16 +78,38 @@
         </template>
         <span>Exit Full Screen</span>
       </v-tooltip>
-      <v-btn icon @click="changeTheme">
-        <v-icon v-if="!dark">mdi-brightness-7</v-icon>
-        <v-icon v-else>mdi-brightness-4</v-icon>
-      </v-btn>
-      <v-btn icon @click="openTab">
-        <v-icon size="28">mdi-github</v-icon>
-      </v-btn>
-      <v-btn icon @click="dialog = true">
-        <v-icon size="28">mdi-information-outline</v-icon>
-      </v-btn>
+      <v-tooltip v-if="!dark" bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="changeTheme" v-bind="attrs" v-on="on">
+            <v-icon>mdi-brightness-7</v-icon>
+          </v-btn>
+        </template>
+        <span>Light</span>
+      </v-tooltip>
+      <v-tooltip v-else bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="changeTheme" v-bind="attrs" v-on="on">
+            <v-icon>mdi-brightness-4</v-icon>
+          </v-btn>
+        </template>
+        <span>Dark</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="openTab" v-bind="attrs" v-on="on">
+            <v-icon size="28">mdi-github</v-icon>
+          </v-btn>
+        </template>
+        <span>GitHub</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn icon @click="dialog = true" v-bind="attrs" v-on="on">
+            <v-icon size="28">mdi-information-outline</v-icon>
+          </v-btn>
+        </template>
+        <span>About</span>
+      </v-tooltip>
     </v-app-bar>
     <v-main>
       <v-container>
