@@ -19,7 +19,7 @@
     </div>
     <div class="margin-top-50">
       <!--  vuetify -->
-      <img src="@/assets/img/vuetify-logo-light-atom.svg" alt="vuetify-logo" class="img-size" />
+      <img src="@/assets/img/vuetify-logo-light-atom.svg" alt="vuetify-logo" class="img-size vuetify-logo" />
       <h1>Material Design Framework</h1>
       <p>Vuetify is a Vue UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.</p>
       <a href="https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f" target="_blank">What is Vuetify</a><br /><br />
@@ -44,5 +44,24 @@ export default {
 }
 .margin-top-50 {
   margin-top: 50px;
+}
+
+.vuetify-logo {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vuetify-logo {
+    animation: vuetify-logo-spin infinite 16s linear;
+  }
+}
+
+@keyframes vuetify-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
