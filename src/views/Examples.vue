@@ -6,7 +6,7 @@
         <img src="../assets/img/d3.svg" class="logo-img img-d3-padding" @click="goHome" />
       </div>
       <v-divider></v-divider>
-      <v-list>
+      <v-list dense>
         <v-list-group v-for="(item, key) in items" :key="key" v-model="item.active" :append-icon="item.appendIcon" @click="itemClick(item, key)">
           <template v-slot:activator>
             <v-list-item-icon>
@@ -29,7 +29,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="primary" dark>
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="primary" dark :dense="denseFlag">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">Vue D3 Examples</span>
@@ -144,7 +144,8 @@ export default {
     drawer: null,
     itemActive: 0,
     subItemActive: 0,
-    selectedItem: 0
+    selectedItem: 0,
+    denseFlag: true
   }),
   computed: {
     items: function () {
@@ -227,6 +228,14 @@ export default {
             { title: this.$vuetify.lang.t('$vuetify.sidebar.title6.children.title3.value'), path: '/examples/histogramIII' }
           ],
           appendIcon: 'mdi-chevron-down'
+        },
+        {
+          icon: 'mdi-alpha-l-box-outline',
+          title: this.$vuetify.lang.t('$vuetify.sidebar.title7.value'),
+          children: [
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title7.children.title1.value'), path: '/examples/lines/line-chart-I' }
+          ],
+          appendIcon: 'mdi-chevron-down'
         }
       ]
     }
@@ -284,6 +293,26 @@ export default {
         this.hidden = true
       }
     })
+
+    // -- Watch Material Design Breakpoints --
+    // https://vuetifyjs.com/en/features/breakpoints/#breakpoint-service
+    const self = this
+    if (self.$vuetify.breakpoint.name === 'xl') {
+      self.denseFlag = false
+    }
+    this.$watch(
+      function () {
+        return self.$vuetify.breakpoint.name
+      },
+      function (newVal, oldVal) {
+        if (newVal === 'xl') {
+          self.denseFlag = false
+        } else {
+          self.denseFlag = true
+        }
+      }
+    )
+    // -- end --
   },
   beforeDestroy () {
     sessionStorage.removeItem('subItemActive')

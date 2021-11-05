@@ -210,6 +210,13 @@ const router = new Router({
           name: 'zoomabletext',
           component: () => import('./components/ZoomableText.vue'),
           meta: { title: 'Zoom' }
+        },
+        // Lines
+        {
+          path: '/examples/lines/line-chart-I',
+          name: 'lineChartI',
+          component: () => import('./components/Lines/LineChartI.vue'),
+          meta: { title: 'LineChartI' }
         }
       ]
     },

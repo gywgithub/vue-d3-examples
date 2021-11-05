@@ -137,6 +137,14 @@ const messages = {
               value: 'HistogramIII'
             }
           }
+        },
+        title7: {
+          value: 'Lines',
+          children: {
+            title1: {
+              value: 'Line Chart I'
+            }
+          }
         }
       }
     }
@@ -265,6 +273,14 @@ const messages = {
             },
             title3: {
               value: '直方图 III'
+            }
+          }
+        },
+        title7: {
+          value: '折线图',
+          children: {
+            title1: {
+              value: '折线图 I'
             }
           }
         }
