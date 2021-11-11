@@ -14,21 +14,25 @@ export default {
     let height = 700
     let color = d3.scaleOrdinal(d3.schemeCategory10)
     console.log(window.location) // eslint-disable-line
-    // localhost or 127.0.0.1
-    let fileAddress = window.location.origin + '/json/miserables.json'
+    let fileAddress = ''
+    if (window.location.origin === 'https://gywgithub.github.io') {
+      // https://gywgithub.github.io/vue-d3-examples/json/miserables.json
+      fileAddress = window.location.origin + window.location.pathname + 'json/miserables.json'
+    } else {
+      // localhost or 127.0.0.1
+      fileAddress = window.location.origin + '/json/miserables.json'
+    }
+
     await fetch({
       url: fileAddress,
       method: 'get'
     }).then(res => {
-      console.log(1)
       console.log(res) // eslint-disable-line
       if (res.status === 404) {
         fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
       }
     }).catch(err => {
-      console.log(2)
       console.log(err) // eslint-disable-line
-      // fileAddress = window.location.href.split('/examples/forcebasedI')[0] + '/json/miserables.json'
     })
     console.log('json file url: ', fileAddress) // eslint-disable-line
     d3.json(fileAddress).then(function (graph) {
