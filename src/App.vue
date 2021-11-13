@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <v-app  v-scroll:#scroll-target="onScroll">
-      <router-view class="view-position" />
-      <vue-particles color="#409eff" class="particles-position" :lineOpacity="0.5" :clickEffect="false" :particlesNumber="60" :particleSize="3"></vue-particles>
+      <router-view />
     </v-app>
   </div>
 </template>
@@ -63,18 +62,5 @@ body,
 
 .container-border {
   border: 1px solid #eee;
-}
-
-.view-position {
-  z-index: 2;
-}
-
-.particles-position {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
 }
 </style>

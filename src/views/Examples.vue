@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app absolute :temporary="!$vuetify.breakpoint.lgAndUp" width="280">
+    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app width="280">
       <div class="img-container cursor-pointer">
         <img src="../assets/img/vue-logo.svg" class="logo-img" @click="goHome" />
         <img src="../assets/img/d3.svg" class="logo-img img-d3-padding" @click="goHome" />
