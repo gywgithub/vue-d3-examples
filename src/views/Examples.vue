@@ -34,14 +34,17 @@
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">Vue D3 Examples</span>
       </v-toolbar-title>
-      <!-- <v-text-field
+      <v-text-field
+        v-model="searchText"
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Search"
         class="hidden-sm-and-down"
-      /> -->
+        :dense="denseFlag"
+        @keyup.enter="handleSearch"
+      />
       <v-spacer />
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -146,7 +149,8 @@ export default {
     subItemActive: 0,
     selectedItem: 0,
     denseFlag: true,
-    marginTop: 0
+    marginTop: 0,
+    searchText: ''
   }),
   computed: {
     items: function () {
@@ -320,6 +324,9 @@ export default {
     sessionStorage.removeItem('itemActive')
   },
   methods: {
+    handleSearch () {
+      console.log(this.searchText)
+    },
     scrollTop () {
       window.scrollTo({
         top: 0,
