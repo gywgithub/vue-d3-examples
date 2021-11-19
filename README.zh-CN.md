@@ -16,6 +16,16 @@ d3: `v5.12.0`
 
 https://gywgithub.github.io/vue-d3-examples/
 
+### 特性
+
+- 基础
+- 树
+- 条形图
+- 缩放
+- 力导向图
+- 直方图
+- 折线图
+
 ### Project setup
 ```
 npm install

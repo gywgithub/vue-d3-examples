@@ -16,6 +16,16 @@ d3: `v5.12.0`
 
 https://gywgithub.github.io/vue-d3-examples/
 
+### Features
+
+- Basic
+- Tree
+- BarChart
+- Zoom
+- Force
+- Histogram
+- Lines
+
 ### Project setup
 ```
 npm install
