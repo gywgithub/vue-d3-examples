@@ -238,7 +238,8 @@ export default {
           icon: 'mdi-alpha-l-box-outline',
           title: this.$vuetify.lang.t('$vuetify.sidebar.title7.value'),
           children: [
-            { title: this.$vuetify.lang.t('$vuetify.sidebar.title7.children.title1.value'), path: '/examples/lines/line-chart-I' }
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title7.children.title1.value'), path: '/examples/lines/line-chart-I' },
+            { title: this.$vuetify.lang.t('$vuetify.sidebar.title7.children.title2.value'), path: '/examples/lines/line-chart-II' }
           ],
           appendIcon: 'mdi-chevron-down'
         }

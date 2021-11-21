@@ -80,6 +80,9 @@ export default {
       .attr('stroke-linecap', 'round')
       .attr('stroke-width', 1.5)
       .attr('d', line)
+
+    console.log(svg)
+    console.log(g)
   }
 }
 </script>

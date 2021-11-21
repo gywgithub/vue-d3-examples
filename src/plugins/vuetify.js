@@ -143,6 +143,9 @@ const messages = {
           children: {
             title1: {
               value: 'Line Chart I'
+            },
+            title2: {
+              value: 'Line Chart II'
             }
           }
         }
@@ -281,6 +284,9 @@ const messages = {
           children: {
             title1: {
               value: '折线图 I'
+            },
+            title2: {
+              value: '折线图 II'
             }
           }
         }

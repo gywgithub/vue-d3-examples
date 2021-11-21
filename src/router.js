@@ -217,6 +217,12 @@ const router = new Router({
           name: 'lineChartI',
           component: () => import('./components/Lines/LineChartI.vue'),
           meta: { title: 'LineChartI' }
+        },
+        {
+          path: '/examples/lines/line-chart-II',
+          name: 'lineChartII',
+          component: () => import('./components/Lines/LineChartII.vue'),
+          meta: { title: 'LineChartII' }
         }
       ]
     },
