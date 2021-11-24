@@ -326,45 +326,7 @@ export default {
   },
   methods: {
     handleSearch () {
-      // 往这里写你的功能代码，现在这个仓库是 GitHub 仓库
-      // console.log(this.searchText)
-      let flag = false
-      this.subItemActive = null
-      let parentIndex = this.items.findIndex(item => item.title.toLowerCase() === this.searchText.toLowerCase())
-      if (parentIndex !== -1) {
-        flag = true
-        sessionStorage.setItem('itemActive', parentIndex)
-        if (this.items[parentIndex].children) {
-          sessionStorage.setItem('subItemActive', 0)
-          this.$router.push(this.items[parentIndex].children[0].path).catch(err => { }) // eslint-disable-line
-        } else {
-          this.subItemActive = null
-          this.$router.push(this.items[parentIndex].path).catch(err => { }) // eslint-disable-line
-        }
-      } else {
-        this.items.forEach((item, key) => {
-          if (item.children && item.children.length > 0) {
-            let chilIndex = item.children.findIndex(child => child.title.toLowerCase() === this.searchText.toLowerCase())
-            if (chilIndex !== -1) {
-              flag = true
-              sessionStorage.setItem('subItemActive', chilIndex)
-              sessionStorage.setItem('itemActive', key)
-              this.$router.push(item.children[chilIndex].path).catch(err => { }) // eslint-disable-line
-            }
-          }
-        })
-      }
-      if (!flag) {
-        alert('未匹配到菜单！')
-        return
-      }
-      if (sessionStorage.getItem('itemActive')) {
-        this.items[0].active = false
-        this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
-      }
-      if (sessionStorage.getItem('subItemActive')) {
-        this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
-      }
+      console.log(this.searchText)
     },
     scrollTop () {
       window.scrollTo({
