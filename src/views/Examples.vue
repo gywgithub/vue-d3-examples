@@ -132,6 +132,13 @@
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
     </v-fab-transition>
+    <v-snackbar
+     :timeout="3000"
+      v-model="snackbar"
+      bottom
+      :color="$vuetify.theme.themes.light.warning"
+      outlined
+      >NO Match! </v-snackbar>
   </v-app>
 </template>
 
@@ -139,6 +146,7 @@
 import packageJson from '../../package.json'
 export default {
   data: () => ({
+    snackbar: false,
     version: '',
     fullScreen: false,
     hidden: true,
@@ -336,33 +344,26 @@ export default {
           sessionStorage.setItem('subItemActive', 0)
           this.$router.push(this.items[parentIndex].children[0].path).catch(err => { }) // eslint-disable-line
         } else {
-          this.subItemActive = null
           this.$router.push(this.items[parentIndex].path).catch(err => { }) // eslint-disable-line
         }
       } else {
         this.items.forEach((item, key) => {
           if (item.children && item.children.length > 0) {
-            let chilIndex = item.children.findIndex(child => child.title.toLowerCase() === this.searchText.toLowerCase())
-            if (chilIndex !== -1) {
+            let childIndex = item.children.findIndex(child => child.title.toLowerCase() === this.searchText.toLowerCase())
+            if (childIndex !== -1) {
               flag = true
-              sessionStorage.setItem('subItemActive', chilIndex)
+              sessionStorage.setItem('subItemActive', childIndex)
               sessionStorage.setItem('itemActive', key)
-              this.$router.push(item.children[chilIndex].path).catch(err => { }) // eslint-disable-line
+              this.$router.push(item.children[childIndex].path).catch(err => { }) // eslint-disable-line
             }
           }
         })
       }
       if (!flag) {
-        alert('NO Match！')
-        return
+        this.snackbar = true
       }
-      if (sessionStorage.getItem('itemActive')) {
-        this.items[0].active = false
-        this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
-      }
-      if (sessionStorage.getItem('subItemActive')) {
-        this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
-      }
+      this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+      this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
     },
     scrollTop () {
       window.scrollTo({
