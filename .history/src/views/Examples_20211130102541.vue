@@ -362,7 +362,6 @@ export default {
       if (!flag) {
         this.snackbar = true
       }
-
       this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
       this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
     },

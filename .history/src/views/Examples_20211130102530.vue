@@ -342,7 +342,7 @@ export default {
         sessionStorage.setItem('itemActive', parentIndex)
         if (this.items[parentIndex].children) {
           sessionStorage.setItem('subItemActive', 0)
-          this.$router.push(this.items[parentIndex].children[0].path).catch(err => { }) // eslint-disable-line
+          this.$router.push(this.items[parentIndex].children[0].path).catch(err => { })
         } else {
           this.$router.push(this.items[parentIndex].path).catch(err => { }) // eslint-disable-line
         }
@@ -362,7 +362,6 @@ export default {
       if (!flag) {
         this.snackbar = true
       }
-
       this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
       this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
     },
