@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app width="280">
-      <div class="img-container cursor-pointer">
+      <div class="cursor-pointer img-container">
         <img src="../assets/img/vue-logo.svg" class="logo-img" @click="goHome" />
         <img src="../assets/img/d3.svg" class="logo-img img-d3-padding" @click="goHome" />
       </div>
@@ -30,8 +30,8 @@
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="primary" dark :dense="denseFlag">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
+      <v-app-bar-nav-icon @click.stop="drawegr = !drawer" />
+      <v-toolbar-title style="width: 300px" class="pl-4 ml-0">
         <span class="hidden-sm-and-down">Vue D3 Examples</span>
       </v-toolbar-title>
       <v-text-field
@@ -132,6 +132,13 @@
         <v-icon>mdi-chevron-up</v-icon>
       </v-btn>
     </v-fab-transition>
+    <v-snackbar
+     :timeout="3000"
+      v-model="snackbar"
+      bottom
+      :color="$vuetify.theme.themes.light.warning"
+      outlined
+      >NO Match! </v-snackbar>
   </v-app>
 </template>
 
@@ -139,6 +146,7 @@
 import packageJson from '../../package.json'
 export default {
   data: () => ({
+    snackbar: false,
     version: '',
     fullScreen: false,
     hidden: true,
@@ -326,7 +334,37 @@ export default {
   },
   methods: {
     handleSearch () {
-      console.log(this.searchText)
+      let flag = false
+      this.subItemActive = null
+      let parentIndex = this.items.findIndex(item => item.title.toLowerCase() === this.searchText.toLowerCase())
+      if (parentIndex !== -1) {
+        flag = true
+        sessionStorage.setItem('itemActive', parentIndex)
+        if (this.items[parentIndex].children) {
+          sessionStorage.setItem('subItemActive', 0)
+          this.$router.push(this.items[parentIndex].children[0].path).catch(err => { }) // eslint-disable-line
+        } else {
+          this.$router.push(this.items[parentIndex].path).catch(err => { }) // eslint-disable-line
+        }
+      } else {
+        this.items.forEach((item, key) => {
+          if (item.children && item.children.length > 0) {
+            let childIndex = item.children.findIndex(child => child.title.toLowerCase() === this.searchText.toLowerCase())
+            if (childIndex !== -1) {
+              flag = true
+              sessionStorage.setItem('subItemActive', childIndex)
+              sessionStorage.setItem('itemActive', key)
+              this.$router.push(item.children[childIndex].path).catch(err => { }) // eslint-disable-line
+            }
+          }
+        })
+      }
+      if (!flag) {
+        this.snackbar = true
+      }
+
+      this.items[Number(sessionStorage.getItem('itemActive'))]['active'] = true
+      this.subItemActive = Number(sessionStorage.getItem('subItemActive'))
     },
     scrollTop () {
       window.scrollTo({
