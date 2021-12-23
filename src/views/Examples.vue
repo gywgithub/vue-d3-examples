@@ -30,7 +30,7 @@
     </v-navigation-drawer>
 
     <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="primary" dark :dense="denseFlag">
-      <v-app-bar-nav-icon @click.stop="drawegr = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title style="width: 300px" class="pl-4 ml-0">
         <span class="hidden-sm-and-down">Vue D3 Examples</span>
       </v-toolbar-title>
