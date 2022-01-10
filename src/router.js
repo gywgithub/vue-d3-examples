@@ -64,49 +64,49 @@ const router = new Router({
         {
           path: '/examples/treeI',
           name: 'treeI',
-          component: () => import('./components/TreeI.vue'),
+          component: () => import('./components/Trees/TreeI.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeII',
           name: 'treeII',
-          component: () => import('./components/TreeII.vue'),
+          component: () => import('./components/Trees/TreeII.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeIII',
           name: 'treeIII',
-          component: () => import('./components/TreeIII.vue'),
+          component: () => import('./components/Trees/TreeIII.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeIV',
           name: 'treeIV',
-          component: () => import('./components/TreeIV.vue'),
+          component: () => import('./components/Trees/TreeIV.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeV',
           name: 'treeV',
-          component: () => import('./components/TreeV.vue'),
+          component: () => import('./components/Trees/TreeV.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeVI',
           name: 'treeVI',
-          component: () => import('./components/TreeVI.vue'),
+          component: () => import('./components/Trees/TreeVI.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeVII',
           name: 'treeVII',
-          component: () => import('./components/TreeVII.vue'),
+          component: () => import('./components/Trees/TreeVII.vue'),
           meta: { title: 'Tree' }
         },
         {
           path: '/examples/treeVIII',
           name: 'treeVIII',
-          component: () => import('./components/TreeVIII.vue'),
+          component: () => import('./components/Trees/TreeVIII.vue'),
           meta: { title: 'Tree' }
         },
         {

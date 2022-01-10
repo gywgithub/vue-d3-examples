@@ -510,6 +510,7 @@ export default {
 .card-container {
   padding: 4px;
   text-align: right;
+  z-index: 3;
 }
 
 .display-flex {
@@ -527,7 +528,7 @@ export default {
   top: 130px !important;
   right: 14px !important;
   right: 0;
-  z-index: 99;
+  z-index: 2;
   padding: 10px;
 }
 
